@@ -15,6 +15,43 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "eject": "react-scripts eject",
+    "lint": "./node_modules/eslint/bin/eslint.js src/"
+  },
+  "devDependencies": {
+    "eslint": "^4.13.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "allowImportExportEverywhere": true
+    },
+    "extends": [
+      "airbnb"
+    ],
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "rules": {
+     "react/jsx-filename-extension": [
+       1,
+       {
+         "extensions": [
+           ".js",
+           ".jsx"
+         ]
+       }
+     ],
+     "import/no-extraneous-dependencies": 0,
+     "import/extensions": [
+       "off",
+       "never"
+     ]
+   }
+ }
 }
