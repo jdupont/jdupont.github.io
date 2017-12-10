@@ -1,27 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
+import { withStyles } from 'material-ui/styles';
 import MenuIcon from 'material-ui-icons/Menu';
-import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
+import classNames from 'classnames';
 
-const drawerStyles = () => ({
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
+import PersistentDrawer from './persistent_drawer.js';
+import { drawerWidth } from '../style/dimensions';
+
+const appBarStyles = theme => ({
+  appBar: {
+    position: 'absolute',
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  appBarShiftLeft: {
+    marginLeft: drawerWidth,
+  },
+  hide: {
+    display: 'none',
   },
 });
 
-
-class Home extends React.Component {
+class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -30,52 +43,27 @@ class Home extends React.Component {
     };
   }
 
-  handleDrawerOpen = () => {
+  openDrawer = () => {
     this.setState({ open: true });
-  };
-
-  handleDrawerClose = () => {
-    this.setState({ open: false });
   };
 
   render() {
     const { classes } = this.props;
-    const { open } = this.state;
-
-    const drawer = (
-      <Drawer
-        type="persistent"
-        open={open}
-      >
-        <div>
-          <div>
-            <div className={classes.drawerHeader}>
-              <IconButton onClick={this.handleDrawerClose}>
-                <ChevronLeftIcon />
-              </IconButton>
-            </div>
-            <Divider />
-            <Button>
-              BLOG
-            </Button>
-            <Divider />
-            <Button>
-              ABOUT
-            </Button>
-          </div>
-        </div>
-      </Drawer>
-    );
 
     return (
       <div>
         <div>
-          <AppBar>
-            <Toolbar disableGutters={!open}>
+          <AppBar className={classNames(classes.appBar, {
+              [classes.appBarShift]: this.state.open,
+              [classes.appBarShiftLeft]: this.state.open,
+            })}
+          >
+            <Toolbar disableGutters={!this.state.open}>
               <IconButton
                 color="contrast"
                 aria-label="open drawer"
-                onClick={this.handleDrawerOpen}
+                onClick={this.openDrawer}
+                className={classNames(classes.menuButton, this.state.open && classes.hide)}
               >
                 <MenuIcon />
               </IconButton>
@@ -84,7 +72,7 @@ class Home extends React.Component {
               </Typography>
             </Toolbar>
           </AppBar>
-          { drawer }
+          <PersistentDrawer open={this.state.open} onClose={() => this.setState({ open: false })} />
           <main>
             <Typography>You think water moves fast? You should see ice.</Typography>
           </main>
@@ -100,4 +88,4 @@ Home.propTypes = {
   /* eslint-enable react/forbid-prop-types */
 };
 
-export default withStyles(drawerStyles)(Home);
+export default withStyles(appBarStyles, { withTheme: true })(Home);
