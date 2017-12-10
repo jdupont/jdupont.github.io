@@ -1,14 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import { MenuItem } from 'material-ui/Menu';
 import Typography from 'material-ui/Typography';
-import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
+
+const drawerStyles = () => ({
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
+  },
+});
+
 
 class Home extends React.Component {
   constructor(props) {
@@ -28,6 +39,7 @@ class Home extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
     const { open } = this.state;
 
     const drawer = (
@@ -37,17 +49,19 @@ class Home extends React.Component {
       >
         <div>
           <div>
-            <IconButton onClick={this.handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
+            <div className={classes.drawerHeader}>
+              <IconButton onClick={this.handleDrawerClose}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </div>
             <Divider />
-            <TextField>
+            <Button>
               BLOG
-            </TextField>
+            </Button>
             <Divider />
-            <TextField>
+            <Button>
               ABOUT
-            </TextField>
+            </Button>
           </div>
         </div>
       </Drawer>
@@ -80,4 +94,10 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+Home.propTypes = {
+  /* eslint-disable react/forbid-prop-types */
+  classes: PropTypes.object.isRequired,
+  /* eslint-enable react/forbid-prop-types */
+};
+
+export default withStyles(drawerStyles)(Home);
