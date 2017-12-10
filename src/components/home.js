@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Typography from 'material-ui/Typography';
 
-import Header from './header.js';
-import PersistentDrawer from './persistent_drawer.js';
+import Header from './header';
+import PersistentDrawer from './persistent_drawer';
+import RecentBlogPosts from './recent_blog_posts';
 
 class Home extends Component {
   constructor(props) {
@@ -16,13 +16,9 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div>
-          <Header open={this.state.open} onMenuClick={() => this.setState({ open: true })} />
-          <PersistentDrawer open={this.state.open} onClose={() => this.setState({ open: false })} />
-          <main>
-            <Typography>You think water moves fast? You should see ice.</Typography>
-          </main>
-        </div>
+        <Header open={this.state.open} onMenuClick={() => this.setState({ open: true })} />
+        <PersistentDrawer open={this.state.open} onClose={() => this.setState({ open: false })} />
+        <RecentBlogPosts open={this.state.open} />
       </div>
     );
   }

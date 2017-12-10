@@ -9,7 +9,8 @@ import Home from './home';
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple, // Purple and green play nicely together.
+    type: 'dark',
+    primary: purple,
     secondary: {
       ...green,
       A400: '#00e677',
