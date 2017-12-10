@@ -3,6 +3,7 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import purple from 'material-ui/colors/purple';
 import green from 'material-ui/colors/green';
 import red from 'material-ui/colors/red';
+import 'typeface-roboto';
 
 import Home from './home';
 

@@ -68,7 +68,7 @@ class Home extends Component {
                 <MenuIcon />
               </IconButton>
               <Typography type="title" color="inherit" noWrap>
-                Persistent drawer
+                Jules&#39;s Blog
               </Typography>
             </Toolbar>
           </AppBar>

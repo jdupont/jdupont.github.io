@@ -10,6 +10,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
+    "typeface-kaushan-script": "0.0.44",
     "typeface-roboto": "0.0.45"
   },
   "scripts": {

@@ -12,17 +12,29 @@ import HomeIcon from 'material-ui-icons/Home';
 import FolderIcon from 'material-ui-icons/Folder';
 import PersonOutlineIcon from 'material-ui-icons/PersonOutline';
 
+import 'typeface-kaushan-script';
+
 import { drawerWidth } from '../style/dimensions';
 
-const drawerStyles = () => ({
+const font = 'Kaushan Script';
+
+const drawerStyles = theme => ({
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
+    ...theme.mixins.toolbar,
   },
   drawerPaper: {
     height: '100%',
     width: drawerWidth,
+  },
+  logoFont: {
+    fontFamily: font,
+  },
+  chevron: {
+    position: 'absolute',
+    right: `calc(100% - ${drawerWidth}px)`,
   },
 });
 
@@ -64,8 +76,10 @@ const PersistentDrawer = (props) => {
       <div>
         <div>
           <div className={props.classes.drawerHeader}>
-            <Typography type="title">Jules&#39;s Blog</Typography>
-            <IconButton onClick={props.onClose}>
+            <div>
+              <Typography type="title" color="accent" className={props.classes.logoFont}>JD</Typography>
+            </div>
+            <IconButton onClick={props.onClose} className={props.classes.chevron}>
               <ChevronLeftIcon />
             </IconButton>
           </div>
@@ -91,4 +105,4 @@ PersistentDrawer.propTypes = {
   open: PropTypes.bool,
 };
 
-export default withStyles(drawerStyles)(PersistentDrawer);
+export default withStyles(drawerStyles, { withTheme: true })(PersistentDrawer);
