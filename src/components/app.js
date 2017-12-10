@@ -9,7 +9,7 @@ import Home from './home';
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    // type: 'dark',
     primary: purple,
     secondary: {
       ...green,
