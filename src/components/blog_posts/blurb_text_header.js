@@ -7,7 +7,6 @@ import Avatar from 'material-ui/Avatar';
 
 const textHeaderStyles = theme => ({
   dateStyle: {
-    marginBottom: 12,
     color: theme.palette.text.secondary,
   },
 });

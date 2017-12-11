@@ -8,6 +8,12 @@ import BlurbTextHeader from './blurb_text_header';
 const blogCardStyle = () => ({
   media: {
     height: 300,
+    display: 'flex',
+    // flexDirection: 'column',
+    // alignItems: 'bottom',
+  },
+  textHeader: {
+    //balignSelf: 'flex-start',
   },
 });
 
@@ -18,9 +24,8 @@ const BlurbMediaHeader = (props) => {
     <CardMedia
       className={classes.media}
       image={props.image}
-      overlay={(<div>Test</div>)}
     >
-      <BlurbTextHeader title={props.title} date={props.date} />
+      <BlurbTextHeader className={classes.textHeader} title={props.title} date={props.date} />
     </CardMedia>
   );
 };
