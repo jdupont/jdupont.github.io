@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
@@ -10,13 +10,27 @@ const blogCardStyle = theme => ({
     marginBottom: 12,
     color: theme.palette.text.secondary,
   },
+  actions: {
+    justifyContent: 'flex-end',
+  },
+  media: {
+    height: 194,
+  },
 });
 
 const BlogPostCard = (props) => {
   const { classes } = props;
 
+  let media = null;
+  if (props.image) {
+    media = (
+      <CardMedia className={classes.media} image={props.image} />
+    );
+  }
+
   return (
     <Card>
+      {media}
       <CardContent>
         <Typography type="headline" component="h2">
           {props.title}
@@ -26,11 +40,15 @@ const BlogPostCard = (props) => {
           {props.preview}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions className={classes.actions} >
         <Button dense>READ</Button>
       </CardActions>
     </Card>
   );
+};
+
+BlogPostCard.defaultProps = {
+  image: null,
 };
 
 BlogPostCard.propTypes = {
@@ -40,6 +58,7 @@ BlogPostCard.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
+  image: PropTypes.string,
 };
 
 export default withStyles(blogCardStyle, { withTheme: true })(BlogPostCard);

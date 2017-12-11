@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 
+// import codeComplete2 from '../../public/images/blog_posts/code_complete_2.jpg';
 import BlogPostCard from './blog_post_card';
 
 const contentStyles = theme => ({
@@ -21,6 +21,9 @@ const contentStyles = theme => ({
 const RecentBlogPosts = (props) => {
   const { classes } = props;
 
+  const postWidth = 7;
+  const rowWidth = 12;
+
   return (
     <Grid
       container
@@ -29,23 +32,28 @@ const RecentBlogPosts = (props) => {
         classes.content,
       )}
     >
-      <Grid item xs={12}>
+      <Grid item xs={rowWidth}>
         <Grid container justify="center">
-          <Grid item xs={8}>
-            <BlogPostCard title="My First Post" date="12/10/2017" preview="This post is awesome and you should definitely read it." />
+          <Grid item xs={postWidth}>
+            <BlogPostCard
+              title="My First Post"
+              date="12/10/2017"
+              preview="This post is awesome and you should definitely read it."
+              image={`${process.env.PUBLIC_URL}/images/blog_posts/code_complete_2.jpg`}
+            />
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={rowWidth}>
         <Grid container justify="center">
-          <Grid item xs={8}>
+          <Grid item xs={postWidth}>
             <BlogPostCard title="My Second Post" date="12/11/2017" preview="Also awesome and you should definitely read it too." />
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={rowWidth}>
         <Grid container justify="center">
-          <Grid item xs={8}>
+          <Grid item xs={postWidth}>
             <BlogPostCard title="My Third Post" date="12/12/2017" preview="I am a content mill." />
           </Grid>
         </Grid>
