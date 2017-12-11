@@ -9,12 +9,17 @@ const textHeaderStyles = theme => ({
   dateStyle: {
     color: theme.palette.text.secondary,
   },
+  textHeader: {
+    backgroundColor: theme.palette.secondary.A400,
+    flexGrow: 1,
+  },
 });
 
 const BlurbTextHeader = (props) => {
   const { classes } = props;
   return (
     <CardHeader
+      className={classes.textHeader}
       title={(
         <Typography type="headline" component="h2">
           {props.title}
@@ -37,4 +42,4 @@ BlurbTextHeader.propTypes = {
   date: PropTypes.string.isRequired,
 };
 
-export default withStyles(textHeaderStyles, { withTheme: true })(BlurbTextHeader);
+export default withStyles(textHeaderStyles, { withTheme: true, name: 'MuiCardHeader' })(BlurbTextHeader);

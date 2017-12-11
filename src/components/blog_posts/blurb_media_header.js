@@ -9,11 +9,7 @@ const blogCardStyle = () => ({
   media: {
     height: 300,
     display: 'flex',
-    // flexDirection: 'column',
-    // alignItems: 'bottom',
-  },
-  textHeader: {
-    //balignSelf: 'flex-start',
+    alignItems: 'flex-end',
   },
 });
 
@@ -25,7 +21,7 @@ const BlurbMediaHeader = (props) => {
       className={classes.media}
       image={props.image}
     >
-      <BlurbTextHeader className={classes.textHeader} title={props.title} date={props.date} />
+      <BlurbTextHeader title={props.title} date={props.date} />
     </CardMedia>
   );
 };

@@ -50,4 +50,4 @@ BlurbCard.propTypes = {
   image: PropTypes.string,
 };
 
-export default withStyles(blogCardStyle, { withTheme: true })(BlurbCard);
+export default withStyles(blogCardStyle)(BlurbCard);
