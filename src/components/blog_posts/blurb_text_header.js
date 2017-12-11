@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import { emphasize } from 'material-ui/styles/colorManipulator';
 import { CardHeader } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
-import Avatar from 'material-ui/Avatar';
+
+import JdAvatar from '../jd_avatar';
 
 const textHeaderStyles = theme => ({
-  dateStyle: {
-    color: theme.palette.text.secondary,
+  text: {
+    color: theme.palette.background.default,
   },
   textHeader: {
-    backgroundColor: theme.palette.secondary.A400,
+    background: emphasize(theme.palette.background.default, 0.26),
     flexGrow: 1,
   },
 });
@@ -21,14 +23,16 @@ const BlurbTextHeader = (props) => {
     <CardHeader
       className={classes.textHeader}
       title={(
-        <Typography type="headline" component="h2">
+        <Typography type="headline" component="h2" className={classes.text}>
           {props.title}
         </Typography>)}
       subheader={(
-        <Typography className={classes.dateStyle}>{props.date}</Typography>
+        <Typography className={classes.text}>
+          {props.date}
+        </Typography>
       )}
       avatar={(
-        <Avatar>J</Avatar>
+        <JdAvatar />
       )}
     />
   );
@@ -42,4 +46,4 @@ BlurbTextHeader.propTypes = {
   date: PropTypes.string.isRequired,
 };
 
-export default withStyles(textHeaderStyles, { withTheme: true, name: 'MuiCardHeader' })(BlurbTextHeader);
+export default withStyles(textHeaderStyles, { withTheme: true })(BlurbTextHeader);
