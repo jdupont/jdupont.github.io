@@ -1,41 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
-const blogCardStyle = theme => ({
-  dateStyle: {
-    marginBottom: 12,
-    color: theme.palette.text.secondary,
-  },
+import BlurbTextHeader from './blurb_text_header';
+import BlurbMediaHeader from './blurb_media_header';
+
+const blogCardStyle = () => ({
   actions: {
     justifyContent: 'flex-end',
   },
-  media: {
-    height: 194,
-  },
 });
 
-const BlogPostCard = (props) => {
+const BlurbCard = (props) => {
   const { classes } = props;
 
-  let media = null;
-  if (props.image) {
-    media = (
-      <CardMedia className={classes.media} image={props.image} />
-    );
-  }
+  const header = props.image ?
+    (<BlurbMediaHeader image={props.image} title={props.title} date={props.date} />) :
+    (<BlurbTextHeader title={props.title} date={props.date} />);
 
   return (
     <Card>
-      {media}
+      { header }
       <CardContent>
-        <Typography type="headline" component="h2">
-          {props.title}
-        </Typography>
-        <Typography className={classes.dateStyle}>{props.date}</Typography>
         <Typography component="p">
           {props.preview}
         </Typography>
@@ -47,11 +36,11 @@ const BlogPostCard = (props) => {
   );
 };
 
-BlogPostCard.defaultProps = {
+BlurbCard.defaultProps = {
   image: null,
 };
 
-BlogPostCard.propTypes = {
+BlurbCard.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
@@ -61,4 +50,4 @@ BlogPostCard.propTypes = {
   image: PropTypes.string,
 };
 
-export default withStyles(blogCardStyle, { withTheme: true })(BlogPostCard);
+export default withStyles(blogCardStyle, { withTheme: true })(BlurbCard);

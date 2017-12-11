@@ -4,8 +4,7 @@ import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
-// import codeComplete2 from '../../public/images/blog_posts/code_complete_2.jpg';
-import BlogPostCard from './blog_post_card';
+import BlurbCard from './blog_posts/blurb_card';
 
 const contentStyles = theme => ({
   content: {
@@ -35,7 +34,7 @@ const RecentBlogPosts = (props) => {
       <Grid item xs={rowWidth}>
         <Grid container justify="center">
           <Grid item xs={postWidth}>
-            <BlogPostCard
+            <BlurbCard
               title="My First Post"
               date="12/10/2017"
               preview="This post is awesome and you should definitely read it."
@@ -47,14 +46,24 @@ const RecentBlogPosts = (props) => {
       <Grid item xs={rowWidth}>
         <Grid container justify="center">
           <Grid item xs={postWidth}>
-            <BlogPostCard title="My Second Post" date="12/11/2017" preview="Also awesome and you should definitely read it too." />
+            <BlurbCard
+              title="My Second Post"
+              date="12/11/2017"
+              preview="Also awesome and you should definitely read it too."
+              image={`${process.env.PUBLIC_URL}/images/blog_posts/second_post.jpg`}
+            />
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={rowWidth}>
         <Grid container justify="center">
           <Grid item xs={postWidth}>
-            <BlogPostCard title="My Third Post" date="12/12/2017" preview="I am a content mill." />
+            <BlurbCard
+              title="My Third Post"
+              date="12/12/2017"
+              preview="I am a content mill."
+              image={`${process.env.PUBLIC_URL}/images/blog_posts/third_post.svg`}
+            />
           </Grid>
         </Grid>
       </Grid>
