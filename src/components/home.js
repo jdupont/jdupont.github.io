@@ -18,7 +18,7 @@ class Home extends Component {
       <div>
         <Header open={this.state.open} onMenuClick={() => this.setState({ open: true })} />
         <PersistentDrawer open={this.state.open} onClose={() => this.setState({ open: false })} />
-        <RecentBlogPosts open={this.state.open} />
+        <RecentBlogPosts />
       </div>
     );
   }
