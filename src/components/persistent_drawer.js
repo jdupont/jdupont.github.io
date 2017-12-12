@@ -6,6 +6,7 @@ import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import { Link } from 'react-router-dom';
 
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import HomeIcon from 'material-ui-icons/Home';
@@ -41,12 +42,14 @@ const drawerStyles = theme => ({
 const PersistentDrawer = (props) => {
   const contactsList = (
     <List>
-      <ListItem button>
-        <ListItemIcon>
-          <HomeIcon />
-        </ListItemIcon>
-        <ListItemText primary="Home" />
-      </ListItem>
+      <Link to="/">
+        <ListItem button>
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+      </Link>
       <ListItem button>
         <ListItemIcon>
           <FolderIcon />
@@ -58,12 +61,14 @@ const PersistentDrawer = (props) => {
 
   const aboutList = (
     <List>
-      <ListItem button>
-        <ListItemIcon>
-          <PersonOutlineIcon />
-        </ListItemIcon>
-        <ListItemText primary="About" />
-      </ListItem>
+      <Link to="/about">
+        <ListItem button>
+          <ListItemIcon>
+            <PersonOutlineIcon />
+          </ListItemIcon>
+          <ListItemText primary="About" />
+        </ListItem>
+      </Link>
     </List>
   );
 
