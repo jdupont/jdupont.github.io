@@ -18,17 +18,17 @@ class BlurbCard extends Component {
   constructor(props) {
     super(props);
 
-    this.onMouseOver = this.onMouseOver.bind(this);
-    this.onMouseOut = this.onMouseOut.bind(this);
+    this.onStartHover = this.onStartHover.bind(this);
+    this.onEndHover = this.onEndHover.bind(this);
 
     this.state = { mousedOver: false };
   }
 
-  onMouseOver() {
+  onStartHover() {
     this.setState({ mousedOver: true });
   }
 
-  onMouseOut() {
+  onEndHover() {
     this.setState({ mousedOver: false });
   }
 
@@ -45,8 +45,10 @@ class BlurbCard extends Component {
 
     return (
       <Card
-        onMouseOver={this.onMouseOver}
-        onMouseOut={this.onMouseOut}
+        onMouseOver={this.onStartHover}
+        onMouseOut={this.onEndHover}
+        onFocus={this.onStartHover}
+        onBlur={this.onEndHover}
         raised={this.state.mousedOver}
       >
         { header }
