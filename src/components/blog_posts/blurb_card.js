@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
@@ -14,27 +14,54 @@ const blogCardStyle = () => ({
   },
 });
 
-const BlurbCard = (props) => {
-  const { classes } = props;
+class BlurbCard extends Component {
+  constructor(props) {
+    super(props);
 
-  const header = props.image ?
-    (<BlurbMediaHeader image={props.image} title={props.title} date={props.date} />) :
-    (<BlurbTextHeader title={props.title} date={props.date} />);
+    this.onMouseOver = this.onMouseOver.bind(this);
+    this.onMouseOut = this.onMouseOut.bind(this);
 
-  return (
-    <Card>
-      { header }
-      <CardContent>
-        <Typography component="p">
-          {props.preview}
-        </Typography>
-      </CardContent>
-      <CardActions className={classes.actions} >
-        <Button dense>READ</Button>
-      </CardActions>
-    </Card>
-  );
-};
+    this.state = { mousedOver: false };
+  }
+
+  onMouseOver() {
+    this.setState({ mousedOver: true });
+  }
+
+  onMouseOut() {
+    this.setState({ mousedOver: false });
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    const header = this.props.image ?
+      (<BlurbMediaHeader
+        image={this.props.image}
+        title={this.props.title}
+        date={this.props.date}
+      />) :
+      (<BlurbTextHeader title={this.props.title} date={this.props.date} />);
+
+    return (
+      <Card
+        onMouseOver={this.onMouseOver}
+        onMouseOut={this.onMouseOut}
+        raised={this.state.mousedOver}
+      >
+        { header }
+        <CardContent>
+          <Typography component="p">
+            {this.props.preview}
+          </Typography>
+        </CardContent>
+        <CardActions className={classes.actions} >
+          <Button dense>READ</Button>
+        </CardActions>
+      </Card>
+    );
+  }
+}
 
 BlurbCard.defaultProps = {
   image: null,
