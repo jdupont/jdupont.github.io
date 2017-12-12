@@ -10,7 +10,7 @@ const font = 'Kaushan Script';
 const avatarStyles = theme => ({
   avatar: {
     color: theme.palette.secondary.A400,
-    backgroundColor: theme.palette.primary[400],
+    backgroundColor: theme.palette.primary[700],
     fontFamily: font,
   },
 });

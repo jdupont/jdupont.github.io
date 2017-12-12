@@ -12,7 +12,7 @@ const textHeaderStyles = theme => ({
     color: theme.palette.background.default,
   },
   textHeader: {
-    background: emphasize(theme.palette.background.default, 0.26),
+    background: emphasize(theme.palette.primary[300], 0.26),
     flexGrow: 1,
   },
 });
