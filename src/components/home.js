@@ -5,6 +5,7 @@ import Header from './header';
 import PersistentDrawer from './persistent_drawer';
 import RecentBlogPosts from './recent_blog_posts';
 import AboutMe from './about_me';
+import FourOhFour from './four_oh_four';
 
 class Home extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class Home extends Component {
         <Switch>
           <Route exact path="/" component={RecentBlogPosts} />
           <Route path="/about" component={AboutMe} />
+          <Route component={FourOhFour} />
         </Switch>
       </div>
     );
