@@ -42,15 +42,13 @@ const drawerStyles = theme => ({
 const PersistentDrawer = (props) => {
   const contactsList = (
     <List>
-      <Link to="/">
-        <ListItem button>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-      </Link>
-      <ListItem button>
+      <ListItem button component={Link} to="/">
+        <ListItemIcon>
+          <HomeIcon />
+        </ListItemIcon>
+        <ListItemText primary="Home" />
+      </ListItem>
+      <ListItem button component={Link} to="/archives">
         <ListItemIcon>
           <FolderIcon />
         </ListItemIcon>
@@ -61,14 +59,12 @@ const PersistentDrawer = (props) => {
 
   const aboutList = (
     <List>
-      <Link to="/about">
-        <ListItem button>
-          <ListItemIcon>
-            <PersonOutlineIcon />
-          </ListItemIcon>
-          <ListItemText primary="About" />
-        </ListItem>
-      </Link>
+      <ListItem button component={Link} to="/about">
+        <ListItemIcon>
+          <PersonOutlineIcon />
+        </ListItemIcon>
+        <ListItemText primary="About" />
+      </ListItem>
     </List>
   );
 
