@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import indigo from 'material-ui/colors/indigo';
@@ -22,11 +23,13 @@ const theme = createMuiTheme({
 });
 
 const App = () => (
-  <MuiThemeProvider theme={theme}>
-    <div>
-      <Home />
-    </div>
-  </MuiThemeProvider>
+  <BrowserRouter>
+    <MuiThemeProvider theme={theme}>
+      <div>
+        <Home />
+      </div>
+    </MuiThemeProvider>
+  </BrowserRouter>
 );
 
 export default App;

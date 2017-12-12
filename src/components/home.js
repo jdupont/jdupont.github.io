@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import Header from './header';
 import PersistentDrawer from './persistent_drawer';
 import RecentBlogPosts from './recent_blog_posts';
+import AboutMe from './about_me';
 
 class Home extends Component {
   constructor(props) {
@@ -18,7 +20,10 @@ class Home extends Component {
       <div>
         <Header open={this.state.open} onMenuClick={() => this.setState({ open: true })} />
         <PersistentDrawer open={this.state.open} onClose={() => this.setState({ open: false })} />
-        <RecentBlogPosts />
+        <Switch>
+          <Route exact path="/" component={RecentBlogPosts} />
+          <Route path="/about" component={AboutMe} />
+        </Switch>
       </div>
     );
   }
