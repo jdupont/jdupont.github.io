@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
+import { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
 import BlurbTextHeader from './blurb_text_header';
 import BlurbMediaHeader from './blurb_media_header';
+import HoverCard from '../hover_card';
 
 const blogCardStyle = () => ({
   actions: {
@@ -14,56 +15,31 @@ const blogCardStyle = () => ({
   },
 });
 
-class BlurbCard extends Component {
-  constructor(props) {
-    super(props);
+const BlurbCard = (props) => {
+  const { classes } = props;
 
-    this.onStartHover = this.onStartHover.bind(this);
-    this.onEndHover = this.onEndHover.bind(this);
+  const header = props.image ?
+    (<BlurbMediaHeader
+      image={props.image}
+      title={props.title}
+      date={props.date}
+    />) :
+    (<BlurbTextHeader title={props.title} date={props.date} />);
 
-    this.state = { mousedOver: false };
-  }
-
-  onStartHover() {
-    this.setState({ mousedOver: true });
-  }
-
-  onEndHover() {
-    this.setState({ mousedOver: false });
-  }
-
-  render() {
-    const { classes } = this.props;
-
-    const header = this.props.image ?
-      (<BlurbMediaHeader
-        image={this.props.image}
-        title={this.props.title}
-        date={this.props.date}
-      />) :
-      (<BlurbTextHeader title={this.props.title} date={this.props.date} />);
-
-    return (
-      <Card
-        onMouseOver={this.onStartHover}
-        onMouseOut={this.onEndHover}
-        onFocus={this.onStartHover}
-        onBlur={this.onEndHover}
-        raised={this.state.mousedOver}
-      >
-        { header }
-        <CardContent>
-          <Typography component="p">
-            {this.props.preview}
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.actions} >
-          <Button dense>READ</Button>
-        </CardActions>
-      </Card>
-    );
-  }
-}
+  return (
+    <HoverCard>
+      { header }
+      <CardContent>
+        <Typography component="p">
+          {props.preview}
+        </Typography>
+      </CardContent>
+      <CardActions className={classes.actions} >
+        <Button dense>READ</Button>
+      </CardActions>
+    </HoverCard>
+  );
+};
 
 BlurbCard.defaultProps = {
   image: null,

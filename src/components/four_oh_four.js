@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
+import { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
+
+import HoverCard from './hover_card';
 
 const fourOhFourStyles = theme => ({
   content: {
@@ -20,10 +23,13 @@ const fourOhFourStyles = theme => ({
     justifyContent: 'flex-end',
     color: theme.palette.text.primary,
   },
+  sorryMessage: {
+    color: theme.palette.text.primary,
+  },
   media: {
     height: 300,
     padding: theme.spacing.unit * 2,
-    fill: theme.palette.primary[300],
+    fill: theme.palette.primary[600],
     display: 'flex',
     justifyContent: 'center',
   },
@@ -40,7 +46,7 @@ const FourOhFour = (props) => {
       <Grid item xs={12}>
         <Grid container justify="center">
           <Grid item xs={8}>
-            <Card>
+            <HoverCard>
               <div className={classes.media}>
                 <svg>
                   <use href={`${process.env.PUBLIC_URL}/images/sad_face.svg#main`} />
@@ -48,14 +54,14 @@ const FourOhFour = (props) => {
               </div>
               <Divider />
               <CardContent>
-                <Typography type="display2">
+                <Typography type="display2" className={classes.sorryMessage}>
                   Sorry, I couldn&#39;t find that page.
                 </Typography>
               </CardContent>
               <CardActions className={classes.actions}>
-                <Button dense>Return to home</Button>
+                <Button dense component={Link} to="/">Go Home</Button>
               </CardActions>
-            </Card>
+            </HoverCard>
           </Grid>
         </Grid>
       </Grid>
