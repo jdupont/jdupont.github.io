@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
@@ -12,6 +13,7 @@ const avatarStyles = theme => ({
     color: theme.palette.secondary.A400,
     backgroundColor: theme.palette.primary[700],
     fontFamily: font,
+    textDecoration: 'none',
   },
 });
 
@@ -19,7 +21,11 @@ const JdAvatar = (props) => {
   const { classes } = props;
 
   return (
-    <Avatar className={classes.avatar}>
+    <Avatar
+      className={classes.avatar}
+      component={Link}
+      to="/about"
+    >
       JD
     </Avatar>
   );

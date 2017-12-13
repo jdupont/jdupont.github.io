@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
@@ -21,12 +20,10 @@ const AboutMe = (props) => {
   return (
     <Grid
       container
-      className={classNames(
-        classes.root,
-        classes.content,
-      )}
+      className={classes.content}
     >
-      Yeah you know my routing works
+      This page will contain some descriptions of me.
+      Maybe a link to my stackoverflow profile and my github.
     </Grid>
   );
 };
