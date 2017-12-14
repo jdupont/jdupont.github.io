@@ -20,8 +20,8 @@ const contentStyles = theme => ({
 const RecentBlogPosts = (props) => {
   const { classes } = props;
 
-  const postWidth = 7;
-  const rowWidth = 12;
+  const rowDimensions = { xs: 12, md: 12, lg: 12 };
+  const postDimensions = { xs: 12, md: 10, lg: 7 };
 
   return (
     <Grid
@@ -31,9 +31,9 @@ const RecentBlogPosts = (props) => {
         classes.content,
       )}
     >
-      <Grid item xs={rowWidth}>
+      <Grid item {...rowDimensions}>
         <Grid container justify="center">
-          <Grid item xs={postWidth}>
+          <Grid item {...postDimensions}>
             <BlurbCard
               title="My First Post"
               date="12/10/2017"
@@ -43,9 +43,9 @@ const RecentBlogPosts = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={rowWidth}>
+      <Grid item {...rowDimensions}>
         <Grid container justify="center">
-          <Grid item xs={postWidth}>
+          <Grid item {...postDimensions}>
             <BlurbCard
               title="My Second Post"
               date="12/11/2017"
@@ -55,9 +55,9 @@ const RecentBlogPosts = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={rowWidth}>
+      <Grid item {...rowDimensions}>
         <Grid container justify="center">
-          <Grid item xs={postWidth}>
+          <Grid item {...postDimensions}>
             <BlurbCard
               title="My Third Post"
               date="12/12/2017"
