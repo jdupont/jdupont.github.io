@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
+import Typography from 'material-ui/Typography';
 
 import 'typeface-kaushan-script';
 
@@ -10,10 +11,14 @@ const font = 'Kaushan Script';
 
 const avatarStyles = theme => ({
   avatar: {
-    color: theme.palette.secondary.A400,
     backgroundColor: theme.palette.primary[700],
-    fontFamily: font,
     textDecoration: 'none',
+    justify: 'center',
+  },
+  avatarText: {
+    color: theme.palette.secondary.A400,
+    fontFamily: font,
+    fontSize: 'smaller',
   },
 });
 
@@ -25,8 +30,11 @@ const JdAvatar = (props) => {
       className={classes.avatar}
       component={Link}
       to="/about"
+      elevation={15}
     >
-      JD
+      <Typography className={classes.avatarText}>
+        JD
+      </Typography>
     </Avatar>
   );
 };
