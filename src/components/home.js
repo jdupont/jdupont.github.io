@@ -20,7 +20,10 @@ class Home extends Component {
     return (
       <div>
         <Header open={this.state.open} onMenuClick={() => this.setState({ open: true })} />
-        <PersistentDrawer open={this.state.open} onClose={() => this.setState({ open: false })} />
+        <PersistentDrawer
+          open={this.state.open}
+          onClose={() => { this.setState({ open: false }); }}
+        />
         <Switch>
           <Route exact path="/" component={RecentBlogPosts} />
           <Route path="/about" component={AboutMe} />
