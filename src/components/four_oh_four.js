@@ -27,7 +27,7 @@ const fourOhFourStyles = theme => ({
     color: theme.palette.text.primary,
   },
   media: {
-    height: 300,
+    height: 250,
     padding: theme.spacing.unit * 2,
     fill: theme.palette.primary[600],
     display: 'flex',
@@ -45,7 +45,7 @@ const FourOhFour = (props) => {
     >
       <Grid item xs={12}>
         <Grid container justify="center">
-          <Grid item xs={12} md={10} lg={7}>
+          <Grid item xs={12} md={9} lg={7}>
             <HoverCard>
               <div className={classes.media}>
                 <svg>
