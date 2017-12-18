@@ -18,17 +18,17 @@ const blogCardStyle = () => ({
 const BlurbCard = (props) => {
   const { classes } = props;
 
-  const header = props.image ?
+  const headerImage = props.image ?
     (<BlurbMediaHeader
       image={props.image}
       title={props.title}
       date={props.date}
-    />) :
-    (<BlurbTextHeader title={props.title} date={props.date} />);
+    />) : null;
 
   return (
     <HoverCard>
-      { header }
+      { headerImage }
+      <BlurbTextHeader title={props.title} date={props.date} />
       <CardContent>
         <Typography component="p">
           {props.preview}

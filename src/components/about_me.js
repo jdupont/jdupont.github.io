@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
@@ -32,8 +31,10 @@ const contentStyles = theme => ({
     borderRadius: '50%',
     overflow: 'hidden',
   },
-  header: {
-    // background: emphasize(theme.palette.primary[300], 0.26),
+  buttonRow: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
   headerText: {
     color: theme.typography.title.color,
@@ -55,7 +56,7 @@ const AboutMe = (props) => {
       <Grid item xs={12}>
         <Grid container justify="center">
           <Grid item xs={12} md={10} lg={7} component={Paper}>
-            <Grid container className={classNames(classes.aboutMeBox, classes.header)}>
+            <Grid container className={classes.aboutMeBox}>
               <Grid item xs={12} sm={3} md={3}>
                 <Paper elevation="5" className={classes.circleContainer} />
               </Grid>
@@ -97,7 +98,7 @@ const AboutMe = (props) => {
               </Grid>
             </Grid>
             <Grid container wrap className={classes.aboutMeBox} justify="center">
-              <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Grid item xs={12} className={classes.buttonRow}>
                 <Button component="a" href="https://github.com/jdupont">
                   <SvgIcon className={classes.leftIcon}>
                     <svg>

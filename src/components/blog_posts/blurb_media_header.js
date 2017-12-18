@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { CardMedia } from 'material-ui/Card';
 
-import BlurbTextHeader from './blurb_text_header';
-
 const blogCardStyle = () => ({
-  media: {
-    height: 300,
-    display: 'flex',
-    alignItems: 'flex-end',
+  mediaSection: {
+    height: 225,
+    overflow: 'hidden',
+  },
+  image: {
+    width: '100%',
+    transition: '0.6s ease',
+    '&:hover': {
+      transform: 'scale(1.1)',
+    },
   },
 });
 
@@ -18,10 +22,11 @@ const BlurbMediaHeader = (props) => {
 
   return (
     <CardMedia
-      className={classes.media}
-      image={props.image}
+      className={classes.mediaSection}
+      classes={{ rootMedia: classes.rootMedia }}
+      // image={props.image}
     >
-      <BlurbTextHeader title={props.title} date={props.date} />
+      <img className={classes.image} src={props.image} alt="" />
     </CardMedia>
   );
 };
@@ -30,8 +35,6 @@ BlurbMediaHeader.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
-  title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
 };
 
