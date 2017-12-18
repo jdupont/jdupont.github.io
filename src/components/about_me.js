@@ -96,8 +96,8 @@ const AboutMe = (props) => {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid container className={classes.aboutMeBox} justify="center">
-              <Grid item xs={8} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Grid container wrap className={classes.aboutMeBox} justify="center">
+              <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <Button component="a" href="https://github.com/jdupont">
                   <SvgIcon className={classes.leftIcon}>
                     <svg>
