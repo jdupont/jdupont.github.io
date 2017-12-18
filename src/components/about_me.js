@@ -56,10 +56,10 @@ const AboutMe = (props) => {
         <Grid container justify="center">
           <Grid item xs={12} md={10} lg={7} component={Paper}>
             <Grid container className={classNames(classes.aboutMeBox, classes.header)}>
-              <Grid item xs={3}>
+              <Grid item xs={12} sm={3} md={3}>
                 <Paper elevation="5" className={classes.circleContainer} />
               </Grid>
-              <Grid item xs={9}>
+              <Grid item xs={12} sm={9} md={9}>
                 <Grid container>
                   <Grid item xs={12}>
                     <Typography type="display3" className={classes.headerText}>Jules Dupont</Typography>
@@ -97,7 +97,7 @@ const AboutMe = (props) => {
               </Grid>
             </Grid>
             <Grid container className={classes.aboutMeBox} justify="center">
-              <Grid item xs={6} style={{ display: 'flex', 'justify-content': 'center' }}>
+              <Grid item xs={8} style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button component="a" href="https://github.com/jdupont">
                   <SvgIcon className={classes.leftIcon}>
                     <svg>
@@ -112,7 +112,7 @@ const AboutMe = (props) => {
                       <use href={`${process.env.PUBLIC_URL}/images/stack_overflow.svg#main`} />
                     </svg>
                   </SvgIcon>
-                  Stack Overflow
+                  Stack&nbsp;Overflow
                 </Button>
                 <Button component="a" href="https://www.linkedin.com/in/julesdupont">
                   <SvgIcon className={classes.leftIcon}>
@@ -120,7 +120,7 @@ const AboutMe = (props) => {
                       <use href={`${process.env.PUBLIC_URL}/images/linked_in.svg#linkedInIcon`} />
                     </svg>
                   </SvgIcon>
-                  Linked In
+                  LinkedIn
                 </Button>
               </Grid>
             </Grid>
