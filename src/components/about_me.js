@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
-import { emphasize } from 'material-ui/styles/colorManipulator';
 import Grid from 'material-ui/Grid';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import Icon from 'material-ui/Icon';
+import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
@@ -23,6 +21,9 @@ const contentStyles = theme => ({
   aboutMeBox: {
     padding: theme.spacing.unit * 2,
   },
+  centeredGrid: {
+    justifyContent: 'center',
+  },
   circleContainer: {
     width: '100%',
     paddingBottom: '100%',
@@ -35,8 +36,11 @@ const contentStyles = theme => ({
     // background: emphasize(theme.palette.primary[300], 0.26),
   },
   headerText: {
-    // color: theme.palette.background.default,
-    // <img src={`${process.env.PUBLIC_URL}/images/me.jpg`} width="100%" alt="Me" />
+    color: theme.typography.title.color,
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit,
+    color: theme.palette.secondary.A400,
   },
 });
 
@@ -63,8 +67,9 @@ const AboutMe = (props) => {
                   <Grid item xs={12}>
                     <Typography type="subheading">
                       I am an enthusiathic young software developer, and this blog is a chronicle
-                      of my efforts to improve my skills. Inside, you will find , and some
-                      reflections on my side projects. Thanks for your interest!
+                      of my efforts to improve my skills. Inside, you will find descriptions of my
+                      side projects, and my thoughts on the software books and courses I am using
+                      as learning tools. Thanks for your interest!
                     </Typography>
                   </Grid>
                 </Grid>
@@ -78,38 +83,45 @@ const AboutMe = (props) => {
                     <Typography type="display1">About this blog</Typography>
                   </Grid>
                   <Grid item xs={12}>
-                    <Typography>I designed this blog blah blah blah.</Typography>
+                    <Typography>
+                      I built this blog myself as a way to learn more about React and
+                      Materia Design.
+                      The blog is a static site hosted on Github Pages, with routing implemented
+                      using the methods described here. I used React as my front-end framework, with
+                      the material-ui library providing React components that implement the material
+                      Design guidelines.
+                      All of the source code is freely available on my GitHub.
+                    </Typography>
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
-            <Divider />
-            <Grid container className={classes.aboutMeBox}>
-              <Grid item xs={4}>
-                <Grid container>
-                  <Grid item xs={12}>
-                    <List>
-                      <ListItem button>
-                        <ListItemIcon>
-                          <SvgIcon src={`${process.env.PUBLIC_URL}/images/linked_in.svg`} />
-                        </ListItemIcon>
-                        <ListItemText primary="Github" />
-                      </ListItem>
-                      <ListItem button>
-                        <ListItemIcon>
-                          <SvgIcon src={`${process.env.PUBLIC_URL}/images/linked_in.svg`} />
-                        </ListItemIcon>
-                        <ListItemText primary="LinkedIn" />
-                      </ListItem>
-                      <ListItem button>
-                        <ListItemIcon>
-                          <SvgIcon src={`${process.env.PUBLIC_URL}/images/linked_in.svg`} />
-                        </ListItemIcon>
-                        <ListItemText primary="Stack Overflow" />
-                      </ListItem>
-                    </List>
-                  </Grid>
-                </Grid>
+            <Grid container className={classes.aboutMeBox} justify="center">
+              <Grid item xs={6} style={{ display: 'flex', 'justify-content': 'center' }}>
+                <Button component="a" href="https://github.com/jdupont">
+                  <SvgIcon className={classes.leftIcon}>
+                    <svg>
+                      <use href={`${process.env.PUBLIC_URL}/images/github_mark.svg#main`} />
+                    </svg>
+                  </SvgIcon>
+                  GitHub
+                </Button>
+                <Button component="a" href="https://stackoverflow.com/users/8762152/jdupont">
+                  <SvgIcon className={classes.leftIcon}>
+                    <svg>
+                      <use href={`${process.env.PUBLIC_URL}/images/stack_overflow.svg#main`} />
+                    </svg>
+                  </SvgIcon>
+                  Stack Overflow
+                </Button>
+                <Button component="a" href="https://www.linkedin.com/in/julesdupont">
+                  <SvgIcon className={classes.leftIcon}>
+                    <svg>
+                      <use href={`${process.env.PUBLIC_URL}/images/linked_in.svg#linkedInIcon`} />
+                    </svg>
+                  </SvgIcon>
+                  Linked In
+                </Button>
               </Grid>
             </Grid>
           </Grid>
