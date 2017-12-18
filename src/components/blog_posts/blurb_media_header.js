@@ -11,9 +11,6 @@ const blogCardStyle = () => ({
   image: {
     width: '100%',
     transition: '0.6s ease',
-    '&:hover': {
-      transform: 'scale(1.1)',
-    },
   },
 });
 
@@ -24,11 +21,22 @@ const BlurbMediaHeader = (props) => {
     <CardMedia
       className={classes.mediaSection}
       classes={{ rootMedia: classes.rootMedia }}
-      // image={props.image}
+      src="none"
     >
-      <img className={classes.image} src={props.image} alt="" />
+      <img
+        className={classes.image}
+        src={props.image}
+        alt=""
+        style={{
+          transform: `scale(${props.scale})`,
+        }}
+      />
     </CardMedia>
   );
+};
+
+BlurbMediaHeader.defaultProps = {
+  scale: 1,
 };
 
 BlurbMediaHeader.propTypes = {
@@ -36,6 +44,7 @@ BlurbMediaHeader.propTypes = {
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
   image: PropTypes.string.isRequired,
+  scale: PropTypes.number,
 };
 
 export default withStyles(blogCardStyle)(BlurbMediaHeader);

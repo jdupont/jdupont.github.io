@@ -23,6 +23,7 @@ const BlurbCard = (props) => {
       image={props.image}
       title={props.title}
       date={props.date}
+      // scale={props.mousedOver ? 1.03 : 1}
     />) : null;
 
   return (
