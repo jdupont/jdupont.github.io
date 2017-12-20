@@ -6,6 +6,8 @@ import PersistentDrawer from './persistent_drawer';
 import RecentBlogPosts from './recent_blog_posts';
 import AboutMe from './about_me';
 import FourOhFour from './four_oh_four';
+import QueryRoute from './routing/query_route';
+import BlogPost from './blog_posts/blog_post';
 
 class Home extends Component {
   constructor(props) {
@@ -27,6 +29,7 @@ class Home extends Component {
         <Switch>
           <Route exact path="/" component={RecentBlogPosts} />
           <Route path="/about" component={AboutMe} />
+          <QueryRoute path="/blogs/" component={BlogPost} />
           <Route component={FourOhFour} />
         </Switch>
       </div>
