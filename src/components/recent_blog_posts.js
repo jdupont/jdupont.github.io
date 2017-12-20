@@ -23,6 +23,19 @@ const RecentBlogPosts = (props) => {
   const rowDimensions = { xs: 12, md: 12, lg: 12 };
   const postDimensions = { xs: 12, md: 10, lg: 7 };
 
+  const webpackRequireContext = require.context('!json-loader!front-matter-loader!../../public/posts/', false, /.md$/);
+  console.log(webpackRequireContext);
+  const test = webpackRequireContext(webpackRequireContext.keys()[0]);
+  console.log(test);
+  //const blogs = webpackRequireContext.keys().reduce((memo, fileName) => memo.set(fileName.match(/.\/([^.]+).*/)[1], webpackRequireContext(fileName)), new Map());
+  // const blogIndex = (blogs) => () => <ul>{[...blogs.keys()].map(path => <li key={path}><Link to={'/'+path}>{blogs.get(path).title || path}</Link></li>)}</ul>;
+
+  // const blogs = webpackRequireContext.keys().map(fileName => webpackRequireContext(fileName));
+  // const testPost = require.context('../../public/posts/', false);
+
+  // console.log(testPost);
+  // console.log(blogs.get([...blogs.keys()][0]));
+
   return (
     <Grid
       container
@@ -40,6 +53,7 @@ const RecentBlogPosts = (props) => {
               preview="This post is awesome and you should definitely read it."
               image={`${process.env.PUBLIC_URL}/images/blog_posts/code_complete_2.jpg`}
             />
+
           </Grid>
         </Grid>
       </Grid>
