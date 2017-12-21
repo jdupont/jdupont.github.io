@@ -21,7 +21,7 @@ const markdownStyles = theme => ({
     lineHeight: 1.6,
     fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
     padding: '3px 6px',
-    color: theme.palette.text.primary,
+    // color: theme.palette.text.primary,
     backgroundColor: theme.palette.background.paper,
     fontSize: 14,
   },
