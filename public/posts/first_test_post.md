@@ -15,10 +15,30 @@ And here is some sub header content.
 
 > Let's add a quote here for good measure.
 
+>> Can you do nested quotes with marked?
+
 ## Code Block
 
+```java
+public static void main(String[] args) {
+  System.out.println("Hello, world!");
+  int test = 5;
+  String testStr = null;
+}
 ```
+
+```jsx
 public static void main(String[] args) {
   System.out.println("Hello, world!");
 }
 ```
+
+```css
+public static void main(String[] args) {
+  System.out.println("Hello, world!");
+}
+```
+
+And here is some inline code: `MyString str`.
+
+And some _emphasis_

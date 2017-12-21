@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
@@ -57,13 +56,7 @@ class RecentBlogPosts extends Component {
     const blogPosts = RecentBlogPosts.getBlogPosts();
 
     return (
-      <Grid
-        container
-        className={classNames(
-          classes.root,
-          classes.content,
-        )}
-      >
+      <Grid container className={classes.content}>
         {blogPosts.keys().map((fileName) => {
           const post = blogPosts(fileName);
           const blurbCard = RecentBlogPosts.createBlurb(fileName, post);
