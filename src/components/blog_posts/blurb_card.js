@@ -5,6 +5,7 @@ import { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
+import QueryLink from '../routing/query_link';
 import BlurbTextHeader from './blurb_text_header';
 import BlurbMediaHeader from './blurb_media_header';
 import HoverCard from '../hover_card';
@@ -36,7 +37,7 @@ const BlurbCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.actions} >
-        <Button dense>READ</Button>
+        <Button dense component={QueryLink} to={props.link}>READ</Button>
       </CardActions>
     </HoverCard>
   );
@@ -53,6 +54,9 @@ BlurbCard.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
+  link: PropTypes.shape({
+    query: PropTypes.object,
+  }).isRequired,
   image: PropTypes.string,
 };
 

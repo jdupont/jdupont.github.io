@@ -25,7 +25,6 @@ const BlogPost = (props) => {
   const allBlogPosts = require.context('!json-loader!front-matter-loader!../../../public/posts/', false, /.md$/);
 
   const post = allBlogPosts(props.query.title);
-  console.log(post);
 
   return (
     <Grid

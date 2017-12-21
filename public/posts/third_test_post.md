@@ -1,8 +1,8 @@
 ---
-title: My First Blog Post
-date: 12/20/2017
-description: This blog post is absolutely awesome.
-coverImage: code_complete_2.jpg
+title: My Third Blog Post
+date: 12/22/2017
+description: I certainly have written a lot of blog posts haven't I? Notice the cool React SVG logo as the image.
+coverImage: third_post.svg
 ---
 
 # This is a test header.
