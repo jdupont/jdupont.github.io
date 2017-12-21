@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
+import ReactMarkdown from 'react-markdown';
 
 const blogStyles = theme => ({
   content: {
@@ -35,7 +36,7 @@ const BlogPost = (props) => {
       )}
     >
       <Grid item>
-        { post.body }
+        <ReactMarkdown source={post.body} />
       </Grid>
     </Grid>
   );

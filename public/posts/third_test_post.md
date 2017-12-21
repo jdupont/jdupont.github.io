@@ -5,7 +5,7 @@ description: I certainly have written a lot of blog posts haven't I? Notice the 
 coverImage: third_post.svg
 ---
 
-# This is a test header.
+# This is my third post
 
 Here is some test contest to display as part of my test post.
 

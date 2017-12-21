@@ -5,12 +5,20 @@ description: This blog post is absolutely awesome.
 coverImage: code_complete_2.jpg
 ---
 
-# This is a test header.
+# My first post
 
-Here is some test contest to display as part of my test post.
+This is the introduciton to my first post
 
 ## This is a sub header
 
 And here is some sub header content.
 
 > Let's add a quote here for good measure.
+
+## Code Block
+
+```
+public static void main(String[] args) {
+  System.out.println("Hello, world!");
+}
+```

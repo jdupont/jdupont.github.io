@@ -5,7 +5,7 @@ description: This blog post is also awesome and you should read it too.
 coverImage: second_post.jpg
 ---
 
-# This is a test header.
+# This is my second post
 
 Here is some test contest to display as part of my test post.
 
