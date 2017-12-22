@@ -58,7 +58,7 @@ const AboutMe = (props) => {
           <Grid item xs={12} md={10} lg={7} component={Paper}>
             <Grid container className={classes.aboutMeBox}>
               <Grid item xs={12} sm={3} md={3}>
-                <Paper elevation="5" className={classes.circleContainer} />
+                <Paper elevation={5} className={classes.circleContainer} />
               </Grid>
               <Grid item xs={12} sm={9} md={9}>
                 <Grid container>
@@ -97,7 +97,7 @@ const AboutMe = (props) => {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid container wrap className={classes.aboutMeBox} justify="center">
+            <Grid container wrap="wrap" className={classes.aboutMeBox} justify="center">
               <Grid item xs={12} className={classes.buttonRow}>
                 <Button component="a" href="https://github.com/jdupont">
                   <SvgIcon className={classes.leftIcon}>
