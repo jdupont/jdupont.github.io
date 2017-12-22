@@ -12,7 +12,7 @@ const markdownStyles = theme => ({
   '& pre, & pre[class*="language-"]': {
     margin: `${theme.spacing.unit * 3}px 0`,
     padding: '12px 18px',
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
     borderRadius: 3,
     overflow: 'auto',
   },
@@ -22,7 +22,7 @@ const markdownStyles = theme => ({
     fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
     padding: '3px 6px',
     // color: theme.palette.text.primary,
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
     fontSize: 14,
   },
   '& p code, & ul code, & pre code': {

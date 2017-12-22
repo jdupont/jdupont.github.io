@@ -7,14 +7,8 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
 import marked from 'marked';
-import prism from 'prismjs';
-import 'prismjs/themes/prism.css';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-diff';
-import 'prismjs/components/prism-jsx';
-import 'prismjs/components/prism-java';
+import hljs from 'highlightjs';
+import 'highlightjs/styles/atom-one-dark.css';
 
 import { markdownStyles, renderHeading } from './markdown_styling';
 
@@ -36,25 +30,25 @@ marked.setOptions({
 
     switch (lang) {
       case 'java':
-        language = prism.languages.java;
-        break;
-
-      case 'diff':
-        language = prism.languages.diff;
+        language = 'java';
         break;
 
       case 'css':
-        language = prism.languages.css;
+        language = 'css';
         break;
 
       case 'js':
       case 'jsx':
       default:
-        language = prism.languages.jsx;
+        language = 'jsx';
         break;
     }
 
-    return prism.highlight(code, language);
+    console.log(language);
+    const highlighted = hljs.highlight(language, code);
+    console.log(highlighted.value);
+
+    return highlighted.value;
   },
   renderer,
 });
