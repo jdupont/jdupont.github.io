@@ -73,7 +73,7 @@ const PersistentDrawer = (props) => {
       type="temporary"
       open={props.open}
       classes={{ paper: props.classes.drawerPaper }}
-      onRequestClose={props.onClose}
+      onClose={props.onClose}
     >
       <div>
         <div>
