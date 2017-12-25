@@ -10,6 +10,7 @@ import Typography from 'material-ui/Typography';
 import { markdownStyles, marked } from './markdown_styling';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
+import { urlParamToFilepath } from '../routing/title_to_url_converter';
 
 const blogStyles = theme => ({
   content: {
@@ -37,7 +38,7 @@ const BlogPost = (props) => {
 
   const allBlogPosts = require.context('!json-loader!front-matter-loader!../../../public/posts/', false, /.md$/);
 
-  const post = allBlogPosts(props.query.title);
+  const post = allBlogPosts(urlParamToFilepath(props.query.title));
 
   return (
     <Grid

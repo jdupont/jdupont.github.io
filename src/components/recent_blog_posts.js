@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
 import BlurbCard from './blog_posts/blurb_card';
+import { filepathToUrlParam } from './routing/title_to_url_converter';
 import { fullRowWidth, contentRowWidths } from '../style/dimensions';
 import { topLevelGridStyles } from '../style/grid_styles';
 
@@ -15,6 +16,8 @@ const contentStyles = theme => ({
 
 class RecentBlogPosts extends Component {
   static createBlurb(postFileName, post) {
+    console.log(postFileName);
+
     return (
       <BlurbCard
         key={postFileName}
@@ -22,7 +25,7 @@ class RecentBlogPosts extends Component {
         date={post.attributes.date}
         preview={post.attributes.description}
         image={`${process.env.PUBLIC_URL}/images/blog_posts/${post.attributes.coverImage}`}
-        link={{ pathname: '/blogs', query: { title: postFileName } }}
+        link={{ pathname: '/blogs', query: { title: filepathToUrlParam(postFileName) } }}
       />
     );
   }
