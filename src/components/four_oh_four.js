@@ -10,15 +10,11 @@ import Divider from 'material-ui/Divider';
 
 import HoverCard from './hover_card';
 import { fullRowWidth, contentRowWidths } from '../style/dimensions';
+import { topLevelGridStyles } from '../style/grid_styles';
 
 const fourOhFourStyles = theme => ({
   content: {
-    padding: theme.spacing.unit * 2,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginTop: 56,
+    ...topLevelGridStyles(theme),
   },
   actions: {
     justifyContent: 'flex-end',

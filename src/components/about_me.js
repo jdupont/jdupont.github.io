@@ -9,15 +9,11 @@ import Typography from 'material-ui/Typography';
 import SvgIcon from 'material-ui/SvgIcon';
 
 import { fullRowWidth, contentRowWidths } from '../style/dimensions';
+import { topLevelGridStyles } from '../style/grid_styles';
 
 const contentStyles = theme => ({
   content: {
-    padding: theme.spacing.unit * 2,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginTop: 56,
+    ...topLevelGridStyles(theme),
   },
   aboutMeBox: {
     padding: theme.spacing.unit * 2,
