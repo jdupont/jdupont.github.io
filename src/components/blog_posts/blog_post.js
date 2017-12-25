@@ -5,8 +5,8 @@ import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 
-import BlurbTextHeader from './blurb_text_header';
 import { markdownStyles, marked } from './markdown_styling';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
@@ -18,9 +18,16 @@ const blogStyles = theme => ({
   paddedContent: {
     padding: `0px ${theme.spacing.unit * 3}px`,
   },
+  noTopPadding: {
+    paddingTop: '0px !important',
+  },
   titleRow: {
     padding: theme.spacing.unit * 3,
     background: emphasize(theme.palette.primary[300], 0.26),
+    borderRadius: '2px 2px 0px 0px',
+  },
+  text: {
+    color: theme.palette.background.default,
   },
   markdown: markdownStyles(theme),
 });
@@ -43,8 +50,11 @@ const BlogPost = (props) => {
           <Grid item {...contentRowWidths}>
             <Paper>
               <Grid container>
-                <Grid item {...fullRowWidth}>
-                  <BlurbTextHeader title={post.attributes.title} date={post.attributes.date} />
+                <Grid item {...fullRowWidth} className={classes.noTopPadding}>
+                  <div className={classes.titleRow}>
+                    <Typography type="display3" className={classes.text}>{post.attributes.title}</Typography>
+                    <Typography type="subheading" className={classes.text}>{post.attributes.date}</Typography>
+                  </div>
                 </Grid>
                 <Grid item {...fullRowWidth}>
                   <div
