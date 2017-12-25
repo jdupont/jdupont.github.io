@@ -8,7 +8,7 @@ import Typography from 'material-ui/Typography';
 import QueryLink from '../routing/query_link';
 import BlurbTextHeader from './blurb_text_header';
 import BlurbMediaHeader from './blurb_media_header';
-import HoverCard from '../hover_card';
+import HoverCard from '../../widgets/hover_card';
 
 const blogCardStyle = () => ({
   actions: {

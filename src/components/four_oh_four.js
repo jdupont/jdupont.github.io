@@ -8,7 +8,7 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 
-import HoverCard from './hover_card';
+import HoverCard from '../widgets/hover_card';
 import { fullRowWidth, contentRowWidths } from '../style/dimensions';
 import { topLevelGridStyles } from '../style/grid_styles';
 
