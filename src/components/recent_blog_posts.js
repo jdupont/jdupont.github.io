@@ -16,8 +16,6 @@ const contentStyles = theme => ({
 
 class RecentBlogPosts extends Component {
   static createBlurb(postFileName, post) {
-    console.log(postFileName);
-
     return (
       <BlurbCard
         key={postFileName}

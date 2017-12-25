@@ -7,6 +7,7 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
+import FourOhFour from '../four_oh_four';
 import { markdownStyles, marked } from './markdown_styling';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
@@ -38,7 +39,12 @@ const BlogPost = (props) => {
 
   const allBlogPosts = require.context('!json-loader!front-matter-loader!../../../public/posts/', false, /.md$/);
 
-  const post = allBlogPosts(urlParamToFilepath(props.query.title));
+  let post;
+  try {
+    post = allBlogPosts(urlParamToFilepath(props.query.title));
+  } catch (webpackError) {
+    return (<FourOhFour />);
+  }
 
   return (
     <Grid
