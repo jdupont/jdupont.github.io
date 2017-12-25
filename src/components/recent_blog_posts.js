@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
 import BlurbCard from './blog_posts/blurb_card';
+import { fullRowWidth, contentRowWidths } from '../style/dimensions';
 
 const contentStyles = theme => ({
   content: {
@@ -31,13 +32,10 @@ class RecentBlogPosts extends Component {
   }
 
   static wrapInGrid(item, uniqueKey) {
-    const rowDimensions = { xs: 12, md: 12, lg: 12 };
-    const postDimensions = { xs: 12, md: 10, lg: 7 };
-
     return (
-      <Grid key={uniqueKey} item {...rowDimensions}>
+      <Grid key={uniqueKey} item {...fullRowWidth}>
         <Grid key={uniqueKey} container justify="center">
-          <Grid key={uniqueKey} item {...postDimensions}>
+          <Grid key={uniqueKey} item {...contentRowWidths}>
             {item}
           </Grid>
         </Grid>

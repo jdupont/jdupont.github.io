@@ -8,6 +8,8 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import SvgIcon from 'material-ui/SvgIcon';
 
+import { fullRowWidth, contentRowWidths } from '../style/dimensions';
+
 const contentStyles = theme => ({
   content: {
     padding: theme.spacing.unit * 2,
@@ -53,19 +55,19 @@ const AboutMe = (props) => {
       container
       className={classes.content}
     >
-      <Grid item xs={12}>
+      <Grid item {...fullRowWidth}>
         <Grid container justify="center">
-          <Grid item xs={12} md={10} lg={7} component={Paper}>
+          <Grid item {...contentRowWidths} component={Paper}>
             <Grid container className={classes.aboutMeBox}>
               <Grid item xs={12} sm={3} md={3}>
                 <Paper elevation={5} className={classes.circleContainer} />
               </Grid>
               <Grid item xs={12} sm={9} md={9}>
                 <Grid container>
-                  <Grid item xs={12}>
+                  <Grid item {...fullRowWidth}>
                     <Typography type="display3" className={classes.headerText}>Jules Dupont</Typography>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item {...fullRowWidth}>
                     <Typography type="subheading">
                       I am an enthusiathic young software developer, and this blog is a chronicle
                       of my efforts to improve my skills. Inside, you will find descriptions of my
@@ -78,12 +80,12 @@ const AboutMe = (props) => {
             </Grid>
             <Divider />
             <Grid container className={classes.aboutMeBox}>
-              <Grid item xs={12}>
+              <Grid item {...fullRowWidth}>
                 <Grid container>
-                  <Grid item xs={12}>
+                  <Grid item {...fullRowWidth}>
                     <Typography type="display1">About this blog</Typography>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item {...fullRowWidth}>
                     <Typography>
                       I built this blog myself as a way to learn more about React and
                       Materia Design.
@@ -98,7 +100,7 @@ const AboutMe = (props) => {
               </Grid>
             </Grid>
             <Grid container wrap="wrap" className={classes.aboutMeBox} justify="center">
-              <Grid item xs={12} className={classes.buttonRow}>
+              <Grid item {...fullRowWidth} className={classes.buttonRow}>
                 <Button component="a" href="https://github.com/jdupont">
                   <SvgIcon className={classes.leftIcon}>
                     <svg>

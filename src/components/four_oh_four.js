@@ -9,6 +9,7 @@ import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 
 import HoverCard from './hover_card';
+import { fullRowWidth, contentRowWidths } from '../style/dimensions';
 
 const fourOhFourStyles = theme => ({
   content: {
@@ -43,9 +44,9 @@ const FourOhFour = (props) => {
       container
       className={classes.content}
     >
-      <Grid item xs={12}>
+      <Grid item {...fullRowWidth}>
         <Grid container justify="center">
-          <Grid item xs={12} md={9} lg={7}>
+          <Grid item {...contentRowWidths}>
             <HoverCard>
               <div className={classes.media}>
                 <svg>

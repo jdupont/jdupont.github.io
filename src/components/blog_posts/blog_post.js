@@ -6,52 +6,8 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-import marked from 'marked';
-import hljs from 'highlightjs';
-import 'highlightjs/styles/atom-one-dark.css';
-
-import { markdownStyles, renderHeading } from './markdown_styling';
-
-const renderer = new marked.Renderer();
-
-renderer.heading = renderHeading;
-
-marked.setOptions({
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  langPrefix: 'language-',
-  highlight(code, lang) {
-    let language;
-
-    switch (lang) {
-      case 'java':
-        language = 'java';
-        break;
-
-      case 'css':
-        language = 'css';
-        break;
-
-      case 'js':
-      case 'jsx':
-      default:
-        language = 'jsx';
-        break;
-    }
-
-    console.log(language);
-    const highlighted = hljs.highlight(language, code);
-    console.log(highlighted.value);
-
-    return highlighted.value;
-  },
-  renderer,
-});
+import { markdownStyles, marked } from './markdown_styling';
+import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 
 const blogStyles = theme => ({
   content: {
@@ -75,8 +31,6 @@ const blogStyles = theme => ({
 const BlogPost = (props) => {
   const { classes } = props;
 
-  const postDimensions = { xs: 12, md: 10, lg: 7 };
-
   const allBlogPosts = require.context('!json-loader!front-matter-loader!../../../public/posts/', false, /.md$/);
 
   const post = allBlogPosts(props.query.title);
@@ -87,18 +41,20 @@ const BlogPost = (props) => {
       className={classes.content}
       style={{ justifyContent: 'centered' }}
     >
-      <Grid item xs={12}>
+      <Grid item {...fullRowWidth}>
         <Grid container justify="center">
-          <Grid item {...postDimensions}>
+          <Grid item {...contentRowWidths}>
             <Paper className={classes.paddedContent}>
               <Grid container>
-                <Grid item xs={12} className={classes.titleRow}>
+                <Grid item {...fullRowWidth} className={classes.titleRow}>
                   <Typography type="display1">{post.attributes.title}</Typography>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item {...fullRowWidth}>
                   <div
                     className={classes.markdown}
+                    /* eslint-disable react/no-danger */
                     dangerouslySetInnerHTML={{ __html: marked(post.body) }}
+                    /* eslint-ensable react/no-danger */
                   />
                 </Grid>
               </Grid>
