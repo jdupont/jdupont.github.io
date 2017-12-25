@@ -5,8 +5,6 @@ description: This blog post is absolutely awesome.
 coverImage: code_complete_2.jpg
 ---
 
-# My first post
-
 This is the introduciton to my first post
 
 ## This is a sub header
