@@ -1,47 +1,76 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { CardActions, CardContent } from 'material-ui/Card';
-import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
+import Chip from 'material-ui/Chip';
 
-import QueryLink from '../routing/query_link';
 import BlurbTextHeader from './blurb_text_header';
 import BlurbMediaHeader from './blurb_media_header';
 import HoverCard from '../../widgets/hover_card';
 
-const blogCardStyle = () => ({
+const blogCardStyle = theme => ({
   actions: {
     justifyContent: 'flex-end',
   },
+  chip: {
+    margin: theme.spacing.unit / 3,
+  },
+  chipRow: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+  },
+  actionRow: {
+    justifyContent: 'center',
+  },
 });
 
-const BlurbCard = (props) => {
-  const { classes } = props;
+class BlurbCard extends Component {
+  static createChip(chipClassName, tag) {
+    return (
+      <Chip
+        className={chipClassName}
+        key={tag}
+        label={tag}
+        onClick={() => console.log('Do nothing')}
+      />);
+  }
 
-  const headerImage = props.image ?
-    (<BlurbMediaHeader
-      image={props.image}
-      title={props.title}
-      date={props.date}
-      // scale={props.mousedOver ? 1.03 : 1}
-    />) : null;
+  static createChips(chipRowClassName, chipClassName, tags) {
+    return (
+      <div className={chipRowClassName}>
+        {tags.map(tag => BlurbCard.createChip(chipClassName, tag))}
+      </div>);
+  }
 
-  return (
-    <HoverCard>
-      { headerImage }
-      <BlurbTextHeader title={props.title} date={props.date} />
-      <CardContent>
-        <Typography component="p">
-          {props.preview}
-        </Typography>
-      </CardContent>
-      <CardActions className={classes.actions} >
-        <Button dense component={QueryLink} to={props.link}>READ</Button>
-      </CardActions>
-    </HoverCard>
-  );
-};
+  render() {
+    const { classes } = this.props;
+
+    const headerImage = this.props.image ?
+      (<BlurbMediaHeader
+        image={this.props.image}
+        title={this.props.title}
+        date={this.props.date}
+        // scale={props.mousedOver ? 1.03 : 1}
+      />) : null;
+
+    return (
+      <HoverCard>
+        { headerImage }
+        <BlurbTextHeader title={this.props.title} date={this.props.date} link={this.props.link} />
+        <CardContent>
+          <Typography component="p">
+            {this.props.preview}
+          </Typography>
+        </CardContent>
+        <CardActions className={classes.actionRow}>
+          {BlurbCard.createChips(classes.chipRow, classes.chip, this.props.tags)}
+        </CardActions>
+      </HoverCard>
+    );
+  }
+}
 
 BlurbCard.defaultProps = {
   image: null,
@@ -58,6 +87,7 @@ BlurbCard.propTypes = {
     query: PropTypes.object,
   }).isRequired,
   image: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default withStyles(blogCardStyle)(BlurbCard);
+export default withStyles(blogCardStyle, { withTheme: true })(BlurbCard);

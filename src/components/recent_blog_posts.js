@@ -24,6 +24,7 @@ class RecentBlogPosts extends Component {
         preview={post.attributes.description}
         image={`${process.env.PUBLIC_URL}/images/blog_posts/${post.attributes.coverImage}`}
         link={{ pathname: '/blogs', query: { title: filepathToUrlParam(postFileName) } }}
+        tags={post.attributes.tags}
       />
     );
   }
