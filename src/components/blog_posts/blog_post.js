@@ -6,8 +6,11 @@ import { emphasize } from 'material-ui/styles/colorManipulator';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import Avatar from 'material-ui/Avatar';
+import DateRangeIcon from 'material-ui-icons/DateRange';
 
 import FourOhFour from '../four_oh_four';
+import ChipArray from '../../widgets/chip_array';
 import { markdownStyles, marked } from './markdown_styling';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
@@ -60,7 +63,14 @@ const BlogPost = (props) => {
                 <Grid item {...fullRowWidth} className={classes.noTopPadding}>
                   <div className={classes.titleRow}>
                     <Typography type="display3" className={classes.text}>{post.attributes.title}</Typography>
-                    <Typography type="subheading" className={classes.text}>{post.attributes.date}</Typography>
+                    <span style={{ display: 'flex', alignItems: 'center' }}>
+                      <Avatar>
+                        <DateRangeIcon />
+                      </Avatar>
+                      &nbsp;
+                      <Typography component="span" type="subheading" className={classes.text}>{post.attributes.date}</Typography>
+                    </span>
+                    <ChipArray tags={post.attributes.tags} />
                   </div>
                 </Grid>
                 <Grid item {...fullRowWidth}>
