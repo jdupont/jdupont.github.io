@@ -4,7 +4,7 @@ const topLevelGridStyles = theme => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  marginTop: 56,
+  marginTop: 56 + theme.spacing.unit,
 });
 
 export { topLevelGridStyles };

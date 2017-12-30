@@ -7,8 +7,6 @@ tags:
   - C++
   - Reading
   - Best Practices
-  - Something Long
-  - Bug
 ---
 
 This is the introduciton to my first post
