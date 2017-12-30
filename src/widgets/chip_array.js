@@ -12,16 +12,16 @@ const chipStyle = theme => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
   },
-  actionRow: {
-    justifyContent: 'center',
-  },
 });
 
 class ChipArray extends Component {
-  static createChip(chipClassName, tag) {
+  static createChip(classes, tag) {
     return (
       <Chip
-        className={chipClassName}
+        classes={{
+          root: classes.chipOverride,
+        }}
+        className={classes.chip}
         key={tag}
         label={tag}
         onClick={() => console.log('Do nothing')}
@@ -33,7 +33,7 @@ class ChipArray extends Component {
 
     return (
       <div className={classes.chipRow}>
-        {this.props.tags.map(tag => ChipArray.createChip(classes.chip, tag))}
+        {this.props.tags.map(tag => ChipArray.createChip(classes, tag))}
       </div>
     );
   }

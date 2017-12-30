@@ -21,6 +21,9 @@ const textHeaderStyles = theme => ({
     alignSelf: 'center',
     marginTop: 0,
     marginRight: 0,
+    '@media all and (max-width: 640px)': {
+      display: 'none',
+    },
   },
 });
 

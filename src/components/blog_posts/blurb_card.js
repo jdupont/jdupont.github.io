@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import { CardActions, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
@@ -8,6 +9,8 @@ import BlurbTextHeader from './blurb_text_header';
 import BlurbMediaHeader from './blurb_media_header';
 import HoverCard from '../../widgets/hover_card';
 import ChipArray from '../../widgets/chip_array';
+import { history } from '../../widgets/react_router_prop_types';
+import { linkStringification } from '../routing/query_link';
 
 const blogCardStyle = () => ({
   actions: {
@@ -30,7 +33,7 @@ const BlurbCard = (props) => {
     />) : null;
 
   return (
-    <HoverCard>
+    <HoverCard onClick={() => props.history.push(`/blogs?${linkStringification(props.link.query)}`)}>
       { headerImage }
       <BlurbTextHeader title={props.title} date={props.date} link={props.link} />
       <CardContent>
@@ -61,6 +64,7 @@ BlurbCard.propTypes = {
   }).isRequired,
   image: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  history: history.isRequired,
 };
 
-export default withStyles(blogCardStyle, { withTheme: true })(BlurbCard);
+export default withRouter(withStyles(blogCardStyle, { withTheme: true })(BlurbCard));
