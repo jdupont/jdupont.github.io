@@ -12,12 +12,16 @@ import ChipArray from '../../widgets/chip_array';
 import { history } from '../../widgets/react_router_prop_types';
 import { linkStringification } from '../routing/query_link';
 
-const blogCardStyle = () => ({
+const blogCardStyle = theme => ({
   actions: {
     justifyContent: 'flex-end',
   },
   actionRow: {
     justifyContent: 'center',
+  },
+  actionOverride: {
+    height: '100%',
+    padding: theme.spacing.unit,
   },
 });
 
@@ -41,7 +45,7 @@ const BlurbCard = (props) => {
           {props.preview}
         </Typography>
       </CardContent>
-      <CardActions className={classes.actionRow}>
+      <CardActions className={classes.actionRow} classes={{ root: classes.actionOverride }}>
         <ChipArray tags={props.tags} />
       </CardActions>
     </HoverCard>
