@@ -8,7 +8,8 @@ import AboutMe from './about_me';
 import FourOhFour from './four_oh_four';
 import QueryRoute from './routing/query_route';
 import BlogPost from './blog_posts/blog_post';
-import Archives from './archives';
+import DateArchives from './archives/date_archives';
+import TagArchives from './archives/tag_archives';
 
 class Home extends Component {
   constructor(props) {
@@ -31,7 +32,8 @@ class Home extends Component {
           <Route exact path="/" component={RecentBlogPosts} />
           <Route path="/about" component={AboutMe} />
           <QueryRoute path="/blogs/" component={BlogPost} />
-          <QueryRoute path="/archives" component={Archives} />
+          <QueryRoute path="/archives/date" component={DateArchives} />
+          <QueryRoute path="/archives/tags" component={TagArchives} />
           <Route component={FourOhFour} />
         </Switch>
       </div>

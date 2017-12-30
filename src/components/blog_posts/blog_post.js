@@ -12,6 +12,7 @@ import DateRangeIcon from 'material-ui-icons/DateRange';
 import FourOhFour from '../four_oh_four';
 import ChipArray from '../../widgets/chip_array';
 import { markdownStyles, marked } from './markdown_styling';
+import BlogPostsManager from './blog_posts_manager';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
 import { urlParamToFilepath } from '../routing/title_to_url_converter';
@@ -40,11 +41,11 @@ const blogStyles = theme => ({
 const BlogPost = (props) => {
   const { classes } = props;
 
-  const allBlogPosts = require.context('!json-loader!front-matter-loader!../../../public/posts/', false, /.md$/);
+  const manager = new BlogPostsManager();
 
   let post;
   try {
-    post = allBlogPosts(urlParamToFilepath(props.query.title));
+    post = manager.getPost(urlParamToFilepath(props.query.title));
   } catch (webpackError) {
     return (<FourOhFour />);
   }

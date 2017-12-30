@@ -6,9 +6,9 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-import Autocomplete from '../widgets/autocomplete';
-import { fullRowWidth, contentRowWidths } from '../style/dimensions';
-import { topLevelGridStyles } from '../style/grid_styles';
+import Autocomplete from '../../widgets/autocomplete';
+import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
+import { topLevelGridStyles } from '../../style/grid_styles';
 
 const suggestions = [
   { label: 'Afghanistan' },
@@ -30,7 +30,7 @@ const contentStyles = theme => ({
   },
 });
 
-const Archives = (props) => {
+const TagArchives = (props) => {
   const { classes } = props;
 
   return (
@@ -58,10 +58,10 @@ const Archives = (props) => {
   );
 };
 
-Archives.propTypes = {
+TagArchives.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
 };
 
-export default withStyles(contentStyles, { withTheme: true })(Archives);
+export default withStyles(contentStyles, { withTheme: true })(TagArchives);

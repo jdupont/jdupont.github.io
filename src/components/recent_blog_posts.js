@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
 import BlurbCard from './blog_posts/blurb_card';
+import BlogPostsManager from './blog_posts/blog_posts_manager';
 import { filepathToUrlParam } from './routing/title_to_url_converter';
 import { fullRowWidth, contentRowWidths } from '../style/dimensions';
 import { topLevelGridStyles } from '../style/grid_styles';
@@ -41,20 +42,14 @@ class RecentBlogPosts extends Component {
     );
   }
 
-  static getBlogPosts() {
-    const blogPosts = require.context('!json-loader!front-matter-loader!../../public/posts/', true, /.md$/);
-    return blogPosts;
-  }
-
   render() {
     const { classes } = this.props;
 
-    const blogPosts = RecentBlogPosts.getBlogPosts();
+    const manager = new BlogPostsManager();
 
     return (
       <Grid container className={classes.content}>
-        {blogPosts.keys().map((fileName) => {
-          const post = blogPosts(fileName);
+        {manager.posts().map(({ post, fileName }) => {
           const blurbCard = RecentBlogPosts.createBlurb(fileName, post);
           return RecentBlogPosts.wrapInGrid(blurbCard, fileName);
         })}
