@@ -13,7 +13,7 @@ const avatarStyles = theme => ({
   avatar: {
     backgroundColor: theme.palette.primary[700],
     textDecoration: 'none',
-    justify: 'center',
+    justifyContent: 'center',
   },
   avatarText: {
     color: theme.palette.secondary.A400,

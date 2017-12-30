@@ -36,8 +36,27 @@ const BlurbCard = (props) => {
       // scale={props.mousedOver ? 1.03 : 1}
     />) : null;
 
+    //       component={QueryLink}
+    // to={props.link}
+
   return (
-    <HoverCard onClick={() => props.history.push(`/blogs?${linkStringification(props.link.query)}`)}>
+    <HoverCard
+      onClick={(event) => {
+        let parent = event.target;
+        let inLink = false;
+        while (parent && !inLink) {
+          if (parent.tagName.toUpperCase() === 'A') {
+            inLink = true;
+          }
+
+          parent = parent.parentElement;
+        }
+
+        if (!inLink) {
+          props.history.push(`/blogs?${linkStringification(props.link.query)}`);
+        }
+      }}
+    >
       { headerImage }
       <BlurbTextHeader title={props.title} date={props.date} link={props.link} />
       <CardContent>

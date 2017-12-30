@@ -27,7 +27,7 @@ const blogStyles = theme => ({
     paddingTop: '0px !important',
   },
   titleRow: {
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 2,
     background: emphasize(theme.palette.primary[300], 0.26),
     borderRadius: '2px 2px 0px 0px',
   },
