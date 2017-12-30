@@ -1,5 +1,5 @@
 const topLevelGridStyles = theme => ({
-  padding: theme.spacing.unit * 2,
+  padding: theme.spacing.unit,
   transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
