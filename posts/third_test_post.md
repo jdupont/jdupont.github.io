@@ -1,6 +1,6 @@
 ---
 title: My Third Blog Post
-date: 12/22/2017
+date: 5/22/2017
 description: I certainly have written a lot of blog posts haven't I? Notice the cool React SVG logo as the image.
 coverImage: third_post.svg
 tags:
