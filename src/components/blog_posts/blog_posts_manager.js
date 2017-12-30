@@ -3,10 +3,6 @@ class BlogPostsManager {
     this.blogPosts = require.context('!json-loader!front-matter-loader!../../../public/posts/', true, /.md$/);
   }
 
-  getBlogPosts() {
-    return this.blogPosts;
-  }
-
   posts() {
     return this.blogPosts.keys().map((fileName) => {
       const post = this.blogPosts(fileName);
@@ -16,6 +12,24 @@ class BlogPostsManager {
         fileName,
       };
     });
+  }
+
+  postsByMonth() {
+    const reduction = this.posts().reduce((map, { post }) => {
+      const postDate = new Date(post.attributes.date);
+      const month = postDate.toLocaleString('en-us', { month: 'long' });
+      const monthString = `${month} ${postDate.getFullYear()}`;
+
+      if (map.has(monthString)) {
+        map.get(monthString).push(post);
+      } else {
+        map.set(monthString, [post]);
+      }
+
+      return map;
+    }, new Map());
+
+    return reduction;
   }
 
   getPost(title) {

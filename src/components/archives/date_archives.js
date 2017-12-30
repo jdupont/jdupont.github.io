@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
@@ -7,15 +7,9 @@ import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 
-import Autocomplete from '../../widgets/autocomplete';
+import BlogPostsManager from '../blog_posts/blog_posts_manager';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
-
-const suggestions = [
-  { label: 'Afghanistan' },
-  { label: 'Aland Islands' },
-  { label: 'Albania' },
-];
 
 const contentStyles = theme => ({
   content: {
@@ -35,45 +29,58 @@ const contentStyles = theme => ({
   },
 });
 
-const DateArchives = (props) => {
-  const { classes } = props;
+class DateArchives extends Component {
+  static getPanelFor(classes, month, posts) {
+    return (
+      <ExpansionPanel key={month}>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography className={classes.heading}>{month}</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          {
+            posts.map((post) => {
+              const { title } = post.attributes;
+              return (<Typography>{title}</Typography>);
+            })
+          }
+        </ExpansionPanelDetails>
+      </ExpansionPanel>);
+  }
 
-  return (
-    <Grid
-      container
-      className={classes.content}
-    >
-      <Grid item {...fullRowWidth}>
-        <Grid container justify="center">
-          <Grid item {...contentRowWidths}>
-            <ExpansionPanel>
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>Expansion Panel 1</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                  sit amet blandit leo lobortis eget.
-                </Typography>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <ExpansionPanel>
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>Expansion Panel 2</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                  sit amet blandit leo lobortis eget.
-                </Typography>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+  static createPanels(groupedByMonth, classes) {
+    const panels = [];
+
+    groupedByMonth.forEach((value, key) => {
+      const panel = DateArchives.getPanelFor(classes, key, value);
+      panels.push(panel);
+    });
+
+    return panels;
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    const manager = new BlogPostsManager();
+    //TODO -- STILL NEED TO SORT BY MONTH
+    const groupedByMonth = manager.postsByMonth();
+
+    return (
+      <Grid
+        container
+        className={classes.content}
+      >
+        <Grid item {...fullRowWidth}>
+          <Grid container justify="center">
+            <Grid item {...contentRowWidths}>
+              { DateArchives.createPanels(groupedByMonth, classes) }
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
-  );
-};
+    );
+  }
+}
 
 DateArchives.propTypes = {
   /* eslint-disable react/forbid-prop-types */
