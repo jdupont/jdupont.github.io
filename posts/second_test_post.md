@@ -7,6 +7,7 @@ tags:
   - Java
   - Online Courses
   - Optimization
+  - Best Practices
 ---
 
 ---
