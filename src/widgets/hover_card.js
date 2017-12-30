@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Card from 'material-ui/Card';
 
 class HoverCard extends Component {
@@ -20,17 +21,59 @@ class HoverCard extends Component {
   }
 
   render() {
+    const {
+      onMouseOver, onMouseOut, onFocus, onBlur, ...other
+    } = this.props;
+
     return (
       <Card
-        onMouseOver={this.onStartHover}
-        onMouseOut={this.onEndHover}
-        onFocus={this.onStartHover}
-        onBlur={this.onEndHover}
+        onMouseOver={() => {
+          if (onMouseOver) {
+            onMouseOver();
+          }
+
+           this.onStartHover();
+        }}
+        onMouseOut={() => {
+          if (onMouseOut) {
+            onMouseOut();
+          }
+
+           this.onEndHover();
+        }}
+        onFocus={() => {
+          if (onFocus) {
+            onFocus();
+          }
+
+           this.onStartHover();
+        }}
+        onBlur={() => {
+          if (onBlur) {
+            onBlur();
+          }
+
+           this.onEndHover();
+        }}
         raised={this.state.mousedOver}
-        {...this.props}
+        {...other}
       />
     );
   }
 }
+
+HoverCard.defaultProps = {
+  onMouseOver: null,
+  onMouseOut: null,
+  onFocus: null,
+  onBlur: null,
+};
+
+HoverCard.propTypes = {
+  onMouseOver: PropTypes.func,
+  onMouseOut: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+};
 
 export default HoverCard;

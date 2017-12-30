@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
@@ -25,51 +25,72 @@ const blogCardStyle = theme => ({
   },
 });
 
-const BlurbCard = (props) => {
-  const { classes } = props;
+class BlurbCard extends Component {
+  constructor(props) {
+    super(props);
 
-  const headerImage = props.image ?
-    (<BlurbMediaHeader
-      image={props.image}
-      title={props.title}
-      date={props.date}
-      // scale={props.mousedOver ? 1.03 : 1}
-    />) : null;
+    this.onStartHover = this.onStartHover.bind(this);
+    this.onEndHover = this.onEndHover.bind(this);
 
-    //       component={QueryLink}
-    // to={props.link}
+    this.state = { mousedOver: false };
+  }
 
-  return (
-    <HoverCard
-      onClick={(event) => {
-        let parent = event.target;
-        let inLink = false;
-        while (parent && !inLink) {
-          if (parent.tagName.toUpperCase() === 'A') {
-            inLink = true;
+  onStartHover() {
+    this.setState({ mousedOver: true });
+  }
+
+  onEndHover() {
+    this.setState({ mousedOver: false });
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    const headerImage = this.props.image ?
+      (<BlurbMediaHeader
+        image={this.props.image}
+        title={this.props.title}
+        date={this.props.date}
+        scale={this.state.mousedOver ? 1.02 : 1}
+      />) : null;
+
+    return (
+      <HoverCard
+        onMouseOver={this.onStartHover}
+        onMouseOut={this.onEndHover}
+        onFocus={this.onStartHover}
+        onBlur={this.onEndHover}
+        onClick={(event) => {
+          let parent = event.target;
+          let inLink = false;
+          while (parent && !inLink) {
+            if (parent.tagName.toUpperCase() === 'A') {
+              inLink = true;
+            }
+
+            parent = parent.parentElement;
           }
 
-          parent = parent.parentElement;
-        }
+          if (!inLink) {
+            this.props.history.push(`/blogs?${linkStringification(this.props.link.query)}`);
+          }
+        }}
 
-        if (!inLink) {
-          props.history.push(`/blogs?${linkStringification(props.link.query)}`);
-        }
-      }}
-    >
-      { headerImage }
-      <BlurbTextHeader title={props.title} date={props.date} link={props.link} />
-      <CardContent>
-        <Typography component="p">
-          {props.preview}
-        </Typography>
-      </CardContent>
-      <CardActions className={classes.actionRow} classes={{ root: classes.actionOverride }}>
-        <ChipArray tags={props.tags} />
-      </CardActions>
-    </HoverCard>
-  );
-};
+      >
+        { headerImage }
+        <BlurbTextHeader title={this.props.title} date={this.props.date} link={this.props.link} />
+        <CardContent>
+          <Typography component="p">
+            {this.props.preview}
+          </Typography>
+        </CardContent>
+        <CardActions className={classes.actionRow} classes={{ root: classes.actionOverride }}>
+          <ChipArray tags={this.props.tags} />
+        </CardActions>
+      </HoverCard>
+    );
+  }
+}
 
 BlurbCard.defaultProps = {
   image: null,
@@ -87,6 +108,7 @@ BlurbCard.propTypes = {
   }).isRequired,
   image: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // eslint-disable-next-line react/no-typos
   history: history.isRequired,
 };
 
