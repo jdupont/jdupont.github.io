@@ -1,8 +1,8 @@
 ---
-title: My Second Blog Post
+title: My Fourth Blog Post
 date: 12/21/2017
 description: This blog post is also awesome and you should read it too.
-coverImage: second_post.jpg
+coverImage: fourth.png
 tags:
   - Java
   - Online Courses

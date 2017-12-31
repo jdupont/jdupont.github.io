@@ -1,8 +1,8 @@
 ---
-title: My First Blog Post
-date: 12/20/2017
+title: My Fifth Blog Post
+date: 12/24/2017
 description: This blog post is absolutely awesome.
-coverImage: code_complete_2.jpg
+coverImage: fifth.png
 tags:
   - C++
   - Reading
