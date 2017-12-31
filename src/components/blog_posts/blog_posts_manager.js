@@ -17,13 +17,13 @@ class BlogPostsManager {
   postsByMonth() {
     const reduction = this.posts().reduce((map, { fileName, post }) => {
       const postDate = new Date(post.attributes.date);
-      const month = postDate.toLocaleString('en-us', { month: 'long' });
-      const monthString = `${month} ${postDate.getFullYear()}`;
+      const twoDigitMonth = postDate.getMonth() < 10 ? `0${postDate.getMonth()}` : postDate.getMonth();
+      const key = `${postDate.getFullYear()}-${twoDigitMonth}`;
 
-      if (map.has(monthString)) {
-        map.get(monthString).push({ fileName, post });
+      if (map.has(key)) {
+        map.get(key).push({ fileName, post });
       } else {
-        map.set(monthString, [{ fileName, post }]);
+        map.set(key, [{ fileName, post }]);
       }
 
       return map;

@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
-import ExpansionPanel, { ExpansionPanelSummary, ExpansionPanelDetails } from 'material-ui/ExpansionPanel';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
-import List, { ListItem, ListItemText } from 'material-ui/List';
 
-import QueryLink from '../routing/query_link';
-import { filepathToUrlParam } from '../routing/title_to_url_converter';
 import BlogPostsManager from '../blog_posts/blog_posts_manager';
+import MonthPanel from './month_panel';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
 
@@ -26,41 +21,28 @@ const contentStyles = theme => ({
   text: {
     color: theme.palette.background.default,
   },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
 });
 
 class DateArchives extends Component {
-  static getPanelFor(classes, month, posts) {
-    return (
-      <ExpansionPanel key={month}>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>{month}</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <List>
-            {
-              posts.map(({ fileName, post }) => {
-                const { title, date } = post.attributes;
-                return (
-                  <ListItem button component={QueryLink} to={{ pathname: '/blogs', query: { title: filepathToUrlParam(fileName) } }} key={title}>
-                    <ListItemText primary={title} secondary={date} />
-                  </ListItem>);
-              })
-            }
-          </List>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>);
+  static monthName(twoDigitMonth) {
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'];
+
+    return monthNames[parseInt(twoDigitMonth, 10)];
   }
 
-  static createPanels(groupedByMonth, classes) {
+  static createPanels(groupedByMonth) {
     const panels = [];
 
-    groupedByMonth.forEach((value, key) => {
-      const panel = DateArchives.getPanelFor(classes, key, value);
-      panels.push(panel);
+    const sorted = [...groupedByMonth].sort().reverse();
+
+    sorted.forEach((monthGroup) => {
+      const key = monthGroup[0];
+      const posts = monthGroup[1];
+      const year = key.split('-')[0];
+      const month = DateArchives.monthName(key.split('-')[1]);
+      const monthYear = `${month} ${year}`;
+      panels.push((<MonthPanel key={monthYear} monthYear={monthYear} posts={posts} />));
     });
 
     return panels;
@@ -81,7 +63,7 @@ class DateArchives extends Component {
         <Grid item {...fullRowWidth}>
           <Grid container justify="center">
             <Grid item {...contentRowWidths}>
-              { DateArchives.createPanels(groupedByMonth, classes) }
+              { DateArchives.createPanels(groupedByMonth) }
             </Grid>
           </Grid>
         </Grid>
