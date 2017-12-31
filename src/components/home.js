@@ -32,7 +32,7 @@ class Home extends Component {
           <Route exact path="/" component={RecentBlogPosts} />
           <Route path="/about" component={AboutMe} />
           <QueryRoute path="/blogs/" component={BlogPost} />
-          <QueryRoute path="/archives/date" component={DateArchives} />
+          <Route path="/archives/date" component={DateArchives} />
           <QueryRoute path="/archives/tags" component={TagArchives} />
           <Route component={FourOhFour} />
         </Switch>

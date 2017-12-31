@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
 import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
+import IconButton from 'material-ui/IconButton';
+import SwapVertIcon from 'material-ui-icons/SwapVert';
 
 import BlogPostsManager from '../blog_posts/blog_posts_manager';
 import MonthPanel from './month_panel';
@@ -14,12 +18,16 @@ const contentStyles = theme => ({
     ...topLevelGridStyles(theme),
   },
   titleRow: {
-    padding: theme.spacing.unit * 2,
+    padding: `${2 * theme.spacing.unit}px ${theme.spacing.unit}px ${2 * theme.spacing.unit}px ${2 * theme.spacing.unit}px`,
     background: emphasize(theme.palette.primary[300], 0.26),
-    borderRadius: '2px 2px 0px 0px',
+    display: 'flex',
   },
   text: {
     color: theme.palette.background.default,
+    alignSelf: 'center',
+  },
+  titleAction: {
+    marginLeft: 'auto',
   },
 });
 
@@ -31,10 +39,14 @@ class DateArchives extends Component {
     return monthNames[parseInt(twoDigitMonth, 10)];
   }
 
-  static createPanels(groupedByMonth) {
+  static createPanels(groupedByMonth, sortChronologically) {
     const panels = [];
 
-    const sorted = [...groupedByMonth].sort().reverse();
+    let sorted = [...groupedByMonth].sort();
+
+    if (!sortChronologically) {
+      sorted = sorted.reverse();
+    }
 
     sorted.forEach((monthGroup) => {
       const key = monthGroup[0];
@@ -48,22 +60,34 @@ class DateArchives extends Component {
     return panels;
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = { chronological: false };
+  }
+
   render() {
     const { classes } = this.props;
 
     const manager = new BlogPostsManager();
-    //TODO -- STILL NEED TO SORT BY MONTH
     const groupedByMonth = manager.postsByMonth();
 
     return (
-      <Grid
-        container
-        className={classes.content}
-      >
+      <Grid container className={classes.content}>
         <Grid item {...fullRowWidth}>
           <Grid container justify="center">
             <Grid item {...contentRowWidths}>
-              { DateArchives.createPanels(groupedByMonth) }
+              <Paper className={classes.titleRow}>
+                <Typography className={classes.text} type="headline">Browse by date</Typography>
+                <IconButton
+                  className={classes.titleAction}
+                  color="accent"
+                  onClick={() => { this.setState({ chronological: !this.state.chronological }); }}
+                >
+                  <SwapVertIcon />
+                </IconButton>
+              </Paper>
+              { DateArchives.createPanels(groupedByMonth, this.state.chronological) }
             </Grid>
           </Grid>
         </Grid>
