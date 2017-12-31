@@ -15,15 +15,15 @@ class BlogPostsManager {
   }
 
   postsByMonth() {
-    const reduction = this.posts().reduce((map, { post }) => {
+    const reduction = this.posts().reduce((map, { fileName, post }) => {
       const postDate = new Date(post.attributes.date);
       const month = postDate.toLocaleString('en-us', { month: 'long' });
       const monthString = `${month} ${postDate.getFullYear()}`;
 
       if (map.has(monthString)) {
-        map.get(monthString).push(post);
+        map.get(monthString).push({ fileName, post });
       } else {
-        map.set(monthString, [post]);
+        map.set(monthString, [{ fileName, post }]);
       }
 
       return map;

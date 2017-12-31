@@ -6,7 +6,10 @@ import ExpansionPanel, { ExpansionPanelSummary, ExpansionPanelDetails } from 'ma
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 
+import QueryLink from '../routing/query_link';
+import { filepathToUrlParam } from '../routing/title_to_url_converter';
 import BlogPostsManager from '../blog_posts/blog_posts_manager';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
@@ -37,12 +40,17 @@ class DateArchives extends Component {
           <Typography className={classes.heading}>{month}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          {
-            posts.map((post) => {
-              const { title } = post.attributes;
-              return (<Typography>{title}</Typography>);
-            })
-          }
+          <List>
+            {
+              posts.map(({ fileName, post }) => {
+                const { title, date } = post.attributes;
+                return (
+                  <ListItem button component={QueryLink} to={{ pathname: '/blogs', query: { title: filepathToUrlParam(fileName) } }} key={title}>
+                    <ListItemText primary={title} secondary={date} />
+                  </ListItem>);
+              })
+            }
+          </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>);
   }
