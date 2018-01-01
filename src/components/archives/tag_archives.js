@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
@@ -6,6 +6,8 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
+import BlogListPanel from './blog_list_panel';
+import BlogPostsManager from '../blog_posts/blog_posts_manager';
 import Autocomplete from '../../widgets/autocomplete';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
@@ -30,33 +32,51 @@ const contentStyles = theme => ({
   },
 });
 
-const TagArchives = (props) => {
-  const { classes } = props;
+class TagArchives extends Component {
+  static createTagPanels(groupedByTag) {
+    const panels = [];
 
-  return (
-    <Grid
-      container
-      className={classes.content}
-    >
-      <Grid item {...fullRowWidth}>
-        <Grid container justify="center">
-          <Grid item {...contentRowWidths} component={Paper}>
-            <Grid container {...fullRowWidth}>
-              <Grid item {...fullRowWidth}>
-                <div className={classes.titleRow}>
-                  <Typography type="display3" className={classes.text}>Welcome to the Archives</Typography>
-                </div>
+    groupedByTag.forEach((posts, tag) => {
+      panels.push((<BlogListPanel key={tag} title={tag} posts={posts} />));
+    });
+
+    return panels;
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    const manager = new BlogPostsManager();
+    const groupedByTag = manager.postsByTag();
+
+    return (
+      <Grid
+        container
+        className={classes.content}
+      >
+        <Grid item {...fullRowWidth}>
+          <Grid container justify="center">
+            <Grid item {...contentRowWidths} component={Paper}>
+              <Grid container {...fullRowWidth}>
+                <Grid item {...fullRowWidth}>
+                  <div className={classes.titleRow}>
+                    <Typography type="display3" className={classes.text}>Welcome to the Archives</Typography>
+                  </div>
+                </Grid>
+                <Grid item {...fullRowWidth}>
+                  <Autocomplete hint="Start typing to add tags" suggestions={suggestions} />
+                </Grid>
               </Grid>
-              <Grid item {...fullRowWidth}>
-                <Autocomplete hint="Start typing to add tags" suggestions={suggestions} />
-              </Grid>
+            </Grid>
+            <Grid item {...contentRowWidths}>
+              { TagArchives.createTagPanels(groupedByTag) }
             </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
-  );
-};
+    );
+  }
+}
 
 TagArchives.propTypes = {
   /* eslint-disable react/forbid-prop-types */

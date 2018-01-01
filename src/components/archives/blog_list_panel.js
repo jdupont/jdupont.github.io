@@ -6,6 +6,7 @@ import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import Typography from 'material-ui/Typography';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 
+import BlogDate from '../blog_posts/blog_date';
 import QueryLink from '../routing/query_link';
 import { filepathToUrlParam } from '../routing/title_to_url_converter';
 
@@ -21,7 +22,10 @@ class BlogListPanel extends Component {
     const { title, date } = post.attributes;
     return (
       <ListItem button component={QueryLink} to={{ pathname: '/blogs', query: { title: filepathToUrlParam(fileName) } }} key={title}>
-        <ListItemText primary={title} secondary={date} />
+        <ListItemText
+          primary={title}
+          secondary={<BlogDate date={date} />}
+        />
       </ListItem>
     );
   }
@@ -29,18 +33,11 @@ class BlogListPanel extends Component {
   render() {
     const { classes, posts } = this.props;
 
-    posts.sort((a, b) => {
-      const aDate = a.post.attributes.date;
-      const bDate = b.post.attributes.date;
+    posts.sort();
 
-      if (aDate > bDate) {
-        return -1;
-      } else if (aDate === bDate) {
-        return 0;
-      }
-
-      return 1;
-    });
+    if (!this.props.chronological) {
+      posts.reverse();
+    }
 
     return (
       <ExpansionPanel key={this.props.title}>
@@ -59,6 +56,10 @@ class BlogListPanel extends Component {
   }
 }
 
+BlogListPanel.defaultProps = {
+  chronological: true,
+};
+
 BlogListPanel.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
@@ -68,6 +69,7 @@ BlogListPanel.propTypes = {
     fileName: PropTypes.string,
     posts: PropTypes.arrayOf(PropTypes.object),
   })).isRequired,
+  chronological: PropTypes.bool,
 };
 
 export default withStyles(contentStyles, { withTheme: true })(BlogListPanel);

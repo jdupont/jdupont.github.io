@@ -32,6 +32,24 @@ class BlogPostsManager {
     return reduction;
   }
 
+  postsByTag() {
+    const reduction = this.posts().reduce((map, { fileName, post }) => {
+      const { tags } = post.attributes;
+
+      tags.forEach((tag) => {
+        if (map.has(tag)) {
+          map.get(tag).push({ fileName, post });
+        } else {
+          map.set(tag, [{ fileName, post }]);
+        }
+      });
+
+      return map;
+    }, new Map());
+
+    return reduction;
+  }
+
   getPost(title) {
     return this.blogPosts(title);
   }

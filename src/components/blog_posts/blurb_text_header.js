@@ -6,6 +6,7 @@ import { CardHeader } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 
+import BlogDate from './blog_date';
 import QueryLink from '../routing/query_link';
 import JdAvatar from '../jd_avatar';
 
@@ -29,6 +30,7 @@ const textHeaderStyles = theme => ({
 
 const BlurbTextHeader = (props) => {
   const { classes } = props;
+
   return (
     <CardHeader
       classes={{
@@ -40,9 +42,7 @@ const BlurbTextHeader = (props) => {
           {props.title}
         </Typography>)}
       subheader={(
-        <Typography className={classes.text}>
-          {props.date}
-        </Typography>
+        <BlogDate className={classes.text} component={Typography} date={props.date} />
       )}
       avatar={(
         <JdAvatar />

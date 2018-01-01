@@ -9,6 +9,7 @@ import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 import DateRangeIcon from 'material-ui-icons/DateRange';
 
+import BlogDate from './blog_date';
 import FourOhFour from '../four_oh_four';
 import ChipArray from '../../widgets/chip_array';
 import { markdownStyles, marked } from './markdown_styling';
@@ -69,7 +70,7 @@ const BlogPost = (props) => {
                         <DateRangeIcon />
                       </Avatar>
                       &nbsp;
-                      <Typography component="span" type="subheading" className={classes.text}>{post.attributes.date}</Typography>
+                      <BlogDate className={classes.text} component={Typography} type="subheading" date={post.attributes.date} />
                     </span>
                     <ChipArray tags={post.attributes.tags} />
                   </div>

@@ -1,6 +1,6 @@
 ---
 title: My Fourth Blog Post
-date: 12/21/2017
+date: 2017-12-21
 description: This blog post is also awesome and you should read it too.
 coverImage: fourth.png
 tags:

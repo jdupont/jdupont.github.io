@@ -54,7 +54,13 @@ class DateArchives extends Component {
       const year = key.split('-')[0];
       const month = DateArchives.monthName(key.split('-')[1]);
       const monthYear = `${month} ${year}`;
-      panels.push((<BlogListPanel key={monthYear} title={monthYear} posts={posts} />));
+      panels.push((
+        <BlogListPanel
+          key={monthYear}
+          title={monthYear}
+          posts={posts}
+          chronological={sortChronologically}
+        />));
     });
 
     return panels;
