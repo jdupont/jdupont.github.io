@@ -36,7 +36,11 @@ class TagArchives extends Component {
   static createTagPanels(groupedByTag) {
     const panels = [];
 
-    groupedByTag.forEach((posts, tag) => {
+    const tagGroups = [...groupedByTag].sort();
+
+    tagGroups.forEach((tagGroup) => {
+      const tag = tagGroup[0];
+      const posts = tagGroup[1];
       panels.push((<BlogListPanel key={tag} title={tag} posts={posts} />));
     });
 

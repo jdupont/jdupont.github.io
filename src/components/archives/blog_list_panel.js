@@ -15,6 +15,15 @@ const contentStyles = theme => ({
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
   },
+  subheading: {
+    color: theme.typography.display1.color,
+    fontSize: theme.typography.pxToRem(13),
+    fontWeight: theme.typography.fontWeightRegular,
+    alignSelf: 'center',
+  },
+  headingRow: {
+    display: 'flex',
+  },
 });
 
 class BlogListPanel extends Component {
@@ -42,7 +51,11 @@ class BlogListPanel extends Component {
     return (
       <ExpansionPanel key={this.props.title}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>{this.props.title}</Typography>
+          <div className={classes.headingRow}>
+            <Typography className={classes.heading}>{this.props.title}</Typography>
+            &nbsp;
+            <Typography className={classes.subheading}>{`(${this.props.posts.length} post${this.props.posts.length > 1 ? 's' : ''})`}</Typography>
+          </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <List>
