@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import { emphasize } from 'material-ui/styles/colorManipulator';
 import Chip from 'material-ui/Chip';
+
+import QueryLink from '../components/routing/query_link';
 
 const chipStyle = theme => ({
   chip: {
     margin: theme.spacing.unit / 3,
+    WebkitTapHighlightColor: theme.palette.common.transparent,
+    cursor: 'pointer',
+    '&:hover, &:focus': {
+      backgroundColor: emphasize(theme.palette.background.chip, 0.08),
+    },
+    '&:active': {
+      boxShadow: theme.shadows[1],
+      backgroundColor: emphasize(theme.palette.background.chip, 0.12),
+    },
+  },
+  stripLink: {
+    textDecoration: 'none',
   },
   chipRow: {
     display: 'flex',
@@ -17,15 +32,12 @@ const chipStyle = theme => ({
 class ChipArray extends Component {
   static createChip(classes, tag) {
     return (
-      <Chip
-        classes={{
-          root: classes.chipOverride,
-        }}
-        className={classes.chip}
-        key={tag}
-        label={tag}
-        onClick={() => console.log('Do nothing')}
-      />);
+      <QueryLink className={classes.stripLink} key={tag} to={{ pathname: '/archives/tags', query: { tags: [tag] } }}>
+        <Chip
+          className={classes.chip}
+          label={tag}
+        />
+      </QueryLink>);
   }
 
   render() {

@@ -61,7 +61,7 @@ class TagArchives extends Component {
         <Grid item {...fullRowWidth}>
           <Grid container justify="center">
             <Grid item {...contentRowWidths} component={Paper}>
-              <Grid container {...fullRowWidth}>
+              <Grid container>
                 <Grid item {...fullRowWidth}>
                   <div className={classes.titleRow}>
                     <Typography type="display3" className={classes.text}>Welcome to the Archives</Typography>
@@ -82,10 +82,15 @@ class TagArchives extends Component {
   }
 }
 
+TagArchives.defaultProps = {
+  tags: [],
+};
+
 TagArchives.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
+  tags: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default withStyles(contentStyles, { withTheme: true })(TagArchives);
