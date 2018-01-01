@@ -16,7 +16,7 @@ const contentStyles = theme => ({
   },
 });
 
-class MonthPanel extends Component {
+class BlogListPanel extends Component {
   static getListItem(fileName, post) {
     const { title, date } = post.attributes;
     return (
@@ -43,14 +43,14 @@ class MonthPanel extends Component {
     });
 
     return (
-      <ExpansionPanel key={this.props.monthYear}>
+      <ExpansionPanel key={this.props.title}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>{this.props.monthYear}</Typography>
+          <Typography className={classes.heading}>{this.props.title}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <List>
             {
-              posts.map(({ fileName, post }) => MonthPanel.getListItem(fileName, post))
+              posts.map(({ fileName, post }) => BlogListPanel.getListItem(fileName, post))
             }
           </List>
         </ExpansionPanelDetails>
@@ -59,15 +59,15 @@ class MonthPanel extends Component {
   }
 }
 
-MonthPanel.propTypes = {
+BlogListPanel.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
-  monthYear: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   posts: PropTypes.arrayOf(PropTypes.shape({
     fileName: PropTypes.string,
     posts: PropTypes.arrayOf(PropTypes.object),
   })).isRequired,
 };
 
-export default withStyles(contentStyles, { withTheme: true })(MonthPanel);
+export default withStyles(contentStyles, { withTheme: true })(BlogListPanel);

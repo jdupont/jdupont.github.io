@@ -9,7 +9,7 @@ import IconButton from 'material-ui/IconButton';
 import SwapVertIcon from 'material-ui-icons/SwapVert';
 
 import BlogPostsManager from '../blog_posts/blog_posts_manager';
-import MonthPanel from './month_panel';
+import BlogListPanel from './blog_list_panel';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
 
@@ -54,7 +54,7 @@ class DateArchives extends Component {
       const year = key.split('-')[0];
       const month = DateArchives.monthName(key.split('-')[1]);
       const monthYear = `${month} ${year}`;
-      panels.push((<MonthPanel key={monthYear} monthYear={monthYear} posts={posts} />));
+      panels.push((<BlogListPanel key={monthYear} title={monthYear} posts={posts} />));
     });
 
     return panels;
