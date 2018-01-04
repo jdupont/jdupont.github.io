@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
@@ -6,6 +7,8 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
+import { linkStringification } from '../routing/query_link';
+import { history } from '../../widgets/react_router_prop_types';
 import BlogListPanel from './blog_list_panel';
 import BlogPostsManager from '../blog_posts/blog_posts_manager';
 import Autocomplete from '../../widgets/autocomplete';
@@ -69,10 +72,15 @@ class TagArchives extends Component {
     );
   }
 
-  static packageTags(tags) {
+  static packageTags(tags, historyManager) {
     return tags.map(tag => ({
       tagName: tag,
-      onDelete: () => console.log(`deleted ${tag}`),
+      onDelete: () => {
+        const updatedTags = tags.filter(item => tag !== item);
+        historyManager.push({
+          search: linkStringification({ tags: updatedTags }),
+        });
+      },
     }));
   }
 
@@ -87,7 +95,9 @@ class TagArchives extends Component {
     let selectedTagsDisplay;
 
     if (tagFilterActive) {
-      selectedTagsDisplay = (<TagFilterCloud tags={TagArchives.packageTags(tags)} />);
+      selectedTagsDisplay = (
+        <TagFilterCloud tags={TagArchives.packageTags(tags, this.props.history)} />
+      );
     } else {
       selectedTagsDisplay = (<Typography type="subheading">No filters selected.</Typography>);
     }
@@ -135,6 +145,8 @@ TagArchives.propTypes = {
   query: PropTypes.shape({
     tags: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
+  // eslint-disable-next-line react/no-typos
+  history: history.isRequired,
 };
 
-export default withStyles(contentStyles, { withTheme: true })(TagArchives);
+export default withRouter(withStyles(contentStyles, { withTheme: true })(TagArchives));
