@@ -66,6 +66,15 @@ class BlogPostsManager {
     return matches;
   }
 
+  allTags() {
+    const tags = this.posts().reduce((set, { post }) => {
+      post.attributes.tags.forEach(tag => set.add(tag));
+      return set;
+    }, new Set());
+
+    return tags;
+  }
+
   getPost(title) {
     return this.blogPosts(title);
   }

@@ -16,12 +16,6 @@ import TagFilterCloud from './tag_filter_cloud';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
 
-const suggestions = [
-  { label: 'Afghanistan' },
-  { label: 'Aland Islands' },
-  { label: 'Albania' },
-];
-
 const contentStyles = theme => ({
   content: {
     ...topLevelGridStyles(theme),
@@ -92,6 +86,9 @@ class TagArchives extends Component {
 
     const manager = new BlogPostsManager();
 
+    const allAvailableTags = [];
+    manager.allTags().forEach(tag => allAvailableTags.push({ label: tag }));
+
     let selectedTagsDisplay;
 
     if (tagFilterActive) {
@@ -118,7 +115,7 @@ class TagArchives extends Component {
                     </div>
                   </Grid>
                   <Grid item {...fullRowWidth}>
-                    <Autocomplete hint="Start typing to add tag filters" suggestions={suggestions} />
+                    <Autocomplete hint="Start typing to add tag filters" suggestions={allAvailableTags} />
                   </Grid>
                   <Grid item {...fullRowWidth}>
                     { selectedTagsDisplay }
