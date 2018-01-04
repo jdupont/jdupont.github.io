@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
 import Chip from 'material-ui/Chip';
 
-import QueryLink from '../components/routing/query_link';
+import QueryLink from './routing/query_link';
 
 const chipStyle = theme => ({
   chip: {
@@ -29,7 +29,7 @@ const chipStyle = theme => ({
   },
 });
 
-class ChipArray extends Component {
+class TagCloud extends Component {
   static createChip(classes, tag) {
     return (
       <QueryLink className={classes.stripLink} key={tag} to={{ pathname: '/archives/tags', query: { tags: [tag] } }}>
@@ -45,17 +45,17 @@ class ChipArray extends Component {
 
     return (
       <div className={classes.chipRow}>
-        {this.props.tags.map(tag => ChipArray.createChip(classes, tag))}
+        {this.props.tags.map(tag => TagCloud.createChip(classes, tag))}
       </div>
     );
   }
 }
 
-ChipArray.propTypes = {
+TagCloud.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default withStyles(chipStyle, { withTheme: true })(ChipArray);
+export default withStyles(chipStyle, { withTheme: true })(TagCloud);

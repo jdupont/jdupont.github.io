@@ -11,7 +11,7 @@ import DateRangeIcon from 'material-ui-icons/DateRange';
 
 import BlogDate from './blog_date';
 import FourOhFour from '../four_oh_four';
-import ChipArray from '../../widgets/chip_array';
+import TagCloud from '../tag_cloud';
 import { markdownStyles, marked } from './markdown_styling';
 import BlogPostsManager from './blog_posts_manager';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
@@ -72,7 +72,7 @@ const BlogPost = (props) => {
                       &nbsp;
                       <BlogDate className={classes.text} component={Typography} type="subheading" date={post.attributes.date} />
                     </span>
-                    <ChipArray tags={post.attributes.tags} />
+                    <TagCloud tags={post.attributes.tags} />
                   </div>
                 </Grid>
                 <Grid item {...fullRowWidth}>

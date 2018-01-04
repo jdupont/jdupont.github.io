@@ -9,6 +9,7 @@ import Typography from 'material-ui/Typography';
 import BlogListPanel from './blog_list_panel';
 import BlogPostsManager from '../blog_posts/blog_posts_manager';
 import Autocomplete from '../../widgets/autocomplete';
+import TagFilterCloud from './tag_filter_cloud';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
 
@@ -23,12 +24,19 @@ const contentStyles = theme => ({
     ...topLevelGridStyles(theme),
   },
   titleRow: {
-    padding: theme.spacing.unit * 2,
+    padding: `${2 * theme.spacing.unit}px ${theme.spacing.unit}px ${2 * theme.spacing.unit}px ${2 * theme.spacing.unit}px`,
     background: emphasize(theme.palette.primary[300], 0.26),
-    borderRadius: '2px 2px 0px 0px',
+    display: 'flex',
   },
   text: {
     color: theme.palette.background.default,
+    alignSelf: 'center',
+  },
+  titleAction: {
+    marginLeft: 'auto',
+  },
+  noMatches: {
+    padding: theme.spacing.unit,
   },
 });
 
@@ -47,11 +55,42 @@ class TagArchives extends Component {
     return panels;
   }
 
+  static createPostList(classes, tags, posts) {
+    if (posts.length > 0) {
+      return (
+        <BlogListPanel key={tags} title={tags.join(', ')} posts={posts} />
+      );
+    }
+
+    return (
+      <Paper className={classes.noMatches}>
+        <Typography>No matching posts found.</Typography>
+      </Paper>
+    );
+  }
+
+  static packageTags(tags) {
+    return tags.map(tag => ({
+      tagName: tag,
+      onDelete: () => console.log(`deleted ${tag}`),
+    }));
+  }
+
   render() {
     const { classes } = this.props;
+    const { tags } = this.props.query;
+
+    const tagFilterActive = tags && tags.length > 0;
 
     const manager = new BlogPostsManager();
-    const groupedByTag = manager.postsByTag();
+
+    let selectedTagsDisplay;
+
+    if (tagFilterActive) {
+      selectedTagsDisplay = (<TagFilterCloud tags={TagArchives.packageTags(tags)} />);
+    } else {
+      selectedTagsDisplay = (<Typography type="subheading">No filters selected.</Typography>);
+    }
 
     return (
       <Grid
@@ -60,20 +99,27 @@ class TagArchives extends Component {
       >
         <Grid item {...fullRowWidth}>
           <Grid container justify="center">
-            <Grid item {...contentRowWidths} component={Paper}>
-              <Grid container>
-                <Grid item {...fullRowWidth}>
-                  <div className={classes.titleRow}>
-                    <Typography type="display3" className={classes.text}>Welcome to the Archives</Typography>
-                  </div>
+            <Grid item {...contentRowWidths}>
+              <Paper>
+                <Grid container>
+                  <Grid item {...fullRowWidth}>
+                    <div className={classes.titleRow}>
+                      <Typography className={classes.text} type="headline">Browse by tags</Typography>
+                    </div>
+                  </Grid>
+                  <Grid item {...fullRowWidth}>
+                    <Autocomplete hint="Start typing to add tag filters" suggestions={suggestions} />
+                  </Grid>
+                  <Grid item {...fullRowWidth}>
+                    { selectedTagsDisplay }
+                  </Grid>
                 </Grid>
-                <Grid item {...fullRowWidth}>
-                  <Autocomplete hint="Start typing to add tags" suggestions={suggestions} />
-                </Grid>
-              </Grid>
+              </Paper>
             </Grid>
             <Grid item {...contentRowWidths}>
-              { TagArchives.createTagPanels(groupedByTag) }
+              { tagFilterActive ?
+                TagArchives.createPostList(classes, tags, manager.postsMatchingTags(tags)) :
+                TagArchives.createTagPanels(manager.postsByTag()) }
             </Grid>
           </Grid>
         </Grid>
@@ -82,15 +128,13 @@ class TagArchives extends Component {
   }
 }
 
-TagArchives.defaultProps = {
-  tags: [],
-};
-
 TagArchives.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
-  tags: PropTypes.arrayOf(PropTypes.string),
+  query: PropTypes.shape({
+    tags: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
 };
 
 export default withStyles(contentStyles, { withTheme: true })(TagArchives);

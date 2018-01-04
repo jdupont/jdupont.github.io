@@ -50,6 +50,22 @@ class BlogPostsManager {
     return reduction;
   }
 
+  postsMatchingTags(filterTags) {
+    const matches = this.posts().reduce((list, { fileName, post }) => {
+      const postTags = post.attributes.tags;
+
+      const allFound = filterTags.every(filterTag => postTags.indexOf(filterTag) >= 0);
+
+      if (allFound) {
+        list.push({ fileName, post });
+      }
+
+      return list;
+    }, []);
+
+    return matches;
+  }
+
   getPost(title) {
     return this.blogPosts(title);
   }

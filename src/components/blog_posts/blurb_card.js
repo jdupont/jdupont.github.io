@@ -8,7 +8,7 @@ import Typography from 'material-ui/Typography';
 import BlurbTextHeader from './blurb_text_header';
 import BlurbMediaHeader from './blurb_media_header';
 import HoverCard from '../../widgets/hover_card';
-import ChipArray from '../../widgets/chip_array';
+import TagCloud from '../tag_cloud';
 import { history } from '../../widgets/react_router_prop_types';
 import { linkStringification } from '../routing/query_link';
 
@@ -85,7 +85,7 @@ class BlurbCard extends Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.actionRow} classes={{ root: classes.actionOverride }}>
-          <ChipArray tags={this.props.tags} />
+          <TagCloud tags={this.props.tags} />
         </CardActions>
       </HoverCard>
     );
