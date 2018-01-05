@@ -1,99 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
-import match from 'autosuggest-highlight/match';
-import parse from 'autosuggest-highlight/parse';
-import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper';
-import { MenuItem } from 'material-ui/Menu';
 import { withStyles } from 'material-ui/styles';
 
-function renderInput(inputProps) {
-  const {
-    classes, autoFocus, value, ref, ...other
-  } = inputProps;
-
-  return (
-    <TextField
-      autoFocus={autoFocus}
-      className={classes.textField}
-      value={value}
-      inputRef={ref}
-      InputProps={{
-        classes: {
-          input: classes.input,
-        },
-        ...other,
-      }}
-    />
-  );
-}
-
-function renderSuggestion(suggestion, { query, isHighlighted }) {
-  const matches = match(suggestion.label, query);
-  const parts = parse(suggestion.label, matches);
-
-  return (
-    <MenuItem selected={isHighlighted} component="div">
-      <div>
-        {parts.map((part, index) => {
-          if (part.highlight) {
-            return (
-              <span key={String(index)} style={{ fontWeight: 300 }}>
-                {part.text}
-              </span>
-            );
-          }
-
-          return (
-            <strong key={String(index)} style={{ fontWeight: 500 }}>
-              {part.text}
-            </strong>
-          );
-        })}
-      </div>
-    </MenuItem>
-  );
-}
-
-function renderSuggestionsContainer(options) {
-  const { containerProps, children } = options;
-
-  return (
-    <Paper {...containerProps} square>
-      {children}
-    </Paper>
-  );
-}
+import AutocompleteInput from './autocomplete_input';
+import Suggestion from './suggestion';
+import SuggestionContainer from './suggestion_container';
 
 function getSuggestionValue(suggestion) {
   return suggestion.label;
 }
 
-function getMatchingSuggestions(value, allSuggestions) {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-  let count = 0;
-
-  return inputLength === 0
-    ? []
-    : allSuggestions.filter((suggestion) => {
-      const keep =
-        count < 5 && suggestion.label.toLowerCase().slice(0, inputLength) === inputValue;
-
-      if (keep) {
-        count += 1;
-      }
-
-      return keep;
-    });
-}
 
 const styles = theme => ({
   container: {
     flexGrow: 1,
     position: 'relative',
-    height: 200,
   },
   suggestionsContainerOpen: {
     position: 'absolute',
@@ -116,6 +38,25 @@ const styles = theme => ({
 });
 
 class Autocomplete extends Component {
+  static getMatchingSuggestions(value, allSuggestions) {
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+    let count = 0;
+
+    return inputLength === 0
+      ? []
+      : allSuggestions.filter((suggestion) => {
+        const keep =
+          count < 5 && suggestion.label.toLowerCase().slice(0, inputLength) === inputValue;
+
+        if (keep) {
+          count += 1;
+        }
+
+        return keep;
+      });
+  }
+
   constructor(props) {
     super(props);
 
@@ -127,15 +68,11 @@ class Autocomplete extends Component {
 
   handleSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      matchingSuggestions: getMatchingSuggestions(value, this.props.suggestions),
+      matchingSuggestions: Autocomplete.getMatchingSuggestions(value, this.props.suggestions),
     });
   };
 
-  handleSuggestionsClearRequested = () => {
-    this.setState({
-      matchingSuggestions: [],
-    });
-  };
+  clearSuggestions = () => this.setState({ matchingSuggestions: [] });
 
   handleChange = (event, { newValue }) => {
     this.setState({
@@ -154,19 +91,20 @@ class Autocomplete extends Component {
           suggestionsList: classes.suggestionsList,
           suggestion: classes.suggestion,
         }}
-        renderInputComponent={renderInput}
+        renderInputComponent={AutocompleteInput}
         suggestions={this.state.matchingSuggestions}
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
+        onSuggestionsClearRequested={this.clearSuggestions}
         onSuggestionSelected={((event, { suggestion }) => {
           onItemSelect(suggestion.label);
           if (clearOnSelect) {
             this.setState({ value: '' });
           }
         })}
-        renderSuggestionsContainer={renderSuggestionsContainer}
+        renderSuggestionsContainer={SuggestionContainer}
         getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
+        renderSuggestion={(suggestion, { query, isHighlighted }) =>
+          (<Suggestion suggestion={suggestion} query={query} isHighlighted={isHighlighted} />)}
         inputProps={{
           autoFocus: true,
           classes,

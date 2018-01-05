@@ -11,7 +11,7 @@ import { linkStringification } from '../routing/query_link';
 import { history } from '../../widgets/react_router_prop_types';
 import BlogListPanel from './blog_list_panel';
 import BlogPostsManager from '../blog_posts/blog_posts_manager';
-import Autocomplete from '../../widgets/autocomplete';
+import Autocomplete from '../../widgets/autocomplete/autocomplete';
 import TagFilterCloud from './tag_filter_cloud';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { topLevelGridStyles } from '../../style/grid_styles';
@@ -34,6 +34,9 @@ const contentStyles = theme => ({
   },
   noMatches: {
     padding: theme.spacing.unit,
+  },
+  searchBox: {
+    padding: 3 * theme.spacing.unit,
   },
 });
 
@@ -123,7 +126,7 @@ class TagArchives extends Component {
                       <Typography className={classes.text} type="headline">Browse by tags</Typography>
                     </div>
                   </Grid>
-                  <Grid item {...fullRowWidth}>
+                  <Grid item {...fullRowWidth} className={classes.searchBox}>
                     <Autocomplete
                       hint="Start typing to add tag filters"
                       suggestions={allAvailableTags}
