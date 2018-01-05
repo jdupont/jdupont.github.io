@@ -1,4 +1,8 @@
 class BlogPostsManager {
+  static sortChronologically(a, b) {
+    return a.post.attributes.date > b.post.attributes.date;
+  }
+
   constructor() {
     this.blogPosts = require.context('!json-loader!front-matter-loader!../../../public/posts/', true, /.md$/);
   }

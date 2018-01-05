@@ -46,10 +46,11 @@ class RecentBlogPosts extends Component {
     const { classes } = this.props;
 
     const manager = new BlogPostsManager();
+    const posts = [...manager.posts()].sort(BlogPostsManager.sortChronologically).reverse();
 
     return (
       <Grid container className={classes.content}>
-        {manager.posts().map(({ post, fileName }) => {
+        {posts.map(({ post, fileName }) => {
           const blurbCard = RecentBlogPosts.createBlurb(fileName, post);
           return RecentBlogPosts.wrapInGrid(blurbCard, fileName);
         })}

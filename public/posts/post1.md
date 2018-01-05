@@ -1,6 +1,6 @@
 ---
 title: My First Blog Post
-date: 2017-03-20
+date: 2018-03-20
 description: This blog post is absolutely awesome.
 coverImage: code_complete_2.jpg
 tags:

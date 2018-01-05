@@ -1,6 +1,6 @@
 ---
 title: My Sixth Blog Post
-date: 2017-12-26
+date: 2017-12-12
 description: I certainly have written a lot of blog posts haven't I? Notice the cool React SVG logo as the image.
 coverImage: sixth.png
 tags:

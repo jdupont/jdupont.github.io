@@ -6,6 +6,7 @@ import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import Typography from 'material-ui/Typography';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 
+import BlogPostsManager from '../blog_posts/blog_posts_manager';
 import BlogDate from '../blog_posts/blog_date';
 import QueryLink from '../routing/query_link';
 import { filepathToUrlParam } from '../routing/title_to_url_converter';
@@ -42,7 +43,7 @@ class BlogListPanel extends Component {
   render() {
     const { classes, posts } = this.props;
 
-    posts.sort();
+    posts.sort(BlogPostsManager.sortChronologically);
 
     if (!this.props.chronological) {
       posts.reverse();
