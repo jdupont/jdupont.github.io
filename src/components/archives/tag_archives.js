@@ -41,6 +41,9 @@ const contentStyles = theme => ({
   searchBox: {
     padding: `0px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px`,
   },
+  noTopPadding: {
+    paddingTop: '0px !important',
+  },
 });
 
 class TagArchives extends Component {
@@ -128,7 +131,7 @@ class TagArchives extends Component {
             <Grid item {...contentRowWidths}>
               <Paper>
                 <Grid container>
-                  <Grid item {...fullRowWidth}>
+                  <Grid item {...fullRowWidth} component="div" className={classes.noTopPadding}>
                     <div className={classes.titleRow}>
                       <Typography className={classes.text} type="headline">Browse by tags</Typography>
                     </div>
