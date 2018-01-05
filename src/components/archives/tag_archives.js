@@ -35,8 +35,11 @@ const contentStyles = theme => ({
   noMatches: {
     padding: theme.spacing.unit,
   },
+  autocomplete: {
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px`,
+  },
   searchBox: {
-    padding: 3 * theme.spacing.unit,
+    padding: `0px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px`,
   },
 });
 
@@ -105,10 +108,12 @@ class TagArchives extends Component {
 
     if (tagFilterActive) {
       selectedTagsDisplay = (
-        <TagFilterCloud tags={TagArchives.packageTags(tags, this.props.history)} />
+        <div className={classes.searchBox}>
+          <TagFilterCloud tags={TagArchives.packageTags(tags, this.props.history)} />
+        </div>
       );
     } else {
-      selectedTagsDisplay = (<Typography type="subheading">No filters selected.</Typography>);
+      selectedTagsDisplay = (<Typography className={classes.searchBox} type="subheading">No filters selected.</Typography>);
     }
 
     return (
@@ -127,17 +132,19 @@ class TagArchives extends Component {
                     </div>
                   </Grid>
                   <Grid item {...fullRowWidth} className={classes.searchBox}>
-                    <Autocomplete
-                      hint="Start typing to add tag filters"
-                      suggestions={allAvailableTags}
-                      clearOnSelect
-                      onItemSelect={selectedItem =>
-                        TagArchives.addTagToParameters(
-                          tags || [],
-                          selectedItem,
-                          this.props.history,
-                        )}
-                    />
+                    <div className={classes.searchBox}>
+                      <Autocomplete
+                        hint="Start typing to add tag filters"
+                        suggestions={allAvailableTags}
+                        clearOnSelect
+                        onItemSelect={selectedItem =>
+                          TagArchives.addTagToParameters(
+                            tags || [],
+                            selectedItem,
+                            this.props.history,
+                          )}
+                      />
+                    </div>
                   </Grid>
                   <Grid item {...fullRowWidth}>
                     { selectedTagsDisplay }

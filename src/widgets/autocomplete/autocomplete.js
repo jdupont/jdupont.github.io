@@ -11,7 +11,6 @@ function getSuggestionValue(suggestion) {
   return suggestion.label;
 }
 
-
 const styles = theme => ({
   container: {
     flexGrow: 1,
@@ -20,7 +19,7 @@ const styles = theme => ({
   suggestionsContainerOpen: {
     position: 'absolute',
     marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 2,
     left: 0,
     right: 0,
   },
@@ -40,14 +39,13 @@ const styles = theme => ({
 class Autocomplete extends Component {
   static getMatchingSuggestions(value, allSuggestions) {
     const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
     let count = 0;
 
-    return inputLength === 0
+    return inputValue.length === 0
       ? []
       : allSuggestions.filter((suggestion) => {
         const keep =
-          count < 5 && suggestion.label.toLowerCase().slice(0, inputLength) === inputValue;
+          count < 5 && suggestion.label.toLowerCase().slice(0, inputValue.length) === inputValue;
 
         if (keep) {
           count += 1;
@@ -66,7 +64,7 @@ class Autocomplete extends Component {
     };
   }
 
-  handleSuggestionsFetchRequested = ({ value }) => {
+  fetchSuggestions = ({ value }) => {
     this.setState({
       matchingSuggestions: Autocomplete.getMatchingSuggestions(value, this.props.suggestions),
     });
@@ -93,7 +91,7 @@ class Autocomplete extends Component {
         }}
         renderInputComponent={AutocompleteInput}
         suggestions={this.state.matchingSuggestions}
-        onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
+        onSuggestionsFetchRequested={this.fetchSuggestions}
         onSuggestionsClearRequested={this.clearSuggestions}
         onSuggestionSelected={((event, { suggestion }) => {
           onItemSelect(suggestion.label);
