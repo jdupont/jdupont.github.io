@@ -144,7 +144,7 @@ class Autocomplete extends Component {
   };
 
   render() {
-    const { classes, onItemSelect } = this.props;
+    const { classes, onItemSelect, clearOnSelect } = this.props;
 
     return (
       <Autosuggest
@@ -158,7 +158,12 @@ class Autocomplete extends Component {
         suggestions={this.state.matchingSuggestions}
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
-        onSuggestionSelected={((event, { suggestion }) => onItemSelect(suggestion.label))}
+        onSuggestionSelected={((event, { suggestion }) => {
+          onItemSelect(suggestion.label);
+          if (clearOnSelect) {
+            this.setState({ value: '' });
+          }
+        })}
         renderSuggestionsContainer={renderSuggestionsContainer}
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
@@ -174,6 +179,10 @@ class Autocomplete extends Component {
   }
 }
 
+Autocomplete.defaultProps = {
+  clearOnSelect: false,
+};
+
 Autocomplete.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
@@ -181,6 +190,7 @@ Autocomplete.propTypes = {
   hint: PropTypes.string.isRequired,
   suggestions: PropTypes.arrayOf(PropTypes.object).isRequired,
   onItemSelect: PropTypes.func.isRequired,
+  clearOnSelect: PropTypes.bool,
 };
 
 export default withStyles(styles)(Autocomplete);
