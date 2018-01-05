@@ -1,6 +1,6 @@
 ---
 title: My Fifth Blog Post
-date: 12/24/2017
+date: 2017-12-24
 description: This blog post is absolutely awesome.
 coverImage: fifth.png
 tags:

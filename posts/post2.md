@@ -1,6 +1,6 @@
 ---
 title: My Second Blog Post
-date: 5/21/2017
+date: 2017-05-21
 description: This blog post is also awesome and you should read it too.
 coverImage: second_post.jpg
 tags:
