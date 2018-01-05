@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -50,6 +51,9 @@ class RecentBlogPosts extends Component {
 
     return (
       <Grid container className={classes.content}>
+        <Helmet>
+          <title>Recent Posts | Jules&#39;s Blog</title>
+        </Helmet>
         {posts.map(({ post, fileName }) => {
           const blurbCard = RecentBlogPosts.createBlurb(fileName, post);
           return RecentBlogPosts.wrapInGrid(blurbCard, fileName);

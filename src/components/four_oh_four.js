@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -40,6 +41,9 @@ const FourOhFour = (props) => {
       container
       className={classes.content}
     >
+      <Helmet>
+        <title>404 Not Found | Jules&#39;s Blog</title>
+      </Helmet>
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
           <Grid item {...contentRowWidths}>

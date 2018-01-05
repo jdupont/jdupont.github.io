@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
@@ -57,6 +58,9 @@ const BlogPost = (props) => {
       className={classes.content}
       style={{ justifyContent: 'centered' }}
     >
+      <Helmet>
+        <title>{post.attributes.title}</title>
+      </Helmet>
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
           <Grid item {...contentRowWidths}>

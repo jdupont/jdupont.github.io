@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -126,6 +127,9 @@ class TagArchives extends Component {
         container
         className={classes.content}
       >
+        <Helmet>
+          <title>Browse by tag | Jules&#39;s Blog</title>
+        </Helmet>
         <Grid item {...fullRowWidth}>
           <Grid container justify="center">
             <Grid item {...contentRowWidths}>

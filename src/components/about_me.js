@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -51,6 +52,9 @@ const AboutMe = (props) => {
       container
       className={classes.content}
     >
+      <Helmet>
+        <title>About Me | Jules&#39;s Blog</title>
+      </Helmet>
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
           <Grid item {...contentRowWidths} component={Paper}>

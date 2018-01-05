@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
@@ -80,6 +81,9 @@ class DateArchives extends Component {
 
     return (
       <Grid container className={classes.content}>
+        <Helmet>
+          <title>Browse by date | Jules&#39;s Blog</title>
+        </Helmet>
         <Grid item {...fullRowWidth}>
           <Grid container justify="center">
             <Grid item {...contentRowWidths}>
