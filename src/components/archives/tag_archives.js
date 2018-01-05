@@ -72,7 +72,7 @@ class TagArchives extends Component {
     );
   }
 
-  static packageTags(tags, historyManager) {
+  static packageTagsAsSuggestions(tags, historyManager) {
     return tags.map(tag => ({
       tagName: tag,
       onDelete: () => TagArchives.removeTagFromParameters(tags, tag, historyManager),
@@ -87,10 +87,12 @@ class TagArchives extends Component {
   }
 
   static addTagToParameters(tags, tagToAdd, historyManager) {
-    tags.push(tagToAdd);
-    historyManager.push({
-      search: linkStringification({ tags }),
-    });
+    if (tags.indexOf(tagToAdd) < 0) {
+      tags.push(tagToAdd);
+      historyManager.push({
+        search: linkStringification({ tags }),
+      });
+    }
   }
 
   render() {
@@ -109,7 +111,7 @@ class TagArchives extends Component {
     if (tagFilterActive) {
       selectedTagsDisplay = (
         <div className={classes.searchBox}>
-          <TagFilterCloud tags={TagArchives.packageTags(tags, this.props.history)} />
+          <TagFilterCloud tags={TagArchives.packageTagsAsSuggestions(tags, this.props.history)} />
         </div>
       );
     } else {
