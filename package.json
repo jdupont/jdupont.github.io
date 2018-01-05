@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "autosuggest-highlight": "^3.1.1",
     "classnames": "^2.2.5",
+    "downshift": "^1.22.5",
     "front-matter-loader": "^0.2.0",
     "gh-pages": "^1.1.0",
     "highlightjs": "^9.10.0",
@@ -14,7 +14,6 @@
     "material-ui-icons": "^1.0.0-beta.17",
     "qs": "^6.5.1",
     "react": "^16.2.0",
-    "react-autosuggest": "^9.3.2",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",

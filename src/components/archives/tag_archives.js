@@ -69,13 +69,22 @@ class TagArchives extends Component {
   static packageTags(tags, historyManager) {
     return tags.map(tag => ({
       tagName: tag,
-      onDelete: () => {
-        const updatedTags = tags.filter(item => tag !== item);
-        historyManager.push({
-          search: linkStringification({ tags: updatedTags }),
-        });
-      },
+      onDelete: () => TagArchives.removeTagFromParameters(tags, tag, historyManager),
     }));
+  }
+
+  static removeTagFromParameters(tags, tagToRemove, historyManager) {
+    const updatedTags = tags.filter(tag => tagToRemove !== tag);
+    historyManager.push({
+      search: linkStringification({ tags: updatedTags }),
+    });
+  }
+
+  static addTagToParameters(tags, tagToAdd, historyManager) {
+    tags.push(tagToAdd);
+    historyManager.push({
+      search: linkStringification({ tags }),
+    });
   }
 
   render() {
@@ -115,7 +124,16 @@ class TagArchives extends Component {
                     </div>
                   </Grid>
                   <Grid item {...fullRowWidth}>
-                    <Autocomplete hint="Start typing to add tag filters" suggestions={allAvailableTags} />
+                    <Autocomplete
+                      hint="Start typing to add tag filters"
+                      suggestions={allAvailableTags}
+                      onSelect={selectedItem =>
+                        TagArchives.addTagToParameters(
+                          tags || [],
+                          selectedItem,
+                          this.props.history,
+                        )}
+                    />
                   </Grid>
                   <Grid item {...fullRowWidth}>
                     { selectedTagsDisplay }
