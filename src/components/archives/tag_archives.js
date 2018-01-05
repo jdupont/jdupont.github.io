@@ -127,7 +127,7 @@ class TagArchives extends Component {
                     <Autocomplete
                       hint="Start typing to add tag filters"
                       suggestions={allAvailableTags}
-                      onSelect={selectedItem =>
+                      onItemSelect={selectedItem =>
                         TagArchives.addTagToParameters(
                           tags || [],
                           selectedItem,
