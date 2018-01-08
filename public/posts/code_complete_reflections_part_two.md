@@ -13,9 +13,7 @@ Welcome back for my second post on *Code Complete 2*. In my [first post](/blogs?
 
 ## I've been more aware of the quality of my craftsmanship.
 
-*Code Complete 2* really drives home the need to take pride in the quality of your code.
-
-In the past, I know that I have been guilty of writing code that works instead of quality code that works. *Code Complete 2*, though, really drove home the need to be consistently mindful of how small construction decisions can have big repercussions for program quality down the road.
+*Code Complete 2*, really drove home the need to be consistently mindful of how small construction decisions can have big repercussions for program quality down the road.
 
 I've been trying to maintain this kind of mindfulness throughout all of my programming. For example, I've paid a lot more attention to picking names.
 

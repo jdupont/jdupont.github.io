@@ -17,7 +17,7 @@ With that background in mind, I decided to try to improve my software craftsmans
 
 ### McConnell advocates an attitude of mindful craftsmanship.
 
-McConnell emphasizes the need for programmers to take in pride in the quality of their code. Then, he examines how small, individual decisions add up to determine a project's overall quality. Ultimately, a programmer must be consistently aware of the impact of these small decisions in order to produce first-rate code.
+McConnell emphasizes the need for programmers to take pride in the quality of their code. Then, he examines how small, individual decisions add up to determine a project's overall quality. Ultimately, a programmer must be consistently aware of the impact of these small decisions in order to produce first-rate code.
 
 For me, the need for this kind of mindful craftsmanship is *Code Complete 2*'s most important point. If a programmer doesn't care about quality, or doesn't aim for it on a daily basis, the rest of the book is irrelevant anyways.
 
@@ -54,7 +54,7 @@ The tutorial lists a number of practical benefits of this approach, including a 
 
 First and foremost among these themes is the Primary Technical Imperative for software engineering: managing complexity. In this case, lambda expressions abstract away the code for looping through a collection. Because developers don't have to deal with this step themselves, the code becomes more focused and more maintainable. Additionally, the hidden parts can be optimized more thoroughly (through improved parallelization for example).
 
-The use of lambda expressions here also improves readability by reducing boilerplate.
+The use of lambda expressions here also improves readability by reducing boilerplate and clarifying intent. There's no need for a developer reading the code to pause and think about what the loop does; instead, the operations and meanings are clear from the `filter` and `forEach` method names themselves.
 
 Even though the tutorial lists some of these practical benefits, it doesn't provide the same overarching justification.
 
