@@ -19,6 +19,10 @@ And here is some sub header content.
 
 >> Can you do nested quotes with marked?
 
+## Images
+
+![Image of Yaktocat](/images/blog_posts/markbin_editor_screenshot.png)
+
 ## Code Block
 
 ```java
