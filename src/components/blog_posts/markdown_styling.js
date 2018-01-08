@@ -5,6 +5,8 @@ const markdownStyles = (theme) => {
   let codeBlockColors;
 
   /* eslint-disable global-require */
+  // This section requires a different highlight.js code highlighting
+  // theme depending on whether the material-ui theme is light or dark.
   if (theme.palette.type === 'light') {
     codeBlockColors = {
       color: '#abb2bf',
@@ -36,6 +38,9 @@ const markdownStyles = (theme) => {
       ...codeBlockColors,
       borderRadius: 10,
       overflow: 'auto',
+    },
+    '& img': {
+      width: '100%',
     },
     '& code': {
       display: 'inline-block',
