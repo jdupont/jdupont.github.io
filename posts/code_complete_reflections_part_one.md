@@ -1,6 +1,6 @@
 ---
 title: "Code Complete 2: What I Learned"
-date: 2018-01-03
+date: 2017-12-21
 description: I read *Code Complete 2* to improve my software craftsmanship. Here are my reflections on the most valuable lessons in the book.
 coverImage: code_complete_2.jpg
 tags:
