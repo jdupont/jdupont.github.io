@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import { CardActions, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 
+import { markdownStyles, marked } from './markdown_styling';
 import BlurbTextHeader from './blurb_text_header';
 import BlurbMediaHeader from './blurb_media_header';
 import HoverCard from '../../widgets/hover_card';
@@ -23,6 +25,12 @@ const blogCardStyle = theme => ({
     height: '100%',
     padding: theme.spacing.unit,
   },
+  descriptionPadding: {
+    '& p': {
+      margin: '0px',
+    },
+  },
+  markdown: markdownStyles(theme),
 });
 
 class BlurbCard extends Component {
@@ -80,9 +88,9 @@ class BlurbCard extends Component {
         { headerImage }
         <BlurbTextHeader title={this.props.title} date={this.props.date} link={this.props.link} />
         <CardContent>
-          <Typography component="p">
-            {this.props.preview}
-          </Typography>
+          {/* eslint-disable react/no-danger */}
+          <Typography component="div" className={classnames(classes.markdown, classes.descriptionPadding)} dangerouslySetInnerHTML={{ __html: marked(this.props.description) }} />
+          {/* eslint-ensable react/no-danger */}
         </CardContent>
         <CardActions className={classes.actionRow} classes={{ root: classes.actionOverride }}>
           <TagCloud tags={this.props.tags} />
@@ -102,7 +110,7 @@ BlurbCard.propTypes = {
   /* eslint-enable react/forbid-prop-types */
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   link: PropTypes.shape({
     query: PropTypes.object,
   }).isRequired,

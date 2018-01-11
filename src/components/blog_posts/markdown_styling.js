@@ -25,8 +25,6 @@ const markdownStyles = (theme) => {
   return ({
     fontFamily: theme.typography.fontFamily,
     fontSize: 16,
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
     color: theme.palette.text.primary,
     '& .anchor-link': {
       marginTop: -theme.spacing.unit * 12, // Offset for the anchor.

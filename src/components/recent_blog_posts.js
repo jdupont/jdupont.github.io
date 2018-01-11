@@ -23,7 +23,7 @@ class RecentBlogPosts extends Component {
         key={postFileName}
         title={post.attributes.title}
         date={post.attributes.date}
-        preview={post.attributes.description}
+        description={post.attributes.description}
         image={`${process.env.PUBLIC_URL}/images/blog_posts/${post.attributes.coverImage}`}
         link={{ pathname: '/blogs', query: { title: filepathToUrlParam(postFileName) } }}
         tags={post.attributes.tags}
