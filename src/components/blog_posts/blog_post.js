@@ -1,5 +1,4 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
@@ -10,6 +9,7 @@ import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 import DateRangeIcon from 'material-ui-icons/DateRange';
 
+import BlogHelmet from '../blog_helmet';
 import BlogDate from './blog_date';
 import FourOhFour from '../four_oh_four';
 import TagCloud from '../tag_cloud';
@@ -58,9 +58,7 @@ const BlogPost = (props) => {
       className={classes.content}
       style={{ justifyContent: 'centered' }}
     >
-      <Helmet>
-        <title>{post.attributes.title}</title>
-      </Helmet>
+      <BlogHelmet pageTitle={post.attributes.title} />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
           <Grid item {...contentRowWidths}>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
@@ -9,6 +8,7 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import SwapVertIcon from 'material-ui-icons/SwapVert';
 
+import BlogHelmet from '../blog_helmet';
 import BlogPostsManager from '../blog_posts/blog_posts_manager';
 import BlogListPanel from './blog_list_panel';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
@@ -81,9 +81,7 @@ class DateArchives extends Component {
 
     return (
       <Grid container className={classes.content}>
-        <Helmet>
-          <title>Browse by date | Jules&#39;s Blog</title>
-        </Helmet>
+        <BlogHelmet pageTitle="Browse by date" />
         <Grid item {...fullRowWidth}>
           <Grid container justify="center">
             <Grid item {...contentRowWidths}>

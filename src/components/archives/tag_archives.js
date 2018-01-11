@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -8,6 +7,7 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
+import BlogHelmet from '../blog_helmet';
 import { linkStringification } from '../routing/query_link';
 import { history } from '../../widgets/react_router_prop_types';
 import BlogListPanel from './blog_list_panel';
@@ -127,9 +127,7 @@ class TagArchives extends Component {
         container
         className={classes.content}
       >
-        <Helmet>
-          <title>Browse by tag | Jules&#39;s Blog</title>
-        </Helmet>
+        <BlogHelmet pageTitle="Browse by tag" />
         <Grid item {...fullRowWidth}>
           <Grid container justify="center">
             <Grid item {...contentRowWidths}>

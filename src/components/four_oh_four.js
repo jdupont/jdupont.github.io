@@ -1,5 +1,4 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -9,6 +8,7 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 
+import BlogHelmet from './blog_helmet';
 import HoverCard from '../widgets/hover_card';
 import { fullRowWidth, contentRowWidths } from '../style/dimensions';
 import { topLevelGridStyles } from '../style/grid_styles';
@@ -41,9 +41,7 @@ const FourOhFour = (props) => {
       container
       className={classes.content}
     >
-      <Helmet>
-        <title>404 Not Found | Jules&#39;s Blog</title>
-      </Helmet>
+      <BlogHelmet pageTitle="404 Not Found" />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
           <Grid item {...contentRowWidths}>

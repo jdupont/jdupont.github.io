@@ -1,5 +1,4 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
@@ -10,9 +9,11 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import SvgIcon from 'material-ui/SvgIcon';
 
+import BlogHelmet from './blog_helmet';
 import { markdownStyles, marked } from './blog_posts/markdown_styling';
 import { fullRowWidth, contentRowWidths } from '../style/dimensions';
 import { topLevelGridStyles } from '../style/grid_styles';
+import { MY_NAME } from '../docs/blog_constants.js';
 // Disabling eslint for these imports because they don't like webpack loader syntax
 // But, that's needed in create-react-app without ejecting because there's no
 // access to the webpack configuration files
@@ -62,9 +63,7 @@ const AboutMe = (props) => {
       container
       className={classes.content}
     >
-      <Helmet>
-        <title>About Me | Jules&#39;s Blog</title>
-      </Helmet>
+      <BlogHelmet pageTitle="About Me" />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
           <Grid item {...contentRowWidths} component={Paper}>
@@ -75,7 +74,7 @@ const AboutMe = (props) => {
               <Grid item xs={12} sm={9} md={9}>
                 <Grid container>
                   <Grid item {...fullRowWidth}>
-                    <Typography type="display3" className={classes.headerText}>Jules Dupont</Typography>
+                    <Typography type="display3" className={classes.headerText}>{MY_NAME}</Typography>
                   </Grid>
                   <Grid item {...fullRowWidth}>
                     <div
