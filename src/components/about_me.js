@@ -1,6 +1,6 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
@@ -9,8 +9,18 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import SvgIcon from 'material-ui/SvgIcon';
 
+import BlogHelmet from './blog_helmet';
+import { markdownStyles, marked } from './blog_posts/markdown_styling';
 import { fullRowWidth, contentRowWidths } from '../style/dimensions';
 import { topLevelGridStyles } from '../style/grid_styles';
+import { MY_NAME } from '../docs/blog_constants.js';
+// Disabling eslint for these imports because they don't like webpack loader syntax
+// But, that's needed in create-react-app without ejecting because there's no
+// access to the webpack configuration files
+/* eslint-disable */
+import aboutMe from '!json-loader!front-matter-loader!../docs/about_me.md';
+import aboutBlog from '!json-loader!front-matter-loader!../docs/about_blog.md';
+/* eslint-enable */
 
 const contentStyles = theme => ({
   content: {
@@ -42,6 +52,7 @@ const contentStyles = theme => ({
     marginRight: theme.spacing.unit,
     color: theme.palette.secondary.A400,
   },
+  markdown: markdownStyles(theme),
 });
 
 const AboutMe = (props) => {
@@ -52,9 +63,7 @@ const AboutMe = (props) => {
       container
       className={classes.content}
     >
-      <Helmet>
-        <title>About Me | Jules&#39;s Blog</title>
-      </Helmet>
+      <BlogHelmet pageTitle="About Me" />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
           <Grid item {...contentRowWidths} component={Paper}>
@@ -65,15 +74,15 @@ const AboutMe = (props) => {
               <Grid item xs={12} sm={9} md={9}>
                 <Grid container>
                   <Grid item {...fullRowWidth}>
-                    <Typography type="display3" className={classes.headerText}>Jules Dupont</Typography>
+                    <Typography type="display3" className={classes.headerText}>{MY_NAME}</Typography>
                   </Grid>
                   <Grid item {...fullRowWidth}>
-                    <Typography type="subheading">
-                      I am an enthusiathic young software developer, and this blog is a chronicle
-                      of my efforts to improve my skills. Inside, you will find descriptions of my
-                      side projects, and my thoughts on the software books and courses I am using
-                      as learning tools. Thanks for your interest!
-                    </Typography>
+                    <div
+                      className={classnames(classes.paddedContent, classes.markdown)}
+                      /* eslint-disable react/no-danger */
+                      dangerouslySetInnerHTML={{ __html: marked(aboutMe.body) }}
+                      /* eslint-ensable react/no-danger */
+                    />
                   </Grid>
                 </Grid>
               </Grid>
@@ -86,15 +95,12 @@ const AboutMe = (props) => {
                     <Typography type="display1">About this blog</Typography>
                   </Grid>
                   <Grid item {...fullRowWidth}>
-                    <Typography>
-                      I built this blog myself as a way to learn more about React and
-                      Materia Design.
-                      The blog is a static site hosted on Github Pages, with routing implemented
-                      using the methods described here. I used React as my front-end framework, with
-                      the material-ui library providing React components that implement the material
-                      Design guidelines.
-                      All of the source code is freely available on my GitHub.
-                    </Typography>
+                    <div
+                      className={classnames(classes.paddedContent, classes.markdown)}
+                      /* eslint-disable react/no-danger */
+                      dangerouslySetInnerHTML={{ __html: marked(aboutBlog.body) }}
+                      /* eslint-ensable react/no-danger */
+                    />
                   </Grid>
                 </Grid>
               </Grid>

@@ -1,0 +1,1 @@
+I am an enthusiastic young software developer, and this blog is a chronicle of how I'm improving my skills. Inside, you will find descriptions of my side projects, and my thoughts on the software books and courses I am using as learning tools. Thanks for your interest!
