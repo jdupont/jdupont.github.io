@@ -2,7 +2,7 @@
 title: "Code Complete 2: How I Applied It"
 date: 2018-01-04
 description: Here's how I applied the valuable lessons from *Code Complete 2* to my own programming projects.
-coverImage: code_complete_2.jpg
+coverImage: code_complete_application.png
 tags:
   - Code Complete 2
   - Best Practices
