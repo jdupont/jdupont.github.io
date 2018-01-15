@@ -5,7 +5,7 @@ description: I just finished taking the Udemy course [Meteor and React for Realt
 coverImage: meteor_and_react_for_realtime_apps.jpg
 tags:
   - Meteor
-  - react
+  - React
   - Online Courses
 ---
 

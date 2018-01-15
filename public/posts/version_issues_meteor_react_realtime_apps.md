@@ -2,11 +2,11 @@
 title: React-router Version Mix-up in Meteor and React for Realtime Apps
 date: 2017-12-28
 description: While following along with the instructor's code in the Udemy course [Meteor and React for Realtime Apps](https://www.udemy.com/meteor-react-tutorial/learn/v4/overview), I ran into a versioning issue with react-router. Read more for a description of the problem and how to fix it.
-coverImage: meteor_and_react_for_realtime_apps.jpg
+coverImage: markbin_code_with_react_router.png
 tags:
   - react-router
   - Meteor
-  - react
+  - React
   - Online Courses
 ---
 
