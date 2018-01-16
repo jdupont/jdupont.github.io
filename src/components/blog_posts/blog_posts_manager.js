@@ -1,5 +1,6 @@
 class BlogPostsManager {
   static sortChronologically(a, b) {
+    console.log(`adate:${a.post.attributes.date} bdate:${b.post.attributes.date} result${a.post.attributes.date > b.post.attributes.date}`);
     return a.post.attributes.date > b.post.attributes.date;
   }
 
