@@ -1,6 +1,7 @@
 {
   "name": "jdupont.github.io",
   "version": "0.1.0",
+  "homepage": "https://jdupont.github.io/",
   "private": true,
   "dependencies": {
     "autosuggest-highlight": "^3.1.1",
