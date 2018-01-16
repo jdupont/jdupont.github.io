@@ -47,9 +47,7 @@ class RecentBlogPosts extends Component {
     const { classes } = this.props;
 
     const manager = new BlogPostsManager();
-    console.log([...manager.posts()]);
     const posts = [...manager.posts()].sort(BlogPostsManager.sortChronologically).reverse();
-    console.log(posts);
 
     return (
       <Grid container className={classes.content}>
