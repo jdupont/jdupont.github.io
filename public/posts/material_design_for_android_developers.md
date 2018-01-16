@@ -45,7 +45,9 @@ The Udacity course encourages a consistent and intuitive user experience by disc
 
 For example, navigating between parts of an app is a common problem no matter the platform. Websites must provide some way for users to move from page to page, and Android apps must similarly allow users to transition from activity to activity.
 
-Since the core problem of internal navigation is shared, Material Design offers a shared solution: the [Navigation Drawer](https://material.io/guidelines/patterns/navigation-drawer.html). These drawers are a staple of Material Design apps, so they’re immediately intuitive to users.
+Since the core problem of internal navigation is shared, Material Design offers a shared solution: the [Navigation Drawer](https://material.io/guidelines/patterns/navigation-drawer.html). These drawers are a staple of Material Design apps, so they’re immediately intuitive to users. As discussed in the course, they also present consistent navigation from everywhere within an app, organize functionality, and scale well across screen sizes.
+
+Those advantages are why I chose to implement a drawer in this blog. To toggle the drawer, click on the hamburger icon at the upper left. You can then see the various pages available on this site, and how they fit together in a hierarchy ([browse by date](/archives/date) and [browse by tag](/archives/tag) are both underneath the Archives tag, for example).
 
 The course also discussed smaller details that help create a consistent visual experience across Material Design apps. For example, [buttons](https://material.io/guidelines/components/buttons.html) should have common styling that’s indicative of the importance of the button action. Flat buttons are frequent and less important, raised buttons are less frequent and more important, and floating action buttons are rare and crucial:
 
@@ -59,8 +61,10 @@ The course also stressed the need for designs to adapt to a wide variety of scre
 
 Drawers, for example, scale well on all devices from mobile to tablet to desktop. On mobile, the navigation drawer collapses so that the user has maximum screen space. Then, on tablets and desktops, the navigation drawer can be fixed for easier access, or maintain the same collapsing behavior to emphasize content.
 
+You can see that scaling in action by checking out [this blog in Google's Resizer](https://material.io/resizer/#url=https%3A%2F%2Fjdupont.github.io).
+
 ## How I’m Applying These Lessons
 
 You’re looking at one of the applications of this course. I built this blog platform myself to practice using the principles of Material Design.
 
-Going forward, I’d like to use Material Design on both Android and iOS so that I can get some more multi-platform experience. I’d also like to experiment with approaches other than Material Design, so that I can compare and see what I like best.
+Going forward, I’d like to use Material Design on both Android and iOS so that I can get some more multi-platform experience. I’d also like to experiment with approaches other than Material Design, so that I can see the relative strengths and weaknesses of several design philosophies.
