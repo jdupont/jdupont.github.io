@@ -10,7 +10,12 @@ const blogCardStyle = () => ({
   },
   image: {
     width: '100%',
+    height: '100%',
     transition: '0.6s ease',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    overflow: 'hidden',
   },
 });
 
@@ -20,15 +25,14 @@ const BlurbMediaHeader = (props) => {
   return (
     <CardMedia
       className={classes.mediaSection}
-      classes={{ rootMedia: classes.rootMedia }}
       src="none"
     >
-      <img
+      <div
         className={classes.image}
         src={props.image}
-        alt=""
         style={{
           transform: `scale(${props.scale})`,
+          backgroundImage: `url(${props.image})`,
         }}
       />
     </CardMedia>
