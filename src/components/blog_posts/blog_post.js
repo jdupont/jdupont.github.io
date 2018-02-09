@@ -66,13 +66,13 @@ const BlogPost = (props) => {
               <Grid container>
                 <Grid item {...fullRowWidth} className={classes.noTopPadding}>
                   <div className={classes.titleRow}>
-                    <Typography type="display3" className={classes.text}>{post.attributes.title}</Typography>
+                    <Typography variant="display3" className={classes.text}>{post.attributes.title}</Typography>
                     <span style={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar>
                         <DateRangeIcon />
                       </Avatar>
                       &nbsp;
-                      <BlogDate className={classes.text} component={Typography} type="subheading" date={post.attributes.date} />
+                      <BlogDate className={classes.text} component={Typography} variant="subheading" date={post.attributes.date} />
                     </span>
                     <TagCloud tags={post.attributes.tags} />
                   </div>

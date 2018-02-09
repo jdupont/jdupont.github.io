@@ -38,7 +38,7 @@ const BlurbTextHeader = (props) => {
       }}
       className={classes.textHeader}
       title={(
-        <Typography type="headline" component="h2" className={classes.text}>
+        <Typography variant="headline" component="h2" className={classes.text}>
           {props.title}
         </Typography>)}
       subheader={(
@@ -48,7 +48,7 @@ const BlurbTextHeader = (props) => {
         <JdAvatar />
       )}
       action={(
-        <Button dense raised color="accent" component={QueryLink} to={props.link}>READ</Button>
+        <Button size="small" variant="raised" color="secondary" component={QueryLink} to={props.link}>READ</Button>
       )}
     />
   );

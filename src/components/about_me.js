@@ -74,7 +74,7 @@ const AboutMe = (props) => {
               <Grid item xs={12} sm={9} md={9}>
                 <Grid container>
                   <Grid item {...fullRowWidth}>
-                    <Typography type="display3" className={classes.headerText}>{MY_NAME}</Typography>
+                    <Typography variant="display3" className={classes.headerText}>{MY_NAME}</Typography>
                   </Grid>
                   <Grid item {...fullRowWidth}>
                     <div
@@ -92,7 +92,7 @@ const AboutMe = (props) => {
               <Grid item {...fullRowWidth}>
                 <Grid container>
                   <Grid item {...fullRowWidth}>
-                    <Typography type="display1">About this blog</Typography>
+                    <Typography variant="display1">About this blog</Typography>
                   </Grid>
                   <Grid item {...fullRowWidth}>
                     <div

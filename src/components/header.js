@@ -45,14 +45,14 @@ const Header = (props) => {
     >
       <Toolbar disableGutters={!props.open}>
         <IconButton
-          color="contrast"
+          color="secondary"
           aria-label="open drawer"
           onClick={props.onMenuClick}
           className={classNames(classes.menuButton, props.open && classes.hide)}
         >
           <MenuIcon />
         </IconButton>
-        <Typography type="title" color="inherit" noWrap>
+        <Typography variant="title" color="inherit" noWrap>
           {BLOG_NAME}
         </Typography>
       </Toolbar>

@@ -53,12 +53,12 @@ const FourOhFour = (props) => {
               </div>
               <Divider />
               <CardContent>
-                <Typography type="display2" className={classes.sorryMessage}>
+                <Typography variant="display2" className={classes.sorryMessage}>
                   Sorry, I couldn&#39;t find that page.
                 </Typography>
               </CardContent>
               <CardActions className={classes.actions}>
-                <Button dense component={Link} to="/">Go Home</Button>
+                <Button size="small" component={Link} to="/">Go Home</Button>
               </CardActions>
             </HoverCard>
           </Grid>

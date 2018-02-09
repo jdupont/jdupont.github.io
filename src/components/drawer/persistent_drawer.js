@@ -46,7 +46,7 @@ const PersistentDrawer = props => (
       <div>
         <div className={props.classes.drawerHeader}>
           <div>
-            <Typography type="title" color="accent" className={props.classes.logoFont}>JD</Typography>
+            <Typography variant="title" color="secondary" className={props.classes.logoFont}>JD</Typography>
           </div>
           <IconButton onClick={props.onClose} className={props.classes.chevron}>
             <ChevronLeftIcon />

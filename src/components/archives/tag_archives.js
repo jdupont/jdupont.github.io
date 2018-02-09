@@ -119,7 +119,7 @@ class TagArchives extends Component {
         </div>
       );
     } else {
-      selectedTagsDisplay = (<Typography className={classes.searchBox} type="subheading">No filters selected.</Typography>);
+      selectedTagsDisplay = (<Typography className={classes.searchBox} variant="subheading">No filters selected.</Typography>);
     }
 
     return (
@@ -135,7 +135,7 @@ class TagArchives extends Component {
                 <Grid container>
                   <Grid item {...fullRowWidth} component="div" className={classes.noTopPadding}>
                     <div className={classes.titleRow}>
-                      <Typography className={classes.text} type="headline">Browse by tags</Typography>
+                      <Typography className={classes.text} variant="headline">Browse by tags</Typography>
                     </div>
                   </Grid>
                   <Grid item {...fullRowWidth} className={classes.searchBox}>

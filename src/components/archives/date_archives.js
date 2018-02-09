@@ -86,10 +86,10 @@ class DateArchives extends Component {
           <Grid container justify="center">
             <Grid item {...contentRowWidths}>
               <Paper className={classes.titleRow}>
-                <Typography className={classes.text} type="headline">Browse by date</Typography>
+                <Typography className={classes.text} variant="headline">Browse by date</Typography>
                 <IconButton
                   className={classes.titleAction}
-                  color="accent"
+                  color="secondary"
                   onClick={() => { this.setState({ chronological: !this.state.chronological }); }}
                 >
                   <SwapVertIcon />
