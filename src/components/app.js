@@ -28,7 +28,7 @@ const App = () => (
     <Reboot />
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
-        <div>
+        <div style={{ backgroundColor: theme.palette.background.default }}>
           <Home />
         </div>
       </MuiThemeProvider>
