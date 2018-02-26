@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
+import Reboot from 'material-ui/Reboot';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import indigo from 'material-ui/colors/indigo';
 import green from 'material-ui/colors/green';
@@ -23,13 +24,16 @@ const theme = createMuiTheme({
 });
 
 const App = () => (
-  <BrowserRouter>
-    <MuiThemeProvider theme={theme}>
-      <div>
-        <Home />
-      </div>
-    </MuiThemeProvider>
-  </BrowserRouter>
+  <div>
+    <Reboot />
+    <BrowserRouter>
+      <MuiThemeProvider theme={theme}>
+        <div>
+          <Home />
+        </div>
+      </MuiThemeProvider>
+    </BrowserRouter>
+  </div>
 );
 
 export default App;
