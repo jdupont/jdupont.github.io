@@ -10,6 +10,7 @@ import ArchiveIcon from 'material-ui-icons/Archive';
 import FolderIcon from 'material-ui-icons/Folder';
 import DateRangeIcon from 'material-ui-icons/DateRange';
 import PersonOutlineIcon from 'material-ui-icons/PersonOutline';
+import SettingsIcon from 'material-ui-icons/Settings';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 
@@ -73,6 +74,12 @@ class SiteNavigationList extends Component {
             <PersonOutlineIcon />
           </ListItemIcon>
           <ListItemText primary="About" />
+        </ListItem>
+        <ListItem button component={Link} to="/halloween" onClick={this.props.onClose}>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Halloween" />
         </ListItem>
       </List>
     );
