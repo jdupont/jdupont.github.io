@@ -32,6 +32,9 @@ const appBarStyles = theme => ({
   hide: {
     display: 'none',
   },
+  whiteIcon: {
+    color: theme.palette.primary.contrastText,
+  },
 });
 
 const Header = (props) => {
@@ -45,10 +48,10 @@ const Header = (props) => {
     >
       <Toolbar disableGutters={!props.open}>
         <IconButton
-          color="secondary"
+          color="default"
           aria-label="open drawer"
           onClick={props.onMenuClick}
-          className={classNames(classes.menuButton, props.open && classes.hide)}
+          className={classNames(classes.whiteIcon, classes.menuButton, props.open && classes.hide)}
         >
           <MenuIcon />
         </IconButton>

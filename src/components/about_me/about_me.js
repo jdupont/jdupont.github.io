@@ -3,23 +3,22 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
-import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-import SvgIcon from 'material-ui/SvgIcon';
 
-import BlogHelmet from './blog_helmet';
-import { markdownStyles, marked } from './blog_posts/markdown_styling';
-import { fullRowWidth, contentRowWidths } from '../style/dimensions';
-import { topLevelGridStyles } from '../style/grid_styles';
-import { MY_NAME } from '../docs/blog_constants.js';
+import { GitHubButton, StackOverflowButton, LinkedInButton } from './social_media_button';
+import BlogHelmet from '../blog_helmet';
+import { markdownStyles, marked } from '../blog_posts/markdown_styling';
+import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
+import { topLevelGridStyles } from '../../style/grid_styles';
+import { MY_NAME } from '../../docs/blog_constants.js';
 // Disabling eslint for these imports because they don't like webpack loader syntax
 // But, that's needed in create-react-app without ejecting because there's no
 // access to the webpack configuration files
 /* eslint-disable */
-import aboutMe from '!json-loader!front-matter-loader!../docs/about_me.md';
-import aboutBlog from '!json-loader!front-matter-loader!../docs/about_blog.md';
+import aboutMe from '!json-loader!front-matter-loader!../../docs/about_me.md';
+import aboutBlog from '!json-loader!front-matter-loader!../../docs/about_blog.md';
 /* eslint-enable */
 
 const contentStyles = theme => ({
@@ -48,10 +47,6 @@ const contentStyles = theme => ({
   headerText: {
     color: theme.typography.title.color,
   },
-  leftIcon: {
-    marginRight: theme.spacing.unit,
-    color: theme.palette.secondary.A400,
-  },
   markdown: markdownStyles(theme),
 });
 
@@ -59,10 +54,7 @@ const AboutMe = (props) => {
   const { classes } = props;
 
   return (
-    <Grid
-      container
-      className={classes.content}
-    >
+    <Grid container className={classes.content}>
       <BlogHelmet pageTitle="About Me" />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
@@ -107,30 +99,9 @@ const AboutMe = (props) => {
             </Grid>
             <Grid container wrap="wrap" className={classes.aboutMeBox} justify="center">
               <Grid item {...fullRowWidth} className={classes.buttonRow}>
-                <Button component="a" href="https://github.com/jdupont">
-                  <SvgIcon className={classes.leftIcon}>
-                    <svg>
-                      <use href={`${process.env.PUBLIC_URL}/images/github_mark.svg#main`} />
-                    </svg>
-                  </SvgIcon>
-                  GitHub
-                </Button>
-                <Button component="a" href="https://stackoverflow.com/users/8762152/jdupont">
-                  <SvgIcon className={classes.leftIcon}>
-                    <svg>
-                      <use href={`${process.env.PUBLIC_URL}/images/stack_overflow.svg#main`} />
-                    </svg>
-                  </SvgIcon>
-                  Stack&nbsp;Overflow
-                </Button>
-                <Button component="a" href="https://www.linkedin.com/in/julesdupont">
-                  <SvgIcon className={classes.leftIcon}>
-                    <svg>
-                      <use href={`${process.env.PUBLIC_URL}/images/linked_in.svg#linkedInIcon`} />
-                    </svg>
-                  </SvgIcon>
-                  LinkedIn
-                </Button>
+                <GitHubButton />
+                <StackOverflowButton />
+                <LinkedInButton />
               </Grid>
             </Grid>
           </Grid>
