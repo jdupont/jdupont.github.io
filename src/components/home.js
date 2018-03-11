@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { MuiThemeProvider } from 'material-ui/styles';
+import Reboot from 'material-ui/Reboot';
 import 'typeface-roboto';
 
 import Header from './header';
@@ -43,25 +44,28 @@ class Home extends Component {
   render() {
     const { currentTheme } = this.state;
 
-    console.log(`Type: ${currentTheme.palette.type} background: ${Home.getCurrentBackgroundColor(currentTheme)}`);
-
     return (
       <MuiThemeProvider theme={currentTheme}>
         <div style={{ backgroundColor: Home.getCurrentBackgroundColor(currentTheme) }}>
-          <Header open={this.state.open} onMenuClick={() => this.setState({ open: true })} />
-          <PersistentDrawer
-            open={this.state.open}
-            onClose={() => { this.setState({ open: false }); }}
-          />
-          <Switch>
-            <Route exact path="/" component={RecentBlogPosts} />
-            <Route path="/about" component={AboutMe} />
-            <Route path="/halloween" component={() => <Halloween onThemeChange={this.onThemeChange} onThemeReset={this.onThemeReset} />} />
-            <QueryRoute path="/blogs/" component={BlogPost} />
-            <Route path="/archives/date" component={DateArchives} />
-            <QueryRoute path="/archives/tags" component={TagArchives} />
-            <Route component={FourOhFour} />
-          </Switch>`
+          <Reboot />
+          <BrowserRouter>
+            <div>
+              <Header open={this.state.open} onMenuClick={() => this.setState({ open: true })} />
+              <PersistentDrawer
+                open={this.state.open}
+                onClose={() => { this.setState({ open: false }); }}
+              />
+              <Switch>
+                <Route exact path="/" component={RecentBlogPosts} />
+                <Route path="/about" component={AboutMe} />
+                <Route path="/halloween" component={() => <Halloween onThemeChange={this.onThemeChange} onThemeReset={this.onThemeReset} />} />
+                <QueryRoute path="/blogs/" component={BlogPost} />
+                <Route path="/archives/date" component={DateArchives} />
+                <QueryRoute path="/archives/tags" component={TagArchives} />
+                <Route component={FourOhFour} />
+              </Switch>
+            </div>
+          </BrowserRouter>
         </div>
       </MuiThemeProvider>
     );

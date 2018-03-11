@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme, withTheme } from 'material-ui/styles';
+import debounce from 'lodash.debounce';
 
+import { generatePaletteFromBase } from '../../style/palette_manipulator';
 import ThemeSettingsPresentation from './theme_settings_presentation';
 
 class ThemeSettingsContainer extends React.Component {
@@ -13,11 +15,17 @@ class ThemeSettingsContainer extends React.Component {
     this.state = {
       primary: theme.palette.primary,
       secondary: theme.palette.secondary,
+      error: theme.palette.error,
       type: theme.palette.type,
     };
 
-    this.onPrimaryChange = this.onPrimaryChange.bind(this);
-    this.onSecondaryChange = this.onSecondaryChange.bind(this);
+    this.debouncedPrimary = debounce(colorObject =>
+      this.onPrimaryChange(generatePaletteFromBase(colorObject.hex)), 150);
+    this.debouncedSecondary = debounce(colorObject =>
+      this.onSecondaryChange(generatePaletteFromBase(colorObject.hex)), 150);
+    this.debouncedError = debounce(colorObject =>
+      this.onErrorChange(generatePaletteFromBase(colorObject.hex)), 150);
+
     this.onTypeChange = this.onTypeChange.bind(this);
     this.recalculateTheme = this.recalculateTheme.bind(this);
   }
@@ -30,6 +38,10 @@ class ThemeSettingsContainer extends React.Component {
     this.setState({ secondary }, this.recalculateTheme);
   }
 
+  onErrorChange(error) {
+    this.setState({ error }, this.recalculateTheme);
+  }
+
   onTypeChange(type) {
     this.setState({ type }, this.recalculateTheme);
   }
@@ -40,6 +52,7 @@ class ThemeSettingsContainer extends React.Component {
     const {
       primary,
       secondary,
+      error,
       type,
     } = this.state;
 
@@ -48,6 +61,7 @@ class ThemeSettingsContainer extends React.Component {
         type,
         primary,
         secondary,
+        error,
       },
     });
 
@@ -55,9 +69,12 @@ class ThemeSettingsContainer extends React.Component {
   }
 
   render() {
+    const { onThemeReset } = this.props;
+
     const {
       primary,
       secondary,
+      error,
       type,
     } = this.state;
 
@@ -65,10 +82,13 @@ class ThemeSettingsContainer extends React.Component {
       <ThemeSettingsPresentation
         primary={primary}
         secondary={secondary}
+        error={error}
         type={type}
-        onPrimaryChange={this.onPrimaryChange}
-        onSecondaryChange={this.onSecondaryChange}
+        onPrimaryChange={this.debouncedPrimary}
+        onSecondaryChange={this.debouncedSecondary}
+        onErrorChange={this.debouncedError}
         onTypeChange={this.onTypeChange}
+        onThemeReset={onThemeReset}
       />
     );
   }
@@ -83,6 +103,7 @@ ThemeSettingsContainer.propTypes = {
     }).isRequired,
   }).isRequired,
   onThemeChange: PropTypes.func.isRequired,
+  onThemeReset: PropTypes.func.isRequired,
 };
 
 export default withTheme()(ThemeSettingsContainer);

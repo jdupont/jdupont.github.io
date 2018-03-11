@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
-import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
@@ -27,13 +25,8 @@ const Halloween = (props) => {
     theme,
   } = props;
 
-  console.log(`Halloween Theme: ${theme.palette.type}`);
-
   return (
-    <Grid
-      container
-      className={classes.content}
-    >
+    <Grid container className={classes.content}>
       <BlogHelmet pageTitle="Halloween" />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
@@ -43,15 +36,17 @@ const Halloween = (props) => {
                 <Typography variant="display3">It is Halloween! Check out my costumes.</Typography>
               </Grid>
               <Grid item {...fullRowWidth}>
-                <Typography variant="body2">
+                <Typography variant="body1">
                   The material-ui library offers a powerful theming
                   solution that lets you change the appearance of your app on the
-                  fly. Check out some of the properties you can modify here:
+                  fly. You can use this page to check out some of the properties you can change.
                 </Typography>
               </Grid>
-              <Divider />
               <Grid item {...fullRowWidth}>
-                <ThemeSettingsContainer theme={theme} onThemeChange={onThemeChange} />
+                <Divider />
+              </Grid>
+              <Grid item {...fullRowWidth}>
+                <ThemeSettingsContainer theme={theme} onThemeChange={onThemeChange} onThemeReset={onThemeReset} />
               </Grid>
             </Grid>
           </Grid>
