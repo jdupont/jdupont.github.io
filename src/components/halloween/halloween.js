@@ -15,6 +15,9 @@ const styles = theme => ({
   content: {
     ...topLevelGridStyles(theme),
   },
+  halloweenBox: {
+    padding: theme.spacing.unit * 2,
+  },
 });
 
 const Halloween = (props) => {
@@ -31,7 +34,7 @@ const Halloween = (props) => {
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
           <Grid item {...contentRowWidths} component={Paper}>
-            <Grid container className={classes.aboutMeBox}>
+            <Grid container className={classes.halloweenBox}>
               <Grid item {...fullRowWidth}>
                 <Typography variant="display3">It is Halloween! Check out my costumes.</Typography>
               </Grid>
@@ -46,7 +49,14 @@ const Halloween = (props) => {
                 <Divider />
               </Grid>
               <Grid item {...fullRowWidth}>
-                <ThemeSettingsContainer theme={theme} onThemeChange={onThemeChange} onThemeReset={onThemeReset} />
+                <ThemeSettingsContainer
+                  theme={theme}
+                  onThemeChange={onThemeChange}
+                  onThemeReset={onThemeReset}
+                />
+              </Grid>
+              <Grid item {...fullRowWidth}>
+                <Divider />
               </Grid>
             </Grid>
           </Grid>

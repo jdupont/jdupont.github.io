@@ -59,10 +59,7 @@ const AboutMe = (props) => {
   const { classes } = props;
 
   return (
-    <Grid
-      container
-      className={classes.content}
-    >
+    <Grid container className={classes.content}>
       <BlogHelmet pageTitle="About Me" />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">

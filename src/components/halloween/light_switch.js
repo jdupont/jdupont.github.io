@@ -25,7 +25,7 @@ const LightSwitch = (props) => {
   return (
     <Button variant="raised" onClick={() => onTypeChange('light')}>
       <LightbulbOutlineIcon className={classes.leftIcon} />
-       Go Light
+        Fiat Lux
     </Button>
   );
 };

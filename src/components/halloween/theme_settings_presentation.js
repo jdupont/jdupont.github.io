@@ -2,17 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
-import SketchPicker from 'react-color';
 
 import { getMainColor } from '../../style/palette_manipulator';
 import { fullRowWidth } from '../../style/dimensions';
 import ResetButton from './reset_button';
 import LightSwitch from './light_switch';
+import ColorPicker from './color_picker';
 
 const styles = () => ({
   centeredColumn: {
     display: 'flex',
     justifyContent: 'center',
+  },
+  rightJustifiedColumn: {
+    display: 'flex',
+    justifyContent: 'right',
   },
 });
 
@@ -32,28 +36,19 @@ const ThemeSettingsPresentation = (props) => {
 
   return (
     <Grid container>
-      <Grid item {...fullRowWidth}>
+      <Grid item {...fullRowWidth} className={classes.rightJustifiedColumn}>
         <LightSwitch type={type} onTypeChange={onTypeChange} />
         &nbsp;
         <ResetButton onThemeReset={onThemeReset} />
       </Grid>
       <Grid item xs={4} className={classes.centeredColumn}>
-        <SketchPicker
-          color={getMainColor(primary)}
-          onChange={onPrimaryChange}
-        />
+        <ColorPicker label="Primary Color" color={getMainColor(primary)} onChange={onPrimaryChange} type="primary" />
       </Grid>
       <Grid item xs={4} className={classes.centeredColumn}>
-        <SketchPicker
-          color={getMainColor(secondary)}
-          onChange={onSecondaryChange}
-        />
+        <ColorPicker label="Secondary Color" color={getMainColor(secondary)} onChange={onSecondaryChange} type="secondary" />
       </Grid>
       <Grid item xs={4} className={classes.centeredColumn}>
-        <SketchPicker
-          color={getMainColor(error)}
-          onChange={onErrorChange}
-        />
+        <ColorPicker label="Error Color" color={getMainColor(error)} onChange={onErrorChange} type="error" />
       </Grid>
     </Grid>
   );
