@@ -9,7 +9,7 @@ import ResetButton from './reset_button';
 import LightSwitch from './light_switch';
 import ColorPicker from './color_picker';
 
-const styles = () => ({
+const styles = theme => ({
   centeredColumn: {
     display: 'flex',
     justifyContent: 'center',
@@ -17,6 +17,9 @@ const styles = () => ({
   rightJustifiedColumn: {
     display: 'flex',
     justifyContent: 'right',
+  },
+  buttonSpacing: {
+    marginRight: theme.spacing.unit,
   },
 });
 
@@ -34,20 +37,25 @@ const ThemeSettingsPresentation = (props) => {
     onThemeReset,
   } = props;
 
+  const pickerWidths = {
+    xs: 12,
+    sm: 4,
+  };
+
   return (
     <Grid container>
       <Grid item {...fullRowWidth} className={classes.rightJustifiedColumn}>
-        <LightSwitch type={type} onTypeChange={onTypeChange} />
+        <LightSwitch type={type} onTypeChange={onTypeChange} className={classes.buttonSpacing} />
         &nbsp;
         <ResetButton onThemeReset={onThemeReset} />
       </Grid>
-      <Grid item xs={4} className={classes.centeredColumn}>
+      <Grid item {...pickerWidths} className={classes.centeredColumn}>
         <ColorPicker label="Primary Color" color={getMainColor(primary)} onChange={onPrimaryChange} type="primary" />
       </Grid>
-      <Grid item xs={4} className={classes.centeredColumn}>
+      <Grid item {...pickerWidths} className={classes.centeredColumn}>
         <ColorPicker label="Secondary Color" color={getMainColor(secondary)} onChange={onSecondaryChange} type="secondary" />
       </Grid>
-      <Grid item xs={4} className={classes.centeredColumn}>
+      <Grid item {...pickerWidths} className={classes.centeredColumn}>
         <ColorPicker label="Error Color" color={getMainColor(error)} onChange={onErrorChange} type="error" />
       </Grid>
     </Grid>

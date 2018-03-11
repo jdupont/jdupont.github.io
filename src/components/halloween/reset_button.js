@@ -11,11 +11,11 @@ const styles = theme => ({
 });
 
 const ResetButton = (props) => {
-  const { classes, onThemeReset } = props;
+  const { classes, onThemeReset, ...other } = props;
 
   return (
-    <Button variant="raised" onClick={onThemeReset}>
-      <RestoreIcon className={classes.leftIcon} />
+    <Button variant="raised" onClick={onThemeReset} {...other}>
+      <RestoreIcon color="secondary" className={classes.leftIcon} />
       Restore
     </Button>
   );

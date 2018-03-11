@@ -11,20 +11,25 @@ const styles = theme => ({
 });
 
 const LightSwitch = (props) => {
-  const { classes, type, onTypeChange } = props;
+  const {
+    classes,
+    type,
+    onTypeChange,
+    ...other
+  } = props;
 
   if (type === 'light') {
     return (
-      <Button variant="raised" onClick={() => onTypeChange('dark')}>
-        <LightbulbOutlineIcon className={classes.leftIcon} />
+      <Button variant="raised" onClick={() => onTypeChange('dark')} {...other}>
+        <LightbulbOutlineIcon color="secondary" className={classes.leftIcon} />
         Go Dark
       </Button>
     );
   }
 
   return (
-    <Button variant="raised" onClick={() => onTypeChange('light')}>
-      <LightbulbOutlineIcon className={classes.leftIcon} />
+    <Button variant="raised" onClick={() => onTypeChange('light')} {...other}>
+      <LightbulbOutlineIcon color="secondary" className={classes.leftIcon} />
         Fiat Lux
     </Button>
   );

@@ -79,7 +79,7 @@ class SiteNavigationList extends Component {
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
-          <ListItemText primary="Halloween" />
+          <ListItemText primary="Customize Me" />
         </ListItem>
       </List>
     );

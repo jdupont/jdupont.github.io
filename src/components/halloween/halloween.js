@@ -30,13 +30,13 @@ const Halloween = (props) => {
 
   return (
     <Grid container className={classes.content}>
-      <BlogHelmet pageTitle="Halloween" />
+      <BlogHelmet pageTitle="Customize Me" />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
           <Grid item {...contentRowWidths} component={Paper}>
             <Grid container className={classes.halloweenBox}>
               <Grid item {...fullRowWidth}>
-                <Typography variant="display3">It is Halloween! Check out my costumes.</Typography>
+                <Typography variant="display3">Customize me!</Typography>
               </Grid>
               <Grid item {...fullRowWidth}>
                 <Typography variant="body1">
@@ -54,9 +54,6 @@ const Halloween = (props) => {
                   onThemeChange={onThemeChange}
                   onThemeReset={onThemeReset}
                 />
-              </Grid>
-              <Grid item {...fullRowWidth}>
-                <Divider />
               </Grid>
             </Grid>
           </Grid>
