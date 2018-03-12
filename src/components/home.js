@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { MuiThemeProvider } from 'material-ui/styles';
 import Reboot from 'material-ui/Reboot';
+import ReactGA from 'react-ga';
 import 'typeface-roboto';
 
 import Header from './header';
@@ -15,6 +16,8 @@ import BlogPost from './blog_posts/blog_post';
 import DateArchives from './archives/date_archives';
 import TagArchives from './archives/tag_archives';
 import { startingTheme } from '../style/jdupont_themes';
+
+ReactGA.initialize('UA-97185295-2');
 
 class Home extends Component {
   static getCurrentBackgroundColor(currentTheme) {
@@ -50,6 +53,17 @@ class Home extends Component {
           <Reboot />
           <BrowserRouter>
             <div>
+              <Route
+                path="/"
+                render={({ location }) => {
+                if (typeof window.ga === 'function') {
+                  window.ga('set', 'page', location.pathname + location.search);
+                  window.ga('send', 'pageview');
+                }
+
+                return null;
+              }}
+              />
               <Header open={this.state.open} onMenuClick={() => this.setState({ open: true })} />
               <PersistentDrawer
                 open={this.state.open}
