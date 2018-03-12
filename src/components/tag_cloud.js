@@ -6,7 +6,7 @@ import Chip from 'material-ui/Chip';
 
 import QueryLink from './routing/query_link';
 
-const chipStyle = theme => {
+const chipStyle = (theme) => {
   const background = theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
 
   return {
