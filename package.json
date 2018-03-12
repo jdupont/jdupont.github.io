@@ -28,7 +28,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages --dotfiles -b master -d build",
+    "deploy": "gh-pages --dotfiles -b master -d build -m \"Automatic commit by the gh-pages script to deploy my web app to jdupont.github.io.\" ",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
