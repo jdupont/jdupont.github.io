@@ -16,6 +16,7 @@ import BlogPost from './blog_posts/blog_post';
 import DateArchives from './archives/date_archives';
 import TagArchives from './archives/tag_archives';
 import { startingTheme } from '../style/jdupont_themes';
+import PageTracker from './page_tracker';
 
 ReactGA.initialize('UA-97185295-2');
 
@@ -53,17 +54,7 @@ class Home extends Component {
           <Reboot />
           <BrowserRouter>
             <div>
-              <Route
-                path="/"
-                render={({ location }) => {
-                if (typeof window.ga === 'function') {
-                  window.ga('set', 'page', location.pathname + location.search);
-                  window.ga('send', 'pageview');
-                }
-
-                return null;
-              }}
-              />
+              <PageTracker />
               <Header open={this.state.open} onMenuClick={() => this.setState({ open: true })} />
               <PersistentDrawer
                 open={this.state.open}
