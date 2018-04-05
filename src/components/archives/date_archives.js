@@ -83,7 +83,7 @@ class DateArchives extends Component {
       <Grid container className={classes.content}>
         <BlogHelmet pageTitle="Browse by date" />
         <Grid item {...fullRowWidth}>
-          <Grid container justify="center">
+          <Grid container justify="center" spacing={16}>
             <Grid item {...contentRowWidths}>
               <Paper className={classes.titleRow}>
                 <Typography className={classes.text} variant="headline">Browse by date</Typography>

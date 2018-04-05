@@ -56,12 +56,12 @@ const CCLSProjectPage = (props) => {
               <Grid container>
                 <Grid item {...fullRowWidth} component="div" className={classes.noTopPadding}>
                   <div className={classes.titleRow}>
-                    <Typography className={classes.text} variant="headline">Browse by tags</Typography>
+                    <Typography className={classes.text} variant="headline">CCLS Android App</Typography>
                   </div>
                 </Grid>
                 <Grid item {...fullRowWidth} className={classes.searchBox}>
                   <Typography>
-                    Some text here
+                    Under construction
                   </Typography>
                 </Grid>
               </Grid>
@@ -79,13 +79,14 @@ const CCLSProjectPage = (props) => {
           <Grid item {...contentRowWidths}>
             <ExpansionPanel>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>General settings</Typography>
-                <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography>
+                <Typography className={classes.heading}>Project Overview</Typography>
+                <Typography className={classes.secondaryHeading}>
+                  What the project consisted of
+                </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <Typography>
-                  Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-                  maximus est, id dignissim quam.
+                  Under construction.
                 </Typography>
               </ExpansionPanelDetails>
             </ExpansionPanel>

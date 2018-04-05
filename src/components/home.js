@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { MuiThemeProvider } from 'material-ui/styles';
-import Reboot from 'material-ui/Reboot';
+import CssBaseline from 'material-ui/CssBaseline';
 import ReactGA from 'react-ga';
 import 'typeface-roboto';
 
@@ -52,7 +52,7 @@ class Home extends Component {
     return (
       <MuiThemeProvider theme={currentTheme}>
         <div style={{ backgroundColor: Home.getCurrentBackgroundColor(currentTheme) }}>
-          <Reboot />
+          <CssBaseline />
           <BrowserRouter>
             <div>
               <PageTracker />

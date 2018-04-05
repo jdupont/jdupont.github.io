@@ -123,16 +123,13 @@ class TagArchives extends Component {
     }
 
     return (
-      <Grid
-        container
-        className={classes.content}
-      >
+      <Grid container className={classes.content}>
         <BlogHelmet pageTitle="Browse by tag" />
         <Grid item {...fullRowWidth}>
-          <Grid container justify="center">
+          <Grid container justify="center" spacing={16}>
             <Grid item {...contentRowWidths}>
               <Paper>
-                <Grid container>
+                <Grid container spacing={8}>
                   <Grid item {...fullRowWidth} component="div" className={classes.noTopPadding}>
                     <div className={classes.titleRow}>
                       <Typography className={classes.text} variant="headline">Browse by tags</Typography>

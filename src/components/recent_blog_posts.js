@@ -52,10 +52,14 @@ class RecentBlogPosts extends Component {
     return (
       <Grid container className={classes.content}>
         <BlogHelmet pageTitle="Recent Posts" />
-        {posts.map(({ post, fileName }) => {
-          const blurbCard = RecentBlogPosts.createBlurb(fileName, post);
-          return RecentBlogPosts.wrapInGrid(blurbCard, fileName);
-        })}
+        <Grid item>
+          <Grid container spacing={16}>
+            {posts.map(({ post, fileName }) => {
+              const blurbCard = RecentBlogPosts.createBlurb(fileName, post);
+              return RecentBlogPosts.wrapInGrid(blurbCard, fileName);
+            })}
+          </Grid>
+        </Grid>
       </Grid>
     );
   }
