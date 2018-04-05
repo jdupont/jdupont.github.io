@@ -1,52 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
+import { emphasize } from 'material-ui/styles/colorManipulator';
+import ExpansionPanel, { ExpansionPanelDetails, ExpansionPanelSummary } from 'material-ui/ExpansionPanel';
+import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import Grid from 'material-ui/Grid';
-import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
 import BlogHelmet from '../../blog_helmet';
-import { markdownStyles, marked } from '../../blog_posts/markdown_styling';
 import { fullRowWidth, contentRowWidths } from '../../../style/dimensions';
 import { topLevelGridStyles } from '../../../style/grid_styles';
-import { MY_NAME } from '../../../docs/blog_constants.js';
-// Disabling eslint for these imports because they don't like webpack loader syntax
-// But, that's needed in create-react-app without ejecting because there's no
-// access to the webpack configuration files
-/* eslint-disable */
-import aboutMe from '!json-loader!front-matter-loader!../../../docs/about_me.md';
-import aboutBlog from '!json-loader!front-matter-loader!../../../docs/about_blog.md';
-/* eslint-enable */
 
-const contentStyles = theme => ({
+const styles = theme => ({
   content: {
     ...topLevelGridStyles(theme),
   },
-  aboutMeBox: {
-    padding: theme.spacing.unit * 2,
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
+    flexShrink: 0,
   },
-  centeredGrid: {
-    justifyContent: 'center',
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
   },
-  circleContainer: {
-    width: '100%',
-    paddingBottom: '100%',
-    backgroundImage: `url("${process.env.PUBLIC_URL}/images/me.jpg")`,
-    backgroundSize: 'cover',
-    borderRadius: '50%',
-    overflow: 'hidden',
-  },
-  buttonRow: {
+  titleRow: {
+    padding: `${2 * theme.spacing.unit}px ${theme.spacing.unit}px ${2 * theme.spacing.unit}px ${2 * theme.spacing.unit}px`,
+    background: emphasize(theme.palette.primary[300], 0.26),
     display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
   },
-  headerText: {
-    color: theme.typography.title.color,
+  text: {
+    color: theme.palette.background.default,
+    alignSelf: 'center',
   },
-  markdown: markdownStyles(theme),
+  titleAction: {
+    marginLeft: 'auto',
+  },
+  noTopPadding: {
+    paddingTop: '0px !important',
+  },
 });
 
 const CCLSProjectPage = (props) => {
@@ -57,45 +50,35 @@ const CCLSProjectPage = (props) => {
       <BlogHelmet pageTitle="CCLS Android App" />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
-          <Grid item {...contentRowWidths} component={Paper}>
-            <Grid container className={classes.aboutMeBox}>
-              <Grid item xs={12} sm={3} md={3}>
-                <Paper elevation={5} className={classes.circleContainer} />
-              </Grid>
-              <Grid item xs={12} sm={9} md={9}>
-                <Grid container>
-                  <Grid item {...fullRowWidth}>
-                    <Typography variant="display3" className={classes.headerText}>{MY_NAME}</Typography>
-                  </Grid>
-                  <Grid item {...fullRowWidth}>
-                    <div
-                      className={classnames(classes.paddedContent, classes.markdown)}
-                      /* eslint-disable react/no-danger */
-                      dangerouslySetInnerHTML={{ __html: marked(aboutMe.body) }}
-                      /* eslint-ensable react/no-danger */
-                    />
-                  </Grid>
+          <Grid item {...contentRowWidths}>
+            <Paper>
+              <Grid container>
+                <Grid item {...fullRowWidth} component="div" className={classes.noTopPadding}>
+                  <div className={classes.titleRow}>
+                    <Typography className={classes.text} variant="headline">Browse by tags</Typography>
+                  </div>
+                </Grid>
+                <Grid item {...fullRowWidth} className={classes.searchBox}>
+                  <Typography>
+                    Some text here
+                  </Typography>
                 </Grid>
               </Grid>
-            </Grid>
-            <Divider />
-            <Grid container className={classes.aboutMeBox}>
-              <Grid item {...fullRowWidth}>
-                <Grid container>
-                  <Grid item {...fullRowWidth}>
-                    <Typography variant="display1">About this blog</Typography>
-                  </Grid>
-                  <Grid item {...fullRowWidth}>
-                    <div
-                      className={classnames(classes.paddedContent, classes.markdown)}
-                      /* eslint-disable react/no-danger */
-                      dangerouslySetInnerHTML={{ __html: marked(aboutBlog.body) }}
-                      /* eslint-ensable react/no-danger */
-                    />
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
+            </Paper>
+          </Grid>
+          <Grid item {...contentRowWidths}>
+            <ExpansionPanel>
+              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography className={classes.heading}>General settings</Typography>
+                <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography>
+                  Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
+                  maximus est, id dignissim quam.
+                </Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
           </Grid>
         </Grid>
       </Grid>
@@ -109,4 +92,4 @@ CCLSProjectPage.propTypes = {
   /* eslint-enable react/forbid-prop-types */
 };
 
-export default withStyles(contentStyles, { withTheme: true })(CCLSProjectPage);
+export default withStyles(styles)(CCLSProjectPage);
