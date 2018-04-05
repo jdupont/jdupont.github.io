@@ -24,7 +24,7 @@ const ColorPicker = (props) => {
   } = props;
 
   return (
-    <Grid container>
+    <Grid container spacing={16}>
       <Grid item {...fullRowWidth} className={classes.centeredColumn}>
         <Typography variant="headline" color={type}>
           { label }

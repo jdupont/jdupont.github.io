@@ -47,6 +47,9 @@ const contentStyles = theme => ({
   headerText: {
     color: theme.typography.title.color,
   },
+  paddedForTitlebar: {
+    paddingTop: theme.spacing.unit * 2,
+  },
   markdown: markdownStyles(theme),
 });
 
@@ -54,12 +57,12 @@ const AboutMe = (props) => {
   const { classes } = props;
 
   return (
-    <Grid container className={classes.content}>
+    <Grid container className={classes.content} >
       <BlogHelmet pageTitle="About Me" />
-      <Grid item {...fullRowWidth}>
-        <Grid container justify="center">
+      <Grid item {...fullRowWidth} className={classes.paddedForTitlebar}>
+        <Grid container justify="center" spacing={16}>
           <Grid item {...contentRowWidths} component={Paper}>
-            <Grid container className={classes.aboutMeBox}>
+            <Grid container className={classes.aboutMeBox} spacing={16}>
               <Grid item xs={12} sm={3} md={3}>
                 <Paper elevation={5} className={classes.circleContainer} />
               </Grid>

@@ -43,7 +43,7 @@ const ThemeSettingsPresentation = (props) => {
   };
 
   return (
-    <Grid container>
+    <Grid container spacing={16}>
       <Grid item {...fullRowWidth} className={classes.rightJustifiedColumn}>
         <LightSwitch type={type} onTypeChange={onTypeChange} className={classes.buttonSpacing} />
         &nbsp;

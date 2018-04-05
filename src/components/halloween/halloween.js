@@ -34,7 +34,7 @@ const Halloween = (props) => {
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
           <Grid item {...contentRowWidths} component={Paper}>
-            <Grid container className={classes.halloweenBox}>
+            <Grid container className={classes.halloweenBox} spacing={16}>
               <Grid item {...fullRowWidth}>
                 <Typography variant="display3">Customize me!</Typography>
               </Grid>
