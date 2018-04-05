@@ -12,7 +12,7 @@ import BlogHelmet from '../blog_helmet';
 import BlogPostsManager from '../blog_posts/blog_posts_manager';
 import BlogListPanel from './blog_list_panel';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
-import { topLevelGridStyles } from '../../style/grid_styles';
+import { topLevelGridStyles, GridToolbarMargin } from '../../style/grid_styles';
 
 const contentStyles = theme => ({
   content: {
@@ -81,6 +81,7 @@ class DateArchives extends Component {
 
     return (
       <Grid container className={classes.content}>
+        <GridToolbarMargin />
         <BlogHelmet pageTitle="Browse by date" />
         <Grid item {...fullRowWidth}>
           <Grid container justify="center" spacing={16}>

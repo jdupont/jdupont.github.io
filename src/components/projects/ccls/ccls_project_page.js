@@ -11,7 +11,7 @@ import Typography from 'material-ui/Typography';
 import ScreenshotGallery from './screenshot_gallery';
 import BlogHelmet from '../../blog_helmet';
 import { fullRowWidth, contentRowWidths } from '../../../style/dimensions';
-import { topLevelGridStyles } from '../../../style/grid_styles';
+import { topLevelGridStyles, GridToolbarMargin } from '../../../style/grid_styles';
 
 const styles = theme => ({
   content: {
@@ -48,6 +48,7 @@ const CCLSProjectPage = (props) => {
 
   return (
     <Grid container className={classes.content}>
+      <GridToolbarMargin />
       <BlogHelmet pageTitle="CCLS Android App" />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">

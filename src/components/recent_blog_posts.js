@@ -8,7 +8,7 @@ import BlurbCard from './blog_posts/blurb_card';
 import BlogPostsManager from './blog_posts/blog_posts_manager';
 import { filepathToUrlParam } from './routing/title_to_url_converter';
 import { fullRowWidth, contentRowWidths } from '../style/dimensions';
-import { topLevelGridStyles } from '../style/grid_styles';
+import { topLevelGridStyles, GridToolbarMargin } from '../style/grid_styles';
 
 const contentStyles = theme => ({
   content: {
@@ -51,6 +51,7 @@ class RecentBlogPosts extends Component {
 
     return (
       <Grid container className={classes.content}>
+        <GridToolbarMargin />
         <BlogHelmet pageTitle="Recent Posts" />
         <Grid item>
           <Grid container spacing={16}>

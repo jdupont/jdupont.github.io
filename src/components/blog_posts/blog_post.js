@@ -16,7 +16,7 @@ import TagCloud from '../tag_cloud';
 import { markdownStyles, marked } from './markdown_styling';
 import BlogPostsManager from './blog_posts_manager';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
-import { topLevelGridStyles } from '../../style/grid_styles';
+import { topLevelGridStyles, GridToolbarMargin } from '../../style/grid_styles';
 import { urlParamToFilepath } from '../routing/title_to_url_converter';
 
 const blogStyles = theme => ({
@@ -58,6 +58,7 @@ const BlogPost = (props) => {
       className={classes.content}
       style={{ justifyContent: 'centered' }}
     >
+      <GridToolbarMargin />
       <BlogHelmet pageTitle={post.attributes.title} />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">

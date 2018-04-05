@@ -7,7 +7,7 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
-import { topLevelGridStyles } from '../../style/grid_styles';
+import { topLevelGridStyles, GridToolbarMargin } from '../../style/grid_styles';
 import BlogHelmet from '../blog_helmet';
 import ThemeSettingsContainer from './theme_settings_container';
 
@@ -15,6 +15,7 @@ const styles = theme => ({
   content: {
     ...topLevelGridStyles(theme),
   },
+  toolbar: theme.mixins.toolbar,
   halloweenBox: {
     padding: theme.spacing.unit * 2,
   },
@@ -30,6 +31,7 @@ const Halloween = (props) => {
 
   return (
     <Grid container className={classes.content}>
+      <GridToolbarMargin />
       <BlogHelmet pageTitle="Customize Me" />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">
