@@ -10,7 +10,7 @@ const listStyles = theme => ({
   },
 });
 
-const SiteNavigationListItem = (props) => {
+const NavigationListItem = (props) => {
   const {
     classes,
     onClose,
@@ -34,11 +34,11 @@ const SiteNavigationListItem = (props) => {
   );
 };
 
-SiteNavigationListItem.defaultProps = {
+NavigationListItem.defaultProps = {
   nested: false,
 };
 
-SiteNavigationListItem.propTypes = {
+NavigationListItem.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
@@ -49,4 +49,4 @@ SiteNavigationListItem.propTypes = {
   nested: PropTypes.bool,
 };
 
-export default withStyles(listStyles, { withTheme: true })(SiteNavigationListItem);
+export default withStyles(listStyles, { withTheme: true })(NavigationListItem);

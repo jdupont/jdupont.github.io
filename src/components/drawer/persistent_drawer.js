@@ -9,7 +9,7 @@ import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 
 import 'typeface-kaushan-script';
 
-import SiteNavigationList from './site_navigation_list';
+import NavigationList from './navigation_list';
 
 import { drawerWidth } from '../../style/dimensions';
 
@@ -53,7 +53,7 @@ const PersistentDrawer = props => (
           </IconButton>
         </div>
         <Divider />
-        <SiteNavigationList onClose={props.onClose} />
+        <NavigationList onClose={props.onClose} />
       </div>
     </div>
   </Drawer>
