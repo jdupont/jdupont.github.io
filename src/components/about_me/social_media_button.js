@@ -14,7 +14,7 @@ const styles = theme => ({
   },
 });
 
-const SocialMediaButton = withStyles(styles, { withTheme: true })((props) => {
+const SocialMediaButton = (props) => {
   const {
     pageUrl,
     iconUrl,
@@ -33,7 +33,7 @@ const SocialMediaButton = withStyles(styles, { withTheme: true })((props) => {
       { label }
     </Button>
   );
-});
+};
 
 SocialMediaButton.propTypes = {
   /* eslint-disable react/forbid-prop-types */
@@ -44,17 +44,10 @@ SocialMediaButton.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-const GitHubButton = props => (
-  <SocialMediaButton
-    pageUrl="https://github.com/jdupont"
-    iconUrl={`${process.env.PUBLIC_URL}/images/github_mark.svg#main`}
-    label="GitHub"
-    {...props}
-  />
-);
+const StyledSocialMediaButton = withStyles(styles, { withTheme: true })(SocialMediaButton);
 
 const StackOverflowButton = props => (
-  <SocialMediaButton
+  <StyledSocialMediaButton
     pageUrl="https://stackoverflow.com/users/8762152/jdupont"
     iconUrl={`${process.env.PUBLIC_URL}/images/stack_overflow.svg#main`}
     label="Stack&nbsp;Overflow"
@@ -63,7 +56,7 @@ const StackOverflowButton = props => (
 );
 
 const LinkedInButton = props => (
-  <SocialMediaButton
+  <StyledSocialMediaButton
     pageUrl="https://www.linkedin.com/in/julesdupont"
     iconUrl={`${process.env.PUBLIC_URL}/images/linked_in.svg#linkedInIcon`}
     label="LinkedIn"
@@ -71,4 +64,13 @@ const LinkedInButton = props => (
   />
 );
 
-export { GitHubButton, StackOverflowButton, LinkedInButton };
+const GitHubButton = props => (
+  <StyledSocialMediaButton
+    pageUrl="https://github.com/jdupont"
+    iconUrl={`${process.env.PUBLIC_URL}/images/github_mark.svg#main`}
+    label="GitHub"
+    {...props}
+  />
+);
+
+export { StackOverflowButton, GitHubButton, LinkedInButton };
