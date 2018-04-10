@@ -32,7 +32,7 @@ function SingleLineGridList(props) {
     <div className={classes.root}>
       <div style={{ position: 'relative', width: '100%', height: 500 }}>
         <AutoRotatingCarousel
-          open
+          open={false}
         >
           <Slide
             media={<img src="http://www.icons101.com/icon_png/size_256/id_79394/youtube.png" alt="whatever" />}

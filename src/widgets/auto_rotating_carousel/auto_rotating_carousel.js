@@ -112,8 +112,10 @@ export default class AutoRotatingCarousel extends Component {
   }
 
   onChange(slideIndex) {
-    if (this.props.onChange) {
-      this.props.onChange(modulo(slideIndex, this.props.children.length));
+    const { onImageChange, children } = this.props;
+
+    if (onImageChange) {
+      onImageChange(modulo(slideIndex, children.length));
     }
   }
 
@@ -132,72 +134,74 @@ export default class AutoRotatingCarousel extends Component {
   }
 
   render() {
-    const style = this.props.mobile ? mobileStyles : desktopStyles;
-    const landscape = this.props.mobile && this.props.landscape;
+    const { slideIndex } = this.state;
+    const {
+      mobile,
+      rootStyle,
+      contentStyle,
+      autoplay,
+      interval,
+      children,
+      hideArrows,
+    } = this.props;
+
+    const style = mobile ? mobileStyles : desktopStyles;
 
     return (
       <div
         style={{
           ...style.root,
-          pointerEvents: this.props.open ? null : 'none',
-          opacity: this.props.open ? '1' : '0',
-          ...this.props.style,
+          ...rootStyle,
         }}
       >
         <div
-          style={{ ...style.content, ...this.props.contentStyle }}
+          style={{ ...style.content, ...contentStyle }}
           onClick={evt => evt.stopPropagation() || evt.preventDefault()}
         >
-          <Paper
-            elevation={this.props.mobile ? 0 : 1}
-            style={style.carouselWrapper}
-          >
+          <Paper style={style.carouselWrapper}>
             <Carousel
-              autoplay={this.props.open && this.props.autoplay}
-              interval={this.props.interval}
-              index={this.state.slideIndex}
+              autoplay={autoplay}
+              interval={interval}
+              index={slideIndex}
               onChangeIndex={this.handleChange}
               style={style.carousel}
               containerStyle={style.carouselContainer}
               slideStyle={style.slide}
             >
-              {this.props.children.map((c, i) => React.cloneElement(c, {
-                mobile: this.props.mobile,
-                landscape: this.props.landscape,
-                key: i
+              {children.map((c, i) => React.cloneElement(c, {
+                mobile,
+                key: i,
               }))}
             </Carousel>
           </Paper>
-          <div style={landscape ? {
-              minWidth: 300, maxWidth: 'calc(50% - 48px)', padding: 24, float: 'right',
-              } : null}
-          >
-            <div style={landscape ? style.footerLandscape : style.footer}>
+          <div>
+            <div style={style.footer}>
               <Dots
-                count={this.props.children.length}
-                index={modulo(this.state.slideIndex, this.props.children.length)}
-                style={landscape ? style.dotsLandscape : style.dots}
+                count={children.length}
+                index={modulo(slideIndex, children.length)}
+                style={style.dots}
                 onDotClick={this.handleChange}
                 dotColor={this.props.dotColor}
               />
             </div>
           </div>
-          {!this.props.mobile && !this.props.hideArrows ? <div>
-            <Button
-              variant="fab"
-              style={style.arrowLeft}
-              onClick={() => this.decreaseIndex()}
-            >
-              <ArrowBackIcon style={style.arrowIcon} />
-            </Button>
-            <Button
-              variant="fab"
-              style={style.arrowRight}
-              onClick={() => this.increaseIndex()}
-            >
-              <ArrowForwardIcon style={style.arrowIcon} />
-            </Button>
-          </div> : null
+          { (!mobile && !hideArrows) &&
+            <div>
+              <Button
+                variant="fab"
+                style={style.arrowLeft}
+                onClick={() => this.decreaseIndex()}
+              >
+                <ArrowBackIcon style={style.arrowIcon} />
+              </Button>
+              <Button
+                variant="fab"
+                style={style.arrowRight}
+                onClick={() => this.increaseIndex()}
+              >
+                <ArrowForwardIcon style={style.arrowIcon} />
+              </Button>
+            </div>
           }
         </div>
       </div>
@@ -209,12 +213,11 @@ AutoRotatingCarousel.defaultProps = {
   autoplay: true,
   interval: 3000,
   mobile: false,
-  landscape: false,
-  open: false,
   hideArrows: false,
   dotColor: undefined,
   contentStyle: {},
-  style: {},
+  rootStyle: {},
+  onImageChange: undefined,
 };
 
 AutoRotatingCarousel.propTypes = {
@@ -225,18 +228,14 @@ AutoRotatingCarousel.propTypes = {
   /** Override the inline-styles of the content container. */
   contentStyle: PropTypes.object,
   /** Override the inline-styles of the root component. */
-  style: PropTypes.object,
+  rootStyle: PropTypes.object,
   /* eslint-enable react/forbid-prop-types */
   /** Delay between auto play transitions (in ms). */
   interval: PropTypes.number,
-  /** If `true`, slide will adjust content for wide mobile screens. */
-  landscape: PropTypes.bool,
   /** If `true`, the screen width and height is filled. */
   mobile: PropTypes.bool,
   /** Fired when the index changed. Returns current index. */
-  onChange: PropTypes.func,
-  /** Controls whether the AutoRotatingCarousel is opened or not. */
-  open: PropTypes.bool,
+  onImageChange: PropTypes.func,
   /** If `true`, the left and right arrows are hidden in the desktop version. */
   hideArrows: PropTypes.bool,
   /** Color of the dots used */
