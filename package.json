@@ -13,6 +13,7 @@
     "lodash.debounce": "^4.0.8",
     "marked": "^0.3.7",
     "material-ui": "^1.0.0-beta.40",
+    "material-ui-dots": "^1.2.1",
     "material-ui-icons": "^1.0.0-beta.17",
     "qs": "^6.5.1",
     "react": "^16.2.0",
@@ -23,6 +24,7 @@
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.1",
+    "react-swipeable-views": "^0.12.13",
     "tinycolor2": "^1.4.1",
     "typeface-kaushan-script": "0.0.54",
     "typeface-roboto": "0.0.54"
