@@ -141,15 +141,17 @@ export default class AutoRotatingCarousel extends Component {
           ...style.root,
           pointerEvents: this.props.open ? null : 'none',
           opacity: this.props.open ? '1' : '0',
-          ...this.props.style
+          ...this.props.style,
         }}
-        onClick={this.props.onRequestClose}
       >
-        <div style={{...style.content, ...this.props.contentStyle}}
-          onClick={evt => evt.stopPropagation() || evt.preventDefault()}>
+        <div
+          style={{ ...style.content, ...this.props.contentStyle }}
+          onClick={evt => evt.stopPropagation() || evt.preventDefault()}
+        >
           <Paper
             elevation={this.props.mobile ? 0 : 1}
-            style={style.carouselWrapper}>
+            style={style.carouselWrapper}
+          >
             <Carousel
               autoplay={this.props.open && this.props.autoplay}
               interval={this.props.interval}
@@ -167,7 +169,7 @@ export default class AutoRotatingCarousel extends Component {
             </Carousel>
           </Paper>
           <div style={landscape ? {
-              minWidth: 300, maxWidth: 'calc(50% - 48px)', padding: 24, float: 'right'
+              minWidth: 300, maxWidth: 'calc(50% - 48px)', padding: 24, float: 'right',
               } : null}
           >
             <div style={landscape ? style.footerLandscape : style.footer}>
@@ -207,15 +209,24 @@ AutoRotatingCarousel.defaultProps = {
   autoplay: true,
   interval: 3000,
   mobile: false,
+  landscape: false,
   open: false,
   hideArrows: false,
+  dotColor: undefined,
+  contentStyle: {},
+  style: {},
 };
 
 AutoRotatingCarousel.propTypes = {
+  children: PropTypes.node.isRequired,
   /** If `false`, the auto play behavior is disabled. */
   autoplay: PropTypes.bool,
+  /* eslint-disable react/forbid-prop-types */
   /** Override the inline-styles of the content container. */
   contentStyle: PropTypes.object,
+  /** Override the inline-styles of the root component. */
+  style: PropTypes.object,
+  /* eslint-enable react/forbid-prop-types */
   /** Delay between auto play transitions (in ms). */
   interval: PropTypes.number,
   /** If `true`, slide will adjust content for wide mobile screens. */
@@ -224,16 +235,10 @@ AutoRotatingCarousel.propTypes = {
   mobile: PropTypes.bool,
   /** Fired when the index changed. Returns current index. */
   onChange: PropTypes.func,
-  /** Fired when the gray background of the popup is pressed when it is open. */
-  onRequestClose: PropTypes.func,
-  /** Fired when the user clicks the getting started button. */
-  onStart: PropTypes.func,
   /** Controls whether the AutoRotatingCarousel is opened or not. */
   open: PropTypes.bool,
-  /** Override the inline-styles of the root component. */
-  style: PropTypes.object,
   /** If `true`, the left and right arrows are hidden in the desktop version. */
   hideArrows: PropTypes.bool,
   /** Color of the dots used */
-  dotColor: PropTypes.string
+  dotColor: PropTypes.string,
 };
