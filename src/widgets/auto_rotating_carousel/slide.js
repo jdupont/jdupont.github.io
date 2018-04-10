@@ -127,22 +127,29 @@ function Slide(props) {
   );
 }
 
+Slide.defaultProps = {
+  mobile: false,
+  landscape: false,
+};
+
 Slide.propTypes = {
   /**
    * Useful to extend the style applied to components.
    */
+  /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
+  /* eslint-enable react/forbid-prop-types */
   /**
    * Object to display in the upper half.
    */
   media: PropTypes.node.isRequired,
   /**
    * Subtitle of the slide.
-   **/
+   */
   subtitle: PropTypes.string.isRequired,
   /**
    * Title of the slide.
-   **/
+   */
   title: PropTypes.string.isRequired,
   /**
    * If `true`, the screen width and height is filled.

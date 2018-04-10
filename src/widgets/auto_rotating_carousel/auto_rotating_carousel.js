@@ -36,10 +36,6 @@ const desktopStyles = {
   root: {
     height: '100%',
     width: '100%',
-    position: 'fixed',
-    zIndex: 1400,
-    left: 0,
-    top: 0,
     backgroundColor: 'rgba(0,0,0,0.5)',
     transition: 'opacity 400ms cubic-bezier(0.4, 0, 0.2, 1)',
   },
@@ -80,7 +76,6 @@ const mobileStyles = {
     height: '100%',
     width: '100%',
     position: 'fixed',
-    zIndex: 1400,
     left: 0,
     top: 0,
   },
@@ -176,15 +171,6 @@ export default class AutoRotatingCarousel extends Component {
               } : null}
           >
             <div style={landscape ? style.footerLandscape : style.footer}>
-              {
-                this.props.label &&
-                <Button
-                  variant="raised"
-                  onClick={this.props.onStart}
-                >
-                    {this.props.label}
-                </Button>
-              }
               <Dots
                 count={this.props.children.length}
                 index={modulo(this.state.slideIndex, this.props.children.length)}
@@ -232,8 +218,6 @@ AutoRotatingCarousel.propTypes = {
   contentStyle: PropTypes.object,
   /** Delay between auto play transitions (in ms). */
   interval: PropTypes.number,
-  /** Button text. If not supplied, the button will be hidden. */
-  label: PropTypes.string,
   /** If `true`, slide will adjust content for wide mobile screens. */
   landscape: PropTypes.bool,
   /** If `true`, the screen width and height is filled. */

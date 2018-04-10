@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import autoPlay from 'react-swipeable-views-utils/lib/autoPlay';
 import virtualize from 'react-swipeable-views-utils/lib/virtualize';
 import bindKeyboard from 'react-swipeable-views-utils/lib/bindKeyboard';
@@ -10,8 +11,12 @@ const VirtualizeAutoPlaySwipeViews = autoPlay(bindKeyboard(virtualize(SwipeableV
 const carouselSlideRenderer = children =>
   ({ index, key }) => React.cloneElement(children[modulo(index, children.length)], { key });
 
-export default function Carousel({ children, ...other }) {
-  return (
-    <VirtualizeAutoPlaySwipeViews slideRenderer={carouselSlideRenderer(children)} {...other} />
-  );
-}
+const Carousel = ({ children, ...other }) => (
+  <VirtualizeAutoPlaySwipeViews slideRenderer={carouselSlideRenderer(children)} {...other} />
+);
+
+Carousel.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default Carousel;
