@@ -4,6 +4,7 @@
   "homepage": "https://jdupont.github.io",
   "private": true,
   "dependencies": {
+    "ajv": "^6.4.0",
     "autosuggest-highlight": "^3.1.1",
     "classnames": "^2.2.5",
     "front-matter-loader": "^0.2.0",
@@ -13,7 +14,6 @@
     "lodash.debounce": "^4.0.8",
     "marked": "^0.3.7",
     "material-ui": "^1.0.0-beta.40",
-    "material-ui-dots": "^1.2.1",
     "material-ui-icons": "^1.0.0-beta.17",
     "qs": "^6.5.1",
     "react": "^16.2.0",
@@ -23,7 +23,7 @@
     "react-ga": "^2.4.1",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.1.1",
+    "react-scripts": "^2.0.0-next",
     "react-swipeable-views": "^0.12.13",
     "tinycolor2": "^1.4.1",
     "typeface-kaushan-script": "0.0.54",
@@ -42,7 +42,7 @@
     "eslint": "^4.13.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1"
   },
   "eslintConfig": {
@@ -84,5 +84,18 @@
         "never"
       ]
     }
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
   }
 }
