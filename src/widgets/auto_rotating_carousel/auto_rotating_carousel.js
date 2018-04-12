@@ -10,26 +10,16 @@ import Carousel from './swipable_carousel_view';
 import { modulo } from './util';
 
 const styles = {
-  desktopRoot: {
+  root: {
     height: '100%',
     width: '100%',
   },
-  mobileRoot: {
-    height: '100%',
-    width: '100%',
-    position: 'fixed',
-    left: 0,
-    top: 0,
-  },
-  desktopCarouselWrapper: {
+  carouselWrapper: {
     overflow: 'hidden',
     borderRadius: 14,
     background: 'transparent',
     height: '100%',
   },
-};
-
-const desktopStyles = {
   arrowLeft: {
     width: 48,
     height: 48,
@@ -47,6 +37,9 @@ const desktopStyles = {
   arrowIcon: {
     color: grey[700],
   },
+};
+
+const desktopStyles = {
   content: {
     width: '60%',
     maxWidth: 700,
@@ -72,9 +65,6 @@ const desktopStyles = {
     height: '100%',
   },
   carousel: {
-    height: '100%',
-  },
-  carouselContainer: {
     height: '100%',
   },
 };
@@ -141,19 +131,19 @@ class AutoRotatingCarousel extends React.Component {
     const style = mobile ? mobileStyles : desktopStyles;
 
     return (
-      <div className={mobile ? classes.mobileRoot : classes.desktopRoot} {...other}>
+      <div className={classes.root} {...other}>
         <div style={{ ...style.content, ...contentStyle }}>
-          <Paper className={mobile || classes.desktopCarouselWrapper}>
+          <Paper className={classes.carouselWrapper}>
             <Carousel
               autoplay={autoplay}
               interval={interval}
               index={slideIndex}
               onChangeIndex={this.handleChange}
               style={style.carousel}
-              containerStyle={style.carouselContainer}
+              containerStyle={{ height: '100%' }}
               slideStyle={style.slide}
             >
-              {children.map(c => React.cloneElement(c, { mobile }))}
+              { children }
             </Carousel>
           </Paper>
           <div>
@@ -170,17 +160,17 @@ class AutoRotatingCarousel extends React.Component {
             <div>
               <Button
                 variant="fab"
-                style={style.arrowLeft}
+                className={classes.arrowLeft}
                 onClick={() => this.decreaseIndex()}
               >
-                <ArrowBackIcon style={style.arrowIcon} />
+                <ArrowBackIcon className={classes.arrowIcon} />
               </Button>
               <Button
                 variant="fab"
-                style={style.arrowRight}
+                className={classes.arrowRight}
                 onClick={() => this.increaseIndex()}
               >
-                <ArrowForwardIcon style={style.arrowIcon} />
+                <ArrowForwardIcon className={classes.arrowIcon} />
               </Button>
             </div>
           }
