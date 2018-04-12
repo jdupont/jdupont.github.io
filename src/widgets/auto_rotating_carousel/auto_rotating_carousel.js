@@ -41,11 +41,11 @@ const styles = {
 
 const desktopStyles = {
   content: {
-    width: '60%',
+    width: '80%',
     maxWidth: 700,
-    height: 'calc(100% - 96px)',
+    height: '95%',
     maxHeight: 600,
-    margin: '-16px auto 0',
+    margin: '0 auto 0',
     position: 'relative',
     top: '50%',
     transform: 'translateY(-50%)',
@@ -60,21 +60,18 @@ const desktopStyles = {
     position: 'relative',
     textAlign: 'center',
   },
-  slide: {
-    width: '100%',
-    height: '100%',
-  },
-  carousel: {
-    height: '100%',
-  },
 };
 
 const mobileStyles = {
-  dots: {
-    margin: '0 auto',
+  content: {
+    width: '100%',
+    height: '100%',
+    margin: '0 0 0',
+    position: 'relative',
+    top: '50%',
+    transform: 'translateY(-50%)',
   },
-  dotsLandscape: {
-    paddingTop: 20,
+  dots: {
     margin: '0 auto',
   },
   footer: {
@@ -82,16 +79,6 @@ const mobileStyles = {
     width: '100%',
     position: 'relative',
     textAlign: 'center',
-  },
-  footerLandscape: {
-    marginTop: -3,
-    transform: 'translateY(-50vh)',
-    textAlign: 'center',
-    display: 'inline-block',
-  },
-  slide: {
-    width: '100%',
-    height: '100vh',
   },
 };
 
@@ -139,9 +126,9 @@ class AutoRotatingCarousel extends React.Component {
               interval={interval}
               index={slideIndex}
               onChangeIndex={this.handleChange}
-              style={style.carousel}
+              style={{ height: '100%' }}
               containerStyle={{ height: '100%' }}
-              slideStyle={style.slide}
+              slideStyle={{ height: '100%', width: '100%' }}
             >
               { children }
             </Carousel>
