@@ -58,7 +58,7 @@ const desktopStyles = {
     transform: 'translateY(-50%)',
   },
   dots: {
-    paddingTop: 36,
+    paddingTop: 32,
     margin: '0 auto',
   },
   footer: {
@@ -192,7 +192,7 @@ class AutoRotatingCarousel extends React.Component {
 
 AutoRotatingCarousel.defaultProps = {
   autoplay: true,
-  interval: 3000,
+  interval: 10000,
   mobile: false,
   hideArrows: false,
   contentStyle: {},

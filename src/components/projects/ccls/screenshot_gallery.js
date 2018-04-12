@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
+
 import { AutoRotatingCarousel, Slide } from '../../../widgets/auto_rotating_carousel';
 
 const styles = theme => ({
@@ -34,14 +36,17 @@ function SingleLineGridList(props) {
           <Slide
             media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot1.jpg`} alt="whatever" />}
             key="first"
+            caption={(<Typography variant="headline" color="inherit">First Caption</Typography>)}
           />
           <Slide
             media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot2.jpg`} alt="whatever" />}
             key="second"
+            caption={(<Typography color="inherit">Second Caption</Typography>)}
           />
           <Slide
             media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot3.jpg`} alt="whatever" />}
             key="third"
+            caption={(<Typography color="inherit">Third Caption</Typography>)}
           />
         </AutoRotatingCarousel>
       </div>

@@ -8,12 +8,23 @@ const styles = theme => ({
     backgroundColor: theme.palette.primary.dark,
     height: '100%',
   },
+  captionContainer: {
+    height: '20%',
+  },
+  caption: {
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: theme.palette.primary.contrastText,
+  },
   rootMobileLandscape: {
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
   },
   media: {
+    padding: theme.spacing.unit,
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
@@ -28,7 +39,8 @@ const styles = theme => ({
     transform: 'translateY(-50%)',
   },
   mediaBackground: {
-    backgroundColor: theme.palette.primary.light,
+    // backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.background.default,
     height: '80%',
     textAlign: 'center',
   },
@@ -48,6 +60,7 @@ const Slide = (props) => {
     media,
     mobile,
     landscape: landscapeProp,
+    caption,
     ...other
   } = props;
 
@@ -71,7 +84,12 @@ const Slide = (props) => {
           [classes.mediaMobileLandscape]: mobileLandscape,
         })}
         >
-          {media}
+          { media }
+        </div>
+      </div>
+      <div className={classes.captionContainer}>
+        <div className={classes.caption}>
+          { caption }
         </div>
       </div>
     </div>
@@ -94,6 +112,7 @@ Slide.propTypes = {
    * Object to display in the upper half.
    */
   media: PropTypes.node.isRequired,
+  caption: PropTypes.node.isRequired,
   /**
    * If `true`, the screen width and height is filled.
    * @ignore
