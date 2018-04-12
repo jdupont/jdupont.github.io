@@ -48,6 +48,11 @@ function SingleLineGridList(props) {
             key="third"
             caption={(<Typography color="inherit">Third Caption</Typography>)}
           />
+          <Slide
+            media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/GPDeveloperConsoleOverview.png`} alt="whatever" />}
+            key="third"
+            caption={(<Typography color="inherit">Fourth Caption</Typography>)}
+          />
         </AutoRotatingCarousel>
       </div>
     </div>
