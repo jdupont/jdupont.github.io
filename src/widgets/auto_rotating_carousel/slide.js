@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { blue } from 'material-ui/colors';
 import withStyles from 'material-ui/styles/withStyles';
 import classNames from 'classnames';
 
-const styles = {
+const styles = theme => ({
   root: {
-    color: 'white',
-    backgroundColor: blue[500],
+    backgroundColor: theme.palette.primary.dark,
     height: '100%',
   },
   rootMobileLandscape: {
@@ -29,10 +27,9 @@ const styles = {
     top: '50%',
     transform: 'translateY(-50%)',
   },
-  mediaMobileLandscape: {},
   mediaBackground: {
-    backgroundColor: blue[700],
-    height: 'calc(100% - 216px)',
+    backgroundColor: theme.palette.primary.light,
+    height: '80%',
     textAlign: 'center',
   },
   mediaBackgroundMobile: {
@@ -43,60 +40,26 @@ const styles = {
     flex: '1 1',
     alignSelf: 'stretch',
   },
-  text: {
-    textAlign: 'center',
-    maxWidth: '80%',
-    margin: '0 auto',
-    paddingTop: 32,
-  },
-  textMobile: {
-    paddingTop: 30,
-    '& $title': {
-      marginBottom: 8,
-    },
-  },
-  textMobileLandscape: {
-    minWidth: 300,
-    maxWidth: 'calc(50% - 48px)',
-    padding: '24px 24px 128px',
-    flex: '0 1',
-    alignSelf: 'center',
-    textAlign: 'left',
-  },
-  title: {
-    fontSize: '24px',
-    fontWeight: 700,
-    lineHeight: '32px',
-    marginBottom: 12,
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-  },
-  subtitle: {
-    fontSize: '15px',
-    fontWeight: 400,
-    lineHeight: '18px',
-    margin: 0,
-  },
-};
+});
 
-function Slide(props) {
+const Slide = (props) => {
   const {
     classes,
     media,
-    subtitle,
-    title,
     mobile,
     landscape: landscapeProp,
+    ...other
   } = props;
 
   const mobileLandscape = mobile && landscapeProp;
 
   return (
-    <div className={classNames(classes.root, {
-      [classes.rootMobile]: mobile,
-      [classes.rootMobileLandscape]: mobileLandscape,
-    })}
+    <div
+      className={classNames(classes.root, {
+        [classes.rootMobile]: mobile,
+        [classes.rootMobileLandscape]: mobileLandscape,
+      })}
+      {...other}
     >
       <div className={classNames(classes.mediaBackground, {
         [classes.mediaBackgroundMobile]: mobile,
@@ -111,21 +74,9 @@ function Slide(props) {
           {media}
         </div>
       </div>
-      <div className={classNames(classes.text, {
-        [classes.textMobile]: mobile,
-        [classes.textMobileLandscape]: mobileLandscape,
-      })}
-      >
-        <div className={classes.title}>
-          {title}
-        </div>
-        <p className={classes.subtitle}>
-          {subtitle}
-        </p>
-      </div>
     </div>
   );
-}
+};
 
 Slide.defaultProps = {
   mobile: false,
@@ -144,14 +95,6 @@ Slide.propTypes = {
    */
   media: PropTypes.node.isRequired,
   /**
-   * Subtitle of the slide.
-   */
-  subtitle: PropTypes.string.isRequired,
-  /**
-   * Title of the slide.
-   */
-  title: PropTypes.string.isRequired,
-  /**
    * If `true`, the screen width and height is filled.
    * @ignore
    */
@@ -163,4 +106,4 @@ Slide.propTypes = {
   landscape: PropTypes.bool,
 };
 
-export default withStyles(styles)(Slide);
+export default withStyles(styles, { withTheme: true })(Slide);

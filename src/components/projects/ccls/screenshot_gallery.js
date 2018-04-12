@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { red, blue, green } from 'material-ui/colors';
 import { AutoRotatingCarousel, Slide } from '../../../widgets/auto_rotating_carousel';
 
 const styles = theme => ({
@@ -33,27 +32,15 @@ function SingleLineGridList(props) {
       <div style={{ position: 'relative', width: '100%', height: 500 }}>
         <AutoRotatingCarousel>
           <Slide
-            media={<img src="http://www.icons101.com/icon_png/size_256/id_79394/youtube.png" alt="whatever" />}
-            mediaBackgroundStyle={{ backgroundColor: red[400] }}
-            contentStyle={{ backgroundColor: red[600] }}
-            title="This is a very cool feature"
-            subtitle="Just using this will blow your mind."
+            media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot1.jpg`} alt="whatever" />}
             key="first"
           />
           <Slide
-            media={<img src="http://www.icons101.com/icon_png/size_256/id_80975/GoogleInbox.png" alt="whatever" />}
-            mediaBackgroundStyle={{ backgroundColor: blue[400] }}
-            contentStyle={{ backgroundColor: blue[600] }}
-            title="Ever wanted to be popular?"
-            subtitle="Well just mix two colors and your are good to go!"
+            media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot2.jpg`} alt="whatever" />}
             key="second"
           />
           <Slide
-            media={<img src="http://www.icons101.com/icon_png/size_256/id_76704/Google_Settings.png" alt="whatever" />}
-            mediaBackgroundStyle={{ backgroundColor: green[400] }}
-            contentStyle={{ backgroundColor: green[600] }}
-            title="May the force be with you"
-            subtitle="The Force is a metaphysical and ubiquitous power in the Star Wars fictional universe."
+            media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot3.jpg`} alt="whatever" />}
             key="third"
           />
         </AutoRotatingCarousel>
