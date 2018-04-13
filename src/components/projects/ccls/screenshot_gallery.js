@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import GridList, { GridListTile, GridListTileBar } from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
-import StarBorderIcon from 'material-ui-icons/StarBorder';
+
+import { AutoRotatingCarousel, Slide, SlideSubheadingCaption } from '../../../widgets/auto_rotating_carousel';
 
 const styles = theme => ({
   root: {
@@ -26,55 +25,35 @@ const styles = theme => ({
   },
 });
 
-const ImageTile = (props) => {
-  const { classes } = props;
-
-  return (
-    <GridListTile >
-      <img
-        src={`${process.env.PUBLIC_URL}/images/me.jpg`}
-        alt="temporary placeholder"
-        height="auto"
-      />
-      <GridListTileBar
-        title="Screenshot"
-        classes={{
-            root: classes.titleBar,
-            title: classes.title,
-        }}
-        actionIcon={
-          <IconButton>
-            <StarBorderIcon className={classes.title} />
-          </IconButton>
-        }
-      />
-    </GridListTile>
-  );
-};
-
-ImageTile.propTypes = {
-  /* eslint-disable react/forbid-prop-types */
-  classes: PropTypes.object.isRequired,
-  /* eslint-enable react/forbid-prop-types */
-};
-
 function SingleLineGridList(props) {
   const { classes } = props;
 
   return (
     <div className={classes.root}>
-      <GridList className={classes.gridList} cols={3.5} cellHeight={180} >
-        <ImageTile classes={classes} />
-        <ImageTile classes={classes} />
-        <ImageTile classes={classes} />
-        <ImageTile classes={classes} />
-        <ImageTile classes={classes} />
-        <ImageTile classes={classes} />
-        <ImageTile classes={classes} />
-        <ImageTile classes={classes} />
-        <ImageTile classes={classes} />
-        <ImageTile classes={classes} />
-      </GridList>
+      <div style={{ position: 'relative', width: '100%', height: 500 }}>
+        <AutoRotatingCarousel>
+          <Slide
+            media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot1.jpg`} alt="whatever" />}
+            key="first"
+            caption={(<SlideSubheadingCaption caption="A listing of libraries in the CCLS system." />)}
+          />
+          <Slide
+            media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot2.jpg`} alt="whatever" />}
+            key="second"
+            caption={(<SlideSubheadingCaption caption="Sample results from a catalog search." />)}
+          />
+          <Slide
+            media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot3.jpg`} alt="whatever" />}
+            key="third"
+            caption={(<SlideSubheadingCaption caption="One of the user feedback options for the beta version." />)}
+          />
+          <Slide
+            media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/GPDeveloperConsoleOverview.png`} alt="whatever" />}
+            key="fourth"
+            caption={(<SlideSubheadingCaption caption="The overview page for the CCLS app in the Google Play Developer Console." />)}
+          />
+        </AutoRotatingCarousel>
+      </div>
     </div>
   );
 }

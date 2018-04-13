@@ -51,7 +51,7 @@ const CCLSProjectPage = (props) => {
       <GridToolbarMargin />
       <BlogHelmet pageTitle="CCLS Android App" />
       <Grid item {...fullRowWidth}>
-        <Grid container justify="center">
+        <Grid container justify="center" spacing={16}>
           <Grid item {...contentRowWidths}>
             <Paper>
               <Grid container>
