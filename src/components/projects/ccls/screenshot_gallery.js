@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
 
-import { AutoRotatingCarousel, Slide } from '../../../widgets/auto_rotating_carousel';
+import { AutoRotatingCarousel, Slide, SlideSubheadingCaption } from '../../../widgets/auto_rotating_carousel';
 
 const styles = theme => ({
   root: {
@@ -36,22 +35,22 @@ function SingleLineGridList(props) {
           <Slide
             media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot1.jpg`} alt="whatever" />}
             key="first"
-            caption={(<Typography variant="headline" color="inherit">First Caption</Typography>)}
+            caption={(<SlideSubheadingCaption caption="A listing of libraries in the CCLS system." />)}
           />
           <Slide
             media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot2.jpg`} alt="whatever" />}
             key="second"
-            caption={(<Typography color="inherit">Second Caption</Typography>)}
+            caption={(<SlideSubheadingCaption caption="Sample results from a catalog search." />)}
           />
           <Slide
             media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot3.jpg`} alt="whatever" />}
             key="third"
-            caption={(<Typography color="inherit">Third Caption</Typography>)}
+            caption={(<SlideSubheadingCaption caption="One of the user feedback options for the beta version." />)}
           />
           <Slide
             media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/GPDeveloperConsoleOverview.png`} alt="whatever" />}
-            key="third"
-            caption={(<Typography color="inherit">Fourth Caption</Typography>)}
+            key="fourth"
+            caption={(<SlideSubheadingCaption caption="The overview page for the CCLS app in the Google Play Developer Console." />)}
           />
         </AutoRotatingCarousel>
       </div>

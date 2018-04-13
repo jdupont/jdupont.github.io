@@ -11,6 +11,7 @@ const styles = theme => ({
     height: '20%',
   },
   caption: {
+    padding: theme.spacing.unit,
     height: '100%',
     display: 'flex',
     alignItems: 'center',
