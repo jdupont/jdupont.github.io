@@ -9,7 +9,7 @@ import Dots from '../dots/dots.js';
 import Carousel from './swipable_carousel_view';
 import { modulo } from './util';
 
-const styles = {
+const styles = theme => ({
   root: {
     height: '100%',
     width: '100%',
@@ -37,23 +37,29 @@ const styles = {
   arrowIcon: {
     color: grey[700],
   },
-};
-
-const desktopStyles = {
-  content: {
-    width: '80%',
-    maxWidth: 700,
-    height: '95%',
-    maxHeight: 600,
-    margin: '0 auto 0',
-    position: 'relative',
-    top: '50%',
-    transform: 'translateY(-50%)',
-  },
   dots: {
     paddingTop: 32,
     margin: '0 auto',
   },
+  content: {
+    position: 'relative',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    [theme.breakpoints.up('md')]: {
+      width: '80%',
+      maxWidth: 700,
+      height: '95%',
+      maxHeight: 600,
+      margin: '0 auto 0',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      height: '100%',
+    },
+  },
+});
+
+const desktopStyles = {
   footer: {
     marginTop: -72,
     width: '100%',
@@ -63,19 +69,8 @@ const desktopStyles = {
 };
 
 const mobileStyles = {
-  content: {
-    width: '100%',
-    height: '100%',
-    margin: '0 0 0',
-    position: 'relative',
-    top: '50%',
-    transform: 'translateY(-50%)',
-  },
-  dots: {
-    margin: '0 auto',
-  },
   footer: {
-    marginTop: -92,
+    marginTop: -72,
     width: '100%',
     position: 'relative',
     textAlign: 'center',
@@ -106,7 +101,6 @@ class AutoRotatingCarousel extends React.Component {
     const { slideIndex } = this.state;
     const {
       mobile,
-      contentStyle,
       autoplay,
       interval,
       children,
@@ -119,7 +113,7 @@ class AutoRotatingCarousel extends React.Component {
 
     return (
       <div className={classes.root} {...other}>
-        <div style={{ ...style.content, ...contentStyle }}>
+        <div className={classes.content}>
           <Paper className={classes.carouselWrapper}>
             <Carousel
               autoplay={autoplay}
@@ -138,7 +132,7 @@ class AutoRotatingCarousel extends React.Component {
               <Dots
                 count={children.length}
                 index={modulo(slideIndex, children.length)}
-                style={style.dots}
+                className={classes.dots}
                 onDotClick={this.handleChange}
               />
             </div>
@@ -172,7 +166,6 @@ AutoRotatingCarousel.defaultProps = {
   interval: 10000,
   mobile: false,
   hideArrows: false,
-  contentStyle: {},
 };
 
 AutoRotatingCarousel.propTypes = {
@@ -180,8 +173,6 @@ AutoRotatingCarousel.propTypes = {
   /** If `false`, the auto play behavior is disabled. */
   autoplay: PropTypes.bool,
   /* eslint-disable react/forbid-prop-types */
-  /** Override the inline-styles of the content container. */
-  contentStyle: PropTypes.object,
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
   /** Delay between auto play transitions (in ms). */

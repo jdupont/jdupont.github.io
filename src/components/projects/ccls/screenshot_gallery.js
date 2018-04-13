@@ -32,7 +32,7 @@ function SingleLineGridList(props) {
   return (
     <div className={classes.root}>
       <div style={{ position: 'relative', width: '100%', height: 500 }}>
-        <AutoRotatingCarousel mobile>
+        <AutoRotatingCarousel>
           <Slide
             media={<img src={`${process.env.PUBLIC_URL}/images/projects/ccls/CCLSScreenshot1.jpg`} alt="whatever" />}
             key="first"
