@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Paper } from 'material-ui';
+import Paper from 'material-ui/Paper';
+import Hidden from 'material-ui/Hidden';
 import { withStyles } from 'material-ui/styles';
-import { grey } from 'material-ui/colors';
-import ArrowBackIcon from 'material-ui-icons/ArrowBack';
-import ArrowForwardIcon from 'material-ui-icons/ArrowForward';
 import Dots from '../dots/dots.js';
 import Carousel from './swipable_carousel_view';
+import CarouselArrows from './carousel_arrows';
 import { modulo } from './util';
 
 const styles = theme => ({
@@ -19,23 +18,6 @@ const styles = theme => ({
     borderRadius: 14,
     background: 'transparent',
     height: '100%',
-  },
-  arrowLeft: {
-    width: 48,
-    height: 48,
-    position: 'absolute',
-    top: 'calc((100% - 96px) / 2 + 24px)',
-    left: -96,
-  },
-  arrowRight: {
-    width: 48,
-    height: 48,
-    position: 'absolute',
-    top: 'calc((100% - 96px) / 2 + 24px)',
-    right: -96,
-  },
-  arrowIcon: {
-    color: grey[700],
   },
   dots: {
     paddingTop: 32,
@@ -57,30 +39,21 @@ const styles = theme => ({
       height: '100%',
     },
   },
+  footer: {
+    marginTop: -72,
+    width: '100%',
+    position: 'relative',
+    textAlign: 'center',
+  },
 });
-
-const desktopStyles = {
-  footer: {
-    marginTop: -72,
-    width: '100%',
-    position: 'relative',
-    textAlign: 'center',
-  },
-};
-
-const mobileStyles = {
-  footer: {
-    marginTop: -72,
-    width: '100%',
-    position: 'relative',
-    textAlign: 'center',
-  },
-};
 
 class AutoRotatingCarousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = { slideIndex: 0 };
+
+    this.increaseIndex = this.increaseIndex.bind(this);
+    this.decreaseIndex = this.decreaseIndex.bind(this);
   }
 
   increaseIndex() {
@@ -104,12 +77,9 @@ class AutoRotatingCarousel extends React.Component {
       autoplay,
       interval,
       children,
-      hideArrows,
       classes,
       ...other
     } = this.props;
-
-    const style = mobile ? mobileStyles : desktopStyles;
 
     return (
       <div className={classes.root} {...other}>
@@ -128,7 +98,7 @@ class AutoRotatingCarousel extends React.Component {
             </Carousel>
           </Paper>
           <div>
-            <div style={style.footer}>
+            <div className={classes.footer}>
               <Dots
                 count={children.length}
                 index={modulo(slideIndex, children.length)}
@@ -137,24 +107,9 @@ class AutoRotatingCarousel extends React.Component {
               />
             </div>
           </div>
-          { (!mobile && !hideArrows) &&
-            <div>
-              <Button
-                variant="fab"
-                className={classes.arrowLeft}
-                onClick={() => this.decreaseIndex()}
-              >
-                <ArrowBackIcon className={classes.arrowIcon} />
-              </Button>
-              <Button
-                variant="fab"
-                className={classes.arrowRight}
-                onClick={() => this.increaseIndex()}
-              >
-                <ArrowForwardIcon className={classes.arrowIcon} />
-              </Button>
-            </div>
-          }
+          <Hidden smDown>
+            <CarouselArrows onLeftClick={this.decreaseIndex} onRightClick={this.increaseIndex} />
+          </Hidden>
         </div>
       </div>
     );
@@ -165,7 +120,6 @@ AutoRotatingCarousel.defaultProps = {
   autoplay: true,
   interval: 10000,
   mobile: false,
-  hideArrows: false,
 };
 
 AutoRotatingCarousel.propTypes = {
@@ -179,8 +133,6 @@ AutoRotatingCarousel.propTypes = {
   interval: PropTypes.number,
   /** If `true`, the screen width and height is filled. */
   mobile: PropTypes.bool,
-  /** If `true`, the left and right arrows are hidden in the desktop version. */
-  hideArrows: PropTypes.bool,
 };
 
 export default withStyles(styles)(AutoRotatingCarousel);
