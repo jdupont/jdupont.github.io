@@ -15,9 +15,11 @@ const styles = theme => ({
   },
   carouselWrapper: {
     overflow: 'hidden',
-    borderRadius: 14,
     background: 'transparent',
     height: '100%',
+    [theme.breakpoints.up('md')]: {
+      borderRadius: 14,
+    },
   },
   dots: {
     paddingTop: 32,
@@ -28,7 +30,7 @@ const styles = theme => ({
     top: '50%',
     transform: 'translateY(-50%)',
     [theme.breakpoints.up('md')]: {
-      width: '80%',
+      width: '70%',
       maxWidth: 700,
       height: '95%',
       maxHeight: 600,
@@ -73,7 +75,6 @@ class AutoRotatingCarousel extends React.Component {
   render() {
     const { slideIndex } = this.state;
     const {
-      mobile,
       autoplay,
       interval,
       children,
@@ -119,7 +120,6 @@ class AutoRotatingCarousel extends React.Component {
 AutoRotatingCarousel.defaultProps = {
   autoplay: true,
   interval: 10000,
-  mobile: false,
 };
 
 AutoRotatingCarousel.propTypes = {
@@ -131,8 +131,6 @@ AutoRotatingCarousel.propTypes = {
   /* eslint-enable react/forbid-prop-types */
   /** Delay between auto play transitions (in ms). */
   interval: PropTypes.number,
-  /** If `true`, the screen width and height is filled. */
-  mobile: PropTypes.bool,
 };
 
 export default withStyles(styles)(AutoRotatingCarousel);
