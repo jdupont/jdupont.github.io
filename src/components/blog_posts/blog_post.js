@@ -7,7 +7,7 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
-import DateRangeIcon from 'material-ui-icons/DateRange';
+import DateRangeIcon from '@material-ui/icons/DateRange';
 
 import BlogHelmet from '../blog_helmet';
 import BlogDate from './blog_date';

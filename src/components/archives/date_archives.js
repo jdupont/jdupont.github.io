@@ -6,7 +6,7 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
-import SwapVertIcon from 'material-ui-icons/SwapVert';
+import SwapVertIcon from '@material-ui/icons/SwapVert';
 
 import BlogHelmet from '../blog_helmet';
 import BlogPostsManager from '../blog_posts/blog_posts_manager';

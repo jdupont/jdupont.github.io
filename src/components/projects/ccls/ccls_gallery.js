@@ -52,8 +52,6 @@ const styles = theme => ({
 const CCLSGallery = (props) => {
   const { classes } = props;
 
-  console.log(imageListing);
-
   return (
     <div className={classes.root}>
       <div style={{ position: 'relative', width: '100%', height: 500 }}>

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import List from 'material-ui/List';
 
-import HomeIcon from 'material-ui-icons/Home';
-import ArchiveIcon from 'material-ui-icons/Archive';
-import PersonOutlineIcon from 'material-ui-icons/PersonOutline';
-import SettingsIcon from 'material-ui-icons/Settings';
-import WhatshotIcon from 'material-ui-icons/Whatshot';
+import HomeIcon from '@material-ui/icons/Home';
+import ArchiveIcon from '@material-ui/icons/Archive';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import SettingsIcon from '@material-ui/icons/Settings';
+import WhatshotIcon from '@material-ui/icons/Whatshot';
 
 import ExpandableSection from './expandable_section';
 import NavigationListItem from './navigation_list_item';

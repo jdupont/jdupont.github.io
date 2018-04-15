@@ -4,6 +4,7 @@
   "homepage": "https://jdupont.github.io",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
     "ajv": "^6.4.0",
     "autosuggest-highlight": "^3.1.1",
     "classnames": "^2.2.5",
@@ -13,8 +14,7 @@
     "json-loader": "^0.5.7",
     "lodash.debounce": "^4.0.8",
     "marked": "^0.3.7",
-    "material-ui": "^1.0.0-beta.40",
-    "material-ui-icons": "^1.0.0-beta.17",
+    "material-ui": "^1.0.0-beta.41",
     "qs": "^6.5.1",
     "react": "^16.2.0",
     "react-autosuggest": "^9.3.3",
@@ -39,7 +39,7 @@
     "lint": "./node_modules/eslint/bin/eslint.js src/"
   },
   "devDependencies": {
-    "eslint": "^4.13.0",
+    "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
