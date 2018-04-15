@@ -8,13 +8,9 @@ import BlurbCard from './blog_posts/blurb_card';
 import BlogPostsManager from './blog_posts/blog_posts_manager';
 import { filepathToUrlParam } from './routing/title_to_url_converter';
 import { fullRowWidth, contentRowWidths } from '../style/dimensions';
-import { topLevelGridStyles, GridToolbarMargin } from '../style/grid_styles';
+import { GridToolbarMargin } from '../style/grid_styles';
 
-const contentStyles = theme => ({
-  content: {
-    ...topLevelGridStyles(theme),
-  },
-});
+const contentStyles = () => ({});
 
 class RecentBlogPosts extends Component {
   static createBlurb(postFileName, post) {
@@ -44,13 +40,11 @@ class RecentBlogPosts extends Component {
   }
 
   render() {
-    const { classes } = this.props;
-
     const manager = new BlogPostsManager();
     const posts = [...manager.posts()].sort(BlogPostsManager.sortChronologically).reverse();
 
     return (
-      <Grid container className={classes.content}>
+      <Grid container>
         <GridToolbarMargin />
         <BlogHelmet pageTitle="Recent Posts" />
         <Grid item>

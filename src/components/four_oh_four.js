@@ -11,12 +11,8 @@ import Divider from 'material-ui/Divider';
 import BlogHelmet from './blog_helmet';
 import HoverCard from '../widgets/hover_card';
 import { fullRowWidth, contentRowWidths } from '../style/dimensions';
-import { topLevelGridStyles } from '../style/grid_styles';
 
 const fourOhFourStyles = theme => ({
-  content: {
-    ...topLevelGridStyles(theme),
-  },
   actions: {
     justifyContent: 'flex-end',
     color: theme.palette.text.primary,
@@ -37,10 +33,7 @@ const FourOhFour = (props) => {
   const { classes } = props;
 
   return (
-    <Grid
-      container
-      className={classes.content}
-    >
+    <Grid container>
       <BlogHelmet pageTitle="404 Not Found" />
       <Grid item {...fullRowWidth}>
         <Grid container justify="center">

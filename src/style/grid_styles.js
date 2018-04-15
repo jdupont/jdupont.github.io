@@ -5,14 +5,6 @@ import Grid from 'material-ui/Grid';
 
 import { fullRowWidth } from './dimensions';
 
-const topLevelGridStyles = theme => ({
-  padding: theme.spacing.unit,
-  transition: theme.transitions.create('margin', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-});
-
 const toolbarStyles = theme => ({
   toolbar: theme.mixins.toolbar,
 });
@@ -48,4 +40,4 @@ UnstyledGridMargin.propTypes = {
 const DivToolbarMargin = withStyles(toolbarStyles, { withTheme: true })(UnstyledDivMargin);
 const GridToolbarMargin = withStyles(toolbarStyles, { withTheme: true })(UnstyledGridMargin);
 
-export { topLevelGridStyles, DivToolbarMargin, GridToolbarMargin };
+export { DivToolbarMargin, GridToolbarMargin };

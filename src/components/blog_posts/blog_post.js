@@ -16,13 +16,10 @@ import TagCloud from '../tag_cloud';
 import { markdownStyles, marked } from './markdown_styling';
 import BlogPostsManager from './blog_posts_manager';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
-import { topLevelGridStyles, GridToolbarMargin } from '../../style/grid_styles';
+import { GridToolbarMargin } from '../../style/grid_styles';
 import { urlParamToFilepath } from '../routing/title_to_url_converter';
 
 const blogStyles = theme => ({
-  content: {
-    ...topLevelGridStyles(theme),
-  },
   paddedContent: {
     padding: `0px ${theme.spacing.unit * 3}px`,
   },
@@ -55,7 +52,6 @@ const BlogPost = (props) => {
   return (
     <Grid
       container
-      className={classes.content}
       style={{ justifyContent: 'centered' }}
     >
       <GridToolbarMargin />
