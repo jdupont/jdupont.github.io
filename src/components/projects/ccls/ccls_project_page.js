@@ -8,7 +8,7 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-import ScreenshotGallery from './screenshot_gallery';
+import CCLSGallery from './ccls_gallery';
 import BlogHelmet from '../../blog_helmet';
 import { fullRowWidth, contentRowWidths } from '../../../style/dimensions';
 import { topLevelGridStyles, GridToolbarMargin } from '../../../style/grid_styles';
@@ -72,7 +72,7 @@ const CCLSProjectPage = (props) => {
             <Paper>
               <Grid container>
                 <Grid item {...fullRowWidth} >
-                  <ScreenshotGallery />
+                  <CCLSGallery />
                 </Grid>
               </Grid>
             </Paper>
