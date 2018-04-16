@@ -8,7 +8,7 @@ import { GalleryRow, ProjectOverviewRow } from './project_page_rows';
 import BlogHelmet from '../../blog_helmet';
 import { fullRowWidth, contentRowWidths } from '../../../style/dimensions';
 import { GridToolbarMargin } from '../../../style/grid_styles';
-import { markdownStyles, marked } from '../../blog_posts/markdown_styling';
+import MarkdownRenderer from '../../../widgets/markdown/markdown_renderer';
 // Disabling eslint for these imports because they don't like webpack loader syntax
 // But, that's needed in create-react-app without ejecting because there's no
 // access to the webpack configuration files
@@ -16,13 +16,9 @@ import { markdownStyles, marked } from '../../blog_posts/markdown_styling';
 import projectOverviewConstants from '!json-loader!front-matter-loader!../../../docs/projects/ccls/project_overview.md';
 /* eslint-enable */
 
-const styles = theme => ({
-  markdown: markdownStyles(theme),
-});
+const styles = () => ({});
 
 const CCLSProjectPage = (props) => {
-  const { classes } = props;
-
   return (
     <Grid container>
       <GridToolbarMargin />
@@ -31,14 +27,7 @@ const CCLSProjectPage = (props) => {
         <Grid container justify="center" spacing={16}>
           <ProjectOverviewRow
             projectTitle={projectOverviewConstants.attributes.projectTitle}
-            projectBlurbNode={(
-              <div
-                className={classes.markdown}
-                /* eslint-disable react/no-danger */
-                dangerouslySetInnerHTML={{ __html: marked(projectOverviewConstants.body) }}
-                /* eslint-ensable react/no-danger */
-              />
-            )}
+            projectBlurbNode={(<MarkdownRenderer markdown={projectOverviewConstants.body} />)}
           />
           <GalleryRow />
           <Grid item {...contentRowWidths}>

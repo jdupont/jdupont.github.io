@@ -8,7 +8,7 @@ import Typography from 'material-ui/Typography';
 
 import { GitHubButton, StackOverflowButton, LinkedInButton } from './social_media_button';
 import BlogHelmet from '../blog_helmet';
-import { markdownStyles, marked } from '../blog_posts/markdown_styling';
+import MarkdownRenderer from '../../widgets/markdown/markdown_renderer';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { GridToolbarMargin } from '../../style/grid_styles';
 import { MY_NAME } from '../../docs/blog_constants.js';
@@ -46,7 +46,6 @@ const contentStyles = theme => ({
   paddedForTitlebar: {
     paddingTop: theme.spacing.unit * 2,
   },
-  markdown: markdownStyles(theme),
 });
 
 const AboutMe = (props) => {
@@ -69,12 +68,7 @@ const AboutMe = (props) => {
                     <Typography variant="display3" className={classes.headerText}>{MY_NAME}</Typography>
                   </Grid>
                   <Grid item {...fullRowWidth}>
-                    <div
-                      className={classes.markdown}
-                      /* eslint-disable react/no-danger */
-                      dangerouslySetInnerHTML={{ __html: marked(aboutMe.body) }}
-                      /* eslint-ensable react/no-danger */
-                    />
+                    <MarkdownRenderer markdown={aboutMe.body} />
                   </Grid>
                 </Grid>
               </Grid>
@@ -87,12 +81,7 @@ const AboutMe = (props) => {
                     <Typography variant="display1">About this blog</Typography>
                   </Grid>
                   <Grid item {...fullRowWidth}>
-                    <div
-                      className={classes.markdown}
-                      /* eslint-disable react/no-danger */
-                      dangerouslySetInnerHTML={{ __html: marked(aboutBlog.body) }}
-                      /* eslint-ensable react/no-danger */
-                    />
+                    <MarkdownRenderer markdown={aboutBlog.body} />
                   </Grid>
                 </Grid>
               </Grid>
