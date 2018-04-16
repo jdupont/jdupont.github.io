@@ -34,10 +34,13 @@ const projectOverviewRowstyles = theme => ({
   noTopPadding: {
     paddingTop: '0px !important',
   },
+  paddedContent: {
+    padding: theme.spacing.unit,
+  },
 });
 
 const ProjectOverviewRowUnstyled = (props) => {
-  const { classes, projectTitle, projectBlurb } = props;
+  const { classes, projectTitle, projectBlurbNode } = props;
 
   return (
     <Grid item {...contentRowWidths}>
@@ -48,10 +51,8 @@ const ProjectOverviewRowUnstyled = (props) => {
               <Typography className={classes.text} variant="headline">{projectTitle}</Typography>
             </div>
           </Grid>
-          <Grid item {...fullRowWidth}>
-            <Typography>
-              { projectBlurb }
-            </Typography>
+          <Grid item className={classes.paddedContent} {...fullRowWidth}>
+            { projectBlurbNode }
           </Grid>
         </Grid>
       </Paper>
@@ -63,7 +64,7 @@ ProjectOverviewRowUnstyled.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
-  projectBlurb: PropTypes.string.isRequired,
+  projectBlurbNode: PropTypes.node.isRequired,
   projectTitle: PropTypes.string.isRequired,
 };
 

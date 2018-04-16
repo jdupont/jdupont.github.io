@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Divider from 'material-ui/Divider';
@@ -71,7 +70,7 @@ const AboutMe = (props) => {
                   </Grid>
                   <Grid item {...fullRowWidth}>
                     <div
-                      className={classnames(classes.paddedContent, classes.markdown)}
+                      className={classes.markdown}
                       /* eslint-disable react/no-danger */
                       dangerouslySetInnerHTML={{ __html: marked(aboutMe.body) }}
                       /* eslint-ensable react/no-danger */
@@ -89,7 +88,7 @@ const AboutMe = (props) => {
                   </Grid>
                   <Grid item {...fullRowWidth}>
                     <div
-                      className={classnames(classes.paddedContent, classes.markdown)}
+                      className={classes.markdown}
                       /* eslint-disable react/no-danger */
                       dangerouslySetInnerHTML={{ __html: marked(aboutBlog.body) }}
                       /* eslint-ensable react/no-danger */

@@ -24,7 +24,7 @@ const DetailSection = (props) => {
     classes,
     sectionTitle,
     sectionBlurb,
-    sectionContent,
+    sectionContentNode,
   } = props;
 
   return (
@@ -36,9 +36,7 @@ const DetailSection = (props) => {
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <Typography>
-          { sectionContent }
-        </Typography>
+        { sectionContentNode }
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
@@ -50,7 +48,7 @@ DetailSection.propTypes = {
   /* eslint-enable react/forbid-prop-types */
   sectionBlurb: PropTypes.string.isRequired,
   sectionTitle: PropTypes.string.isRequired,
-  sectionContent: PropTypes.string.isRequired,
+  sectionContentNode: PropTypes.node.isRequired,
 };
 
 export default withStyles(styles)(DetailSection);

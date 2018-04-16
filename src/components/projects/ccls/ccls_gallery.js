@@ -8,7 +8,6 @@ import { AutoRotatingCarousel, Slide, SlideSubheadingCaption } from '../../../wi
 // access to the webpack configuration files
 /* eslint-disable */
 import imageListing from '!json-loader!front-matter-loader!../../../docs/projects/ccls/ccls_gallery_listing.md';
-import { SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG } from 'constants';
 /* eslint-enable */
 
 const Screenshot = (props) => {
