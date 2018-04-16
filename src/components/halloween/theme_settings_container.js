@@ -7,16 +7,26 @@ import { generatePaletteFromBase } from '../../style/palette_manipulator';
 import ThemeSettingsPresentation from './theme_settings_presentation';
 
 class ThemeSettingsContainer extends React.Component {
+  static getDerivedStateFromProps(nextProps) {
+    return ThemeSettingsContainer.getStateFromTheme(nextProps.theme);
+  }
+
+  static getStateFromTheme(theme) {
+    return {
+      primary: theme.palette.primary,
+      secondary: theme.palette.secondary,
+      error: theme.palette.error,
+      type: theme.palette.type,
+    };
+  }
+
   constructor(props) {
     super(props);
 
     const { theme } = props;
 
     this.state = {
-      primary: theme.palette.primary,
-      secondary: theme.palette.secondary,
-      error: theme.palette.error,
-      type: theme.palette.type,
+      ...ThemeSettingsContainer.getStateFromTheme(theme),
     };
 
     this.debouncedPrimary = debounce(colorObject =>
