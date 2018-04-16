@@ -22,7 +22,6 @@ const Halloween = (props) => {
     classes,
     onThemeChange,
     onThemeReset,
-    theme,
   } = props;
 
   return (
@@ -48,7 +47,6 @@ const Halloween = (props) => {
               </Grid>
               <Grid item {...fullRowWidth}>
                 <ThemeSettingsContainer
-                  theme={theme}
                   onThemeChange={onThemeChange}
                   onThemeReset={onThemeReset}
                 />
