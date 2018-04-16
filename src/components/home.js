@@ -61,16 +61,18 @@ class Home extends Component {
                 open={this.state.open}
                 onClose={() => { this.setState({ open: false }); }}
               />
-              <Switch>
-                <Route exact path="/" component={RecentBlogPosts} />
-                <Route path="/about" component={AboutMe} />
-                <Route path="/projects/ccls" component={CCLSProjectPage} />
-                <Route path="/halloween" component={() => <Halloween onThemeChange={this.onThemeChange} onThemeReset={this.onThemeReset} />} />
-                <QueryRoute path="/blogs/" component={BlogPost} />
-                <Route path="/archives/date" component={DateArchives} />
-                <QueryRoute path="/archives/tags" component={TagArchives} />
-                <Route component={FourOhFour} />
-              </Switch>
+              <div style={{ padding: currentTheme.spacing.unit }}>
+                <Switch>
+                  <Route exact path="/" component={RecentBlogPosts} />
+                  <Route path="/about" component={AboutMe} />
+                  <Route path="/projects/ccls" component={CCLSProjectPage} />
+                  <Route path="/halloween" component={() => <Halloween onThemeChange={this.onThemeChange} onThemeReset={this.onThemeReset} />} />
+                  <QueryRoute path="/blogs/" component={BlogPost} />
+                  <Route path="/archives/date" component={DateArchives} />
+                  <QueryRoute path="/archives/tags" component={TagArchives} />
+                  <Route component={FourOhFour} />
+                </Switch>
+              </div>
             </div>
           </BrowserRouter>
         </div>

@@ -11,7 +11,7 @@ import { GitHubButton, StackOverflowButton, LinkedInButton } from './social_medi
 import BlogHelmet from '../blog_helmet';
 import { markdownStyles, marked } from '../blog_posts/markdown_styling';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
-import { topLevelGridStyles, GridToolbarMargin } from '../../style/grid_styles';
+import { GridToolbarMargin } from '../../style/grid_styles';
 import { MY_NAME } from '../../docs/blog_constants.js';
 // Disabling eslint for these imports because they don't like webpack loader syntax
 // But, that's needed in create-react-app without ejecting because there's no
@@ -22,9 +22,6 @@ import aboutBlog from '!json-loader!front-matter-loader!../../docs/about_blog.md
 /* eslint-enable */
 
 const contentStyles = theme => ({
-  content: {
-    ...topLevelGridStyles(theme),
-  },
   aboutMeBox: {
     padding: theme.spacing.unit * 2,
   },
@@ -57,7 +54,7 @@ const AboutMe = (props) => {
   const { classes } = props;
 
   return (
-    <Grid container className={classes.content} >
+    <Grid container >
       <GridToolbarMargin />
       <BlogHelmet pageTitle="About Me" />
       <Grid item {...fullRowWidth} className={classes.paddedForTitlebar}>

@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
 import ExpansionPanel, { ExpansionPanelDetails, ExpansionPanelSummary } from 'material-ui/ExpansionPanel';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-import ScreenshotGallery from './screenshot_gallery';
+import CCLSGallery from './ccls_gallery';
 import BlogHelmet from '../../blog_helmet';
 import { fullRowWidth, contentRowWidths } from '../../../style/dimensions';
-import { topLevelGridStyles, GridToolbarMargin } from '../../../style/grid_styles';
+import { GridToolbarMargin } from '../../../style/grid_styles';
 
 const styles = theme => ({
-  content: {
-    ...topLevelGridStyles(theme),
-  },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     flexBasis: '33.33%',
@@ -47,7 +44,7 @@ const CCLSProjectPage = (props) => {
   const { classes } = props;
 
   return (
-    <Grid container className={classes.content}>
+    <Grid container>
       <GridToolbarMargin />
       <BlogHelmet pageTitle="CCLS Android App" />
       <Grid item {...fullRowWidth}>
@@ -72,7 +69,7 @@ const CCLSProjectPage = (props) => {
             <Paper>
               <Grid container>
                 <Grid item {...fullRowWidth} >
-                  <ScreenshotGallery />
+                  <CCLSGallery />
                 </Grid>
               </Grid>
             </Paper>

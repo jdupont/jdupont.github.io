@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import List from 'material-ui/List';
 
-import BookIcon from 'material-ui-icons/Book';
+import BookIcon from '@material-ui/icons/Book';
 
 import NavigationListItem from './navigation_list_item';
 

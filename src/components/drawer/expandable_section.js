@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Collapse from 'material-ui/transitions/Collapse';
 
-import ExpandLess from 'material-ui-icons/ExpandLess';
-import ExpandMore from 'material-ui-icons/ExpandMore';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 class ExpandableSection extends React.Component {
   constructor(props) {

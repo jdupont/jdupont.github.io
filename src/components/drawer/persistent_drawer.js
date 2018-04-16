@@ -5,7 +5,7 @@ import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
-import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import 'typeface-kaushan-script';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
-import RestoreIcon from 'material-ui-icons/Restore';
+import RestoreIcon from '@material-ui/icons/Restore';
 
 import { leftIcon } from '../../style/buttons';
 

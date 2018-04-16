@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import List from 'material-ui/List';
 
-import FolderIcon from 'material-ui-icons/Folder';
-import DateRangeIcon from 'material-ui-icons/DateRange';
+import FolderIcon from '@material-ui/icons/Folder';
+import DateRangeIcon from '@material-ui/icons/DateRange';
 
 import NavigationListItem from './navigation_list_item';
 

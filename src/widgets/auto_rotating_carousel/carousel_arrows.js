@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Button } from 'material-ui';
 import { withStyles } from 'material-ui/styles';
 import { grey } from 'material-ui/colors';
-import ArrowBackIcon from 'material-ui-icons/ArrowBack';
-import ArrowForwardIcon from 'material-ui-icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const styles = () => ({
   arrowLeft: {

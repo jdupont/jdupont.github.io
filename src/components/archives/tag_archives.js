@@ -15,12 +15,9 @@ import BlogPostsManager from '../blog_posts/blog_posts_manager';
 import Autocomplete from '../../widgets/autocomplete/autocomplete';
 import TagFilterCloud from './tag_filter_cloud';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
-import { topLevelGridStyles, GridToolbarMargin } from '../../style/grid_styles';
+import { GridToolbarMargin } from '../../style/grid_styles';
 
 const contentStyles = theme => ({
-  content: {
-    ...topLevelGridStyles(theme),
-  },
   titleRow: {
     padding: `${2 * theme.spacing.unit}px ${theme.spacing.unit}px ${2 * theme.spacing.unit}px ${2 * theme.spacing.unit}px`,
     background: emphasize(theme.palette.primary[300], 0.26),
@@ -123,7 +120,7 @@ class TagArchives extends Component {
     }
 
     return (
-      <Grid container className={classes.content}>
+      <Grid container>
         <GridToolbarMargin />
         <BlogHelmet pageTitle="Browse by tag" />
         <Grid item {...fullRowWidth}>

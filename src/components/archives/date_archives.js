@@ -6,18 +6,15 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
-import SwapVertIcon from 'material-ui-icons/SwapVert';
+import SwapVertIcon from '@material-ui/icons/SwapVert';
 
 import BlogHelmet from '../blog_helmet';
 import BlogPostsManager from '../blog_posts/blog_posts_manager';
 import BlogListPanel from './blog_list_panel';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
-import { topLevelGridStyles, GridToolbarMargin } from '../../style/grid_styles';
+import { GridToolbarMargin } from '../../style/grid_styles';
 
 const contentStyles = theme => ({
-  content: {
-    ...topLevelGridStyles(theme),
-  },
   titleRow: {
     padding: `${2 * theme.spacing.unit}px ${theme.spacing.unit}px ${2 * theme.spacing.unit}px ${2 * theme.spacing.unit}px`,
     background: emphasize(theme.palette.primary[300], 0.26),
@@ -80,7 +77,7 @@ class DateArchives extends Component {
     const groupedByMonth = manager.postsByMonth();
 
     return (
-      <Grid container className={classes.content}>
+      <Grid container>
         <GridToolbarMargin />
         <BlogHelmet pageTitle="Browse by date" />
         <Grid item {...fullRowWidth}>

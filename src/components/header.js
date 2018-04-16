@@ -6,7 +6,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
-import MenuIcon from 'material-ui-icons/Menu';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import { BLOG_NAME } from '../docs/blog_constants';
 import { drawerWidth } from '../style/dimensions';

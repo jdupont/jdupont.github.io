@@ -7,14 +7,10 @@ import BlogHelmet from './blog_helmet';
 import BlurbCard from './blog_posts/blurb_card';
 import BlogPostsManager from './blog_posts/blog_posts_manager';
 import { filepathToUrlParam } from './routing/title_to_url_converter';
-import { fullRowWidth, contentRowWidths } from '../style/dimensions';
-import { topLevelGridStyles, GridToolbarMargin } from '../style/grid_styles';
+import { contentRowWidths } from '../style/dimensions';
+import { GridToolbarMargin } from '../style/grid_styles';
 
-const contentStyles = theme => ({
-  content: {
-    ...topLevelGridStyles(theme),
-  },
-});
+const contentStyles = () => ({});
 
 class RecentBlogPosts extends Component {
   static createBlurb(postFileName, post) {
@@ -33,28 +29,22 @@ class RecentBlogPosts extends Component {
 
   static wrapInGrid(item, uniqueKey) {
     return (
-      <Grid key={uniqueKey} item {...fullRowWidth}>
-        <Grid key={uniqueKey} container justify="center">
-          <Grid key={uniqueKey} item {...contentRowWidths}>
-            {item}
-          </Grid>
-        </Grid>
+      <Grid item {...contentRowWidths} key={uniqueKey}>
+        { item }
       </Grid>
     );
   }
 
   render() {
-    const { classes } = this.props;
-
     const manager = new BlogPostsManager();
     const posts = [...manager.posts()].sort(BlogPostsManager.sortChronologically).reverse();
 
     return (
-      <Grid container className={classes.content}>
+      <Grid container>
         <GridToolbarMargin />
         <BlogHelmet pageTitle="Recent Posts" />
-        <Grid item>
-          <Grid container spacing={16}>
+        <Grid item xs={12}>
+          <Grid container spacing={16} justify="center">
             {posts.map(({ post, fileName }) => {
               const blurbCard = RecentBlogPosts.createBlurb(fileName, post);
               return RecentBlogPosts.wrapInGrid(blurbCard, fileName);
