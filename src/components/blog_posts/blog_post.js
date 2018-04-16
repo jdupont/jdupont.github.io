@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
 import Grid from 'material-ui/Grid';
@@ -13,7 +12,7 @@ import BlogHelmet from '../blog_helmet';
 import BlogDate from './blog_date';
 import FourOhFour from '../four_oh_four';
 import TagCloud from '../tag_cloud';
-import { markdownStyles, marked } from './markdown_styling';
+import MarkdownRenderer from '../../widgets/markdown/markdown_renderer';
 import BlogPostsManager from './blog_posts_manager';
 import { fullRowWidth, contentRowWidths } from '../../style/dimensions';
 import { GridToolbarMargin } from '../../style/grid_styles';
@@ -34,7 +33,6 @@ const blogStyles = theme => ({
   text: {
     color: theme.palette.background.default,
   },
-  markdown: markdownStyles(theme),
 });
 
 const BlogPost = (props) => {
@@ -75,12 +73,7 @@ const BlogPost = (props) => {
                   </div>
                 </Grid>
                 <Grid item {...fullRowWidth}>
-                  <div
-                    className={classnames(classes.paddedContent, classes.markdown)}
-                    /* eslint-disable react/no-danger */
-                    dangerouslySetInnerHTML={{ __html: marked(post.body) }}
-                    /* eslint-ensable react/no-danger */
-                  />
+                  <MarkdownRenderer markdown={post.body} className={classes.paddedContent} />
                 </Grid>
               </Grid>
             </Paper>
