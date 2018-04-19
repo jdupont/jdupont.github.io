@@ -35,7 +35,7 @@ const projectOverviewRowstyles = theme => ({
     paddingTop: '0px !important',
   },
   paddedContent: {
-    padding: theme.spacing.unit,
+    padding: `0px ${theme.spacing.unit * 3}px`,
   },
 });
 

@@ -9,9 +9,12 @@ images:
     - name: "V1UserFeedbackScreenshot"
       caption: "One of the user feedback options for the beta version."
       path: "images/projects/ccls/CCLSScreenshot3.jpg"
-    - name: "GPDCOverview"
-      caption: "The overview page for the CCLS app in the Google Play Developer Console."
-      path: "images/projects/ccls/GPDeveloperConsoleOverview.png"
+    - name: "LifeTimeInstalls"
+      caption: "A graph showing installs per day over the lifetime of the app. The spike happened after our transition out of beta to V1."
+      path: "images/projects/ccls/GPDCLifetimeInstallsGraph.png"
+    - name: "RatingsOverview"
+      caption: "An overview of the ratings we received on the Google Play Store."
+      path: "images/projects/ccls/GPDCRatingsOverview.png"
 ---
 
 The front matter in this file describes the images available for the CCLS Gallery, along with the
