@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import { SketchPicker } from 'react-color';
+import SketchPicker from 'react-color/lib/Sketch';
 
 import { fullRowWidth } from '../../style/dimensions';
 
