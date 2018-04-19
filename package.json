@@ -33,7 +33,6 @@
     "deploy": "gh-pages --dotfiles -b master -d build -m \"Automatic commit by the gh-pages script to deploy my web app to jdupont.github.io.\" ",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "buildstats": "react-scripts build --stats",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "./node_modules/eslint/bin/eslint.js src/"
