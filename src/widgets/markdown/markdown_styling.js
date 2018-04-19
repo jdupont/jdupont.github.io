@@ -1,5 +1,5 @@
 import marked from 'marked';
-import hljs from 'highlightjs';
+import hljs from './highlight/highlight.pack';
 
 const markdownStyles = (theme) => {
   let codeBlockColors;
@@ -12,13 +12,13 @@ const markdownStyles = (theme) => {
       color: '#abb2bf',
       backgroundColor: '#282c34',
     };
-    require('highlightjs/styles/atom-one-dark.css');
+    require('./highlight/styles/atom-one-dark.css');
   } else {
     codeBlockColors = {
       color: '#383a42',
       backgroundColor: '#fafafa',
     };
-    require('highlightjs/styles/atom-one-light.css');
+    require('./highlight/styles/atom-one-light.css');
   }
   /* eslint-enable global-require */
 

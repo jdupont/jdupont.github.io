@@ -10,7 +10,6 @@
     "classnames": "^2.2.5",
     "front-matter-loader": "^0.2.0",
     "gh-pages": "^1.1.0",
-    "highlightjs": "^9.10.0",
     "json-loader": "^0.5.7",
     "lodash.debounce": "^4.0.8",
     "marked": "^0.3.7",
@@ -34,6 +33,7 @@
     "deploy": "gh-pages --dotfiles -b master -d build -m \"Automatic commit by the gh-pages script to deploy my web app to jdupont.github.io.\" ",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "buildstats": "react-scripts build --stats",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "./node_modules/eslint/bin/eslint.js src/"
