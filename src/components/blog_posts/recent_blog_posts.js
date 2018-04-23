@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
-import BlogHelmet from './blog_helmet';
-import BlurbCard from './blog_posts/blurb_card';
-import BlogPostsManager from './blog_posts/blog_posts_manager';
-import { filepathToUrlParam } from './routing/title_to_url_converter';
-import { contentRowWidths } from '../style/dimensions';
-import { GridToolbarMargin } from '../style/grid_styles';
+import BlogHelmet from '../blog_helmet';
+import BlurbCard from './blurb_card';
+import BlogPostsManager from './blog_posts_manager';
+import { filepathToUrlParam } from '../routing/title_to_url_converter';
+import { contentRowWidths } from '../../style/dimensions';
+import { GridToolbarMargin } from '../../style/grid_styles';
 
 const contentStyles = () => ({});
 

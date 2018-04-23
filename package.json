@@ -24,6 +24,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "^2.0.0-next",
     "react-swipeable-views": "^0.12.13",
+    "react-virtualized": "^9.18.5",
     "tinycolor2": "^1.4.1",
     "typeface-kaushan-script": "0.0.54",
     "typeface-roboto": "0.0.54"
