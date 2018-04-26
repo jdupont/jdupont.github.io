@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
+import InfiniteScroll from './InfiniteScroll';
 
 import BlogHelmet from '../blog_helmet';
 import BlurbCard from './blurb_card';
@@ -38,18 +39,29 @@ class RecentBlogPosts extends Component {
   render() {
     const manager = new BlogPostsManager();
     const posts = [...manager.posts()].sort(BlogPostsManager.sortChronologically).reverse();
+    const renderedPosts = posts.map(({ post, fileName }) => {
+      const blurbCard = RecentBlogPosts.createBlurb(fileName, post);
+      return RecentBlogPosts.wrapInGrid(blurbCard, fileName);
+    });
 
     return (
       <Grid container>
         <GridToolbarMargin />
         <BlogHelmet pageTitle="Recent Posts" />
         <Grid item xs={12}>
-          <Grid container spacing={16} justify="center">
-            {posts.map(({ post, fileName }) => {
-              const blurbCard = RecentBlogPosts.createBlurb(fileName, post);
-              return RecentBlogPosts.wrapInGrid(blurbCard, fileName);
-            })}
-          </Grid>
+          <InfiniteScroll
+            element={Grid}
+            container
+            spacing={16}
+            justify="center"
+            loadMore={pageNum => console.log(`Finally loading page ${pageNum}`)}
+            loader={RecentBlogPosts.wrapInGrid(<div>Loading...</div>, 'loadercomponent')}
+            hasMore
+            useWindow
+            threshold={2}
+          >
+            {renderedPosts}
+          </InfiniteScroll>
         </Grid>
       </Grid>
     );
