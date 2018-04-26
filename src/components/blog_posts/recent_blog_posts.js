@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
-import InfiniteScroll from './InfiniteScroll';
+import InfiniteScroll from './infinite_scroll';
 
 import BlogHelmet from '../blog_helmet';
 import BlurbCard from './blurb_card';
@@ -55,7 +55,7 @@ class RecentBlogPosts extends Component {
             spacing={16}
             justify="center"
             loadMore={pageNum => console.log(`Finally loading page ${pageNum}`)}
-            loader={RecentBlogPosts.wrapInGrid(<div>Loading...</div>, 'loadercomponent')}
+            loadingIndicatorComponent={RecentBlogPosts.wrapInGrid(<div>Loading...</div>, 'loadercomponent')}
             hasMore
             useWindow
             threshold={2}
