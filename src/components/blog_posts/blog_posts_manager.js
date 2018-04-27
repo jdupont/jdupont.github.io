@@ -44,7 +44,7 @@ class BlogPostsManager {
   }
 
   postsByMonth() {
-    const reduction = this.posts().reduce((map, { fileName, post }) => {
+    const reduction = this.fetchAllPosts().reduce((map, { fileName, post }) => {
       const postDate = new Date(post.attributes.date);
       const twoDigitMonth = postDate.getMonth() < 10 ? `0${postDate.getMonth()}` : postDate.getMonth();
       const key = `${postDate.getFullYear()}-${twoDigitMonth}`;
@@ -62,7 +62,7 @@ class BlogPostsManager {
   }
 
   postsByTag() {
-    const reduction = this.posts().reduce((map, { fileName, post }) => {
+    const reduction = this.fetchAllPosts().reduce((map, { fileName, post }) => {
       const { tags } = post.attributes;
 
       tags.forEach((tag) => {
@@ -80,7 +80,7 @@ class BlogPostsManager {
   }
 
   postsMatchingTags(filterTags) {
-    const matches = this.posts().reduce((list, { fileName, post }) => {
+    const matches = this.fetchAllPosts().reduce((list, { fileName, post }) => {
       const postTags = post.attributes.tags;
 
       const allFound = filterTags.every(filterTag => postTags.indexOf(filterTag) >= 0);
@@ -96,7 +96,7 @@ class BlogPostsManager {
   }
 
   allTags() {
-    const tags = this.posts().reduce((set, { post }) => {
+    const tags = this.fetchAllPosts().reduce((set, { post }) => {
       post.attributes.tags.forEach(tag => set.add(tag));
       return set;
     }, new Set());

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { emphasize } from 'material-ui/styles/colorManipulator';
@@ -29,7 +29,7 @@ const contentStyles = theme => ({
   },
 });
 
-class DateArchives extends Component {
+class DateArchives extends React.Component {
   static monthName(twoDigitMonth) {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'];
@@ -37,10 +37,10 @@ class DateArchives extends Component {
     return monthNames[parseInt(twoDigitMonth, 10)];
   }
 
-  static createPanels(groupedByMonth, sortChronologically) {
+  static createPanels(postsGroupedByMonth, sortChronologically) {
     const panels = [];
 
-    let sorted = [...groupedByMonth].sort();
+    let sorted = [...postsGroupedByMonth].sort();
 
     if (!sortChronologically) {
       sorted = sorted.reverse();
@@ -74,7 +74,7 @@ class DateArchives extends Component {
     const { classes } = this.props;
 
     const manager = new BlogPostsManager();
-    const groupedByMonth = manager.postsByMonth();
+    const postsGroupedByMonth = manager.postsByMonth();
 
     return (
       <Grid container>
@@ -93,7 +93,7 @@ class DateArchives extends Component {
                   <SwapVertIcon />
                 </IconButton>
               </Paper>
-              { DateArchives.createPanels(groupedByMonth, this.state.chronological) }
+              { DateArchives.createPanels(postsGroupedByMonth, this.state.chronological) }
             </Grid>
           </Grid>
         </Grid>

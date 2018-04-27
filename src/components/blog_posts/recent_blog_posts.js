@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
-import InfiniteScroll from './infinite_scroll';
+import InfiniteScroll from '../../widgets/infinite_scroll/infinite_scroll';
 
 import BlogHelmet from '../blog_helmet';
 import BlurbCard from './blurb_card';
