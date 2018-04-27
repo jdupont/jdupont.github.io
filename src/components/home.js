@@ -9,7 +9,7 @@ import Header from './header';
 import PersistentDrawer from './drawer/persistent_drawer';
 import RecentBlogPosts from './blog_posts/recent_blog_posts';
 import AboutMe from './about_me/about_me';
-import CCLSProjectPage from './projects/ccls/ccls_project_page';
+import CCLSProjectPage from './projects/ccls/ccls_project_page_container';
 import Halloween from './halloween/halloween';
 import FourOhFour from './four_oh_four';
 import QueryRoute from './routing/query_route';

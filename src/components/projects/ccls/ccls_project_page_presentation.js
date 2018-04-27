@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
-import SectionManager from './section_manager';
 import DetailSection from './detail_section';
 import { GalleryRow, ProjectOverviewRow } from './project_page_rows';
 import BlogHelmet from '../../blog_helmet';
@@ -19,9 +18,8 @@ import cclsProjectOverview from '!json-loader!front-matter-loader!../../../docs/
 
 const styles = () => ({});
 
-const CCLSProjectPage = () => {
-  const manager = new SectionManager();
-  const sections = [...manager.sections()].sort(SectionManager.sortByOrdinal);
+const CCLSProjectPagePresentation = (props) => {
+  const { sections } = props;
 
   return (
     <Grid container>
@@ -52,10 +50,18 @@ const CCLSProjectPage = () => {
   );
 };
 
-CCLSProjectPage.propTypes = {
+CCLSProjectPagePresentation.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
+  sections: PropTypes.arrayOf(PropTypes.shape({
+    attributes: PropTypes.shape({
+      ordinal: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }),
+    body: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
-export default withStyles(styles)(CCLSProjectPage);
+export default withStyles(styles)(CCLSProjectPagePresentation);

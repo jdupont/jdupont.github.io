@@ -4,12 +4,6 @@ import { withStyles } from 'material-ui/styles';
 import Lightbox from '../../../widgets/lightbox/lightbox';
 
 import { AutoRotatingCarousel, Slide, SlideSubheadingCaption } from '../../../widgets/auto_rotating_carousel';
-// Disabling eslint for these imports because they don't like webpack loader syntax
-// But, that's needed in create-react-app without ejecting because there's no
-// access to the webpack configuration files
-/* eslint-disable */
-import imageListing from '!json-loader!front-matter-loader!../../../docs/projects/ccls/ccls_gallery_listing.md';
-/* eslint-enable */
 
 const Screenshot = (props) => {
   const { caption, imagePath, ...other } = props;
@@ -50,24 +44,22 @@ const styles = theme => ({
 });
 
 const CCLSGallery = (props) => {
-  const { classes } = props;
-
-  const firstImage = `${process.env.PUBLIC_URL}/${imageListing.attributes.images[0].path}`;
+  const { classes, images, ...other } = props;
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} {...other}>
       <div style={{ position: 'relative', width: '100%', height: 500 }}>
         <AutoRotatingCarousel>
           {
-            imageListing.attributes.images.map(image => (
+            images.map(image => (
               <Screenshot key={image.name} caption={image.caption} imagePath={`${process.env.PUBLIC_URL}/${image.path}`} />
             ))
           }
         </AutoRotatingCarousel>
       </div>
       <Lightbox
-        open
-        image={firstImage}
+        open={false}
+        image={`${process.env.PUBLIC_URL}/${images[0].path}`}
       />
     </div>
   );
@@ -77,6 +69,11 @@ CCLSGallery.propTypes = {
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
+  images: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    caption: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default withStyles(styles)(CCLSGallery);

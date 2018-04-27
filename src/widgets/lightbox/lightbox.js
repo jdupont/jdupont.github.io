@@ -24,7 +24,7 @@ LightboxWrapper.defaultProps = {
 
 LightboxWrapper.propTypes = {
   image: PropTypes.string.isRequired,
-  open: PropTypes.boolean,
+  open: PropTypes.bool,
   onRequestClose: PropTypes.func,
 };
 
