@@ -36,9 +36,28 @@ class RecentBlogPosts extends Component {
     );
   }
 
+  constructor(props) {
+    super(props);
+
+    this.manager = new BlogPostsManager();
+
+    this.state = {
+      posts: [...this.manager.posts(0)],
+      hasMorePosts: this.manager.hasMorePages(0),
+    };
+
+    this.onLoadMoreBlogPosts = this.onLoadMoreBlogPosts.bind(this);
+  }
+
+  onLoadMoreBlogPosts(pageNumToLoad) {
+    const additionalPosts = this.manager.posts(pageNumToLoad);
+    this.setState(prevState => ({
+      posts: prevState.posts.concat(additionalPosts),
+    }));
+  }
+
   render() {
-    const manager = new BlogPostsManager();
-    const posts = [...manager.posts()].sort(BlogPostsManager.sortChronologically).reverse();
+    const { posts, hasMorePosts } = this.state;
     const renderedPosts = posts.map(({ post, fileName }) => {
       const blurbCard = RecentBlogPosts.createBlurb(fileName, post);
       return RecentBlogPosts.wrapInGrid(blurbCard, fileName);
@@ -54,11 +73,11 @@ class RecentBlogPosts extends Component {
             container
             spacing={16}
             justify="center"
-            loadMore={pageNum => console.log(`Finally loading page ${pageNum}`)}
+            loadMore={this.onLoadMoreBlogPosts}
             loadingIndicatorComponent={RecentBlogPosts.wrapInGrid(<div>Loading...</div>, 'loadercomponent')}
-            hasMore
+            hasMore={hasMorePosts}
             useWindow
-            threshold={2}
+            threshold={100}
           >
             {renderedPosts}
           </InfiniteScroll>

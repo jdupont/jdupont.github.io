@@ -3,19 +3,45 @@ class BlogPostsManager {
     return a.post.attributes.date > b.post.attributes.date ? 1 : -1;
   }
 
-  constructor() {
+  constructor(pageSize = 5) {
     this.blogPosts = require.context('!json-loader!front-matter-loader!../../../public/posts/', true, /.md$/);
+    this.pageSize = pageSize;
+
+    this.allPosts = null;
   }
 
-  posts() {
-    return this.blogPosts.keys().map((fileName) => {
-      const post = this.blogPosts(fileName);
+  fetchAllPosts() {
+    if (!this.allPosts) {
+      const posts = this.blogPosts.keys().map((fileName) => {
+        const post = this.blogPosts(fileName);
 
-      return {
-        post,
-        fileName,
-      };
-    });
+        return {
+          post,
+          fileName,
+        };
+      });
+
+      this.allPosts = [...posts].sort(BlogPostsManager.sortChronologically).reverse();
+    }
+
+    return this.allPosts;
+  }
+
+  posts(pageNum = 0) {
+    const allPosts = this.fetchAllPosts();
+
+    if (pageNum < allPosts.length / this.pageSize) {
+      return allPosts.slice(pageNum * this.pageSize, (pageNum + 1) * this.pageSize);
+    }
+
+    console.log('No such page');
+    return [];
+  }
+
+  hasMorePages(currentPage) {
+    const allPosts = this.fetchAllPosts();
+    const numPostsDisplayed = (currentPage + 1) * this.pageSize;
+    return numPostsDisplayed < allPosts.length;
   }
 
   postsByMonth() {
