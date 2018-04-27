@@ -53,6 +53,7 @@ class RecentBlogPosts extends Component {
     const additionalPosts = this.manager.posts(pageNumToLoad);
     this.setState(prevState => ({
       posts: prevState.posts.concat(additionalPosts),
+      hasMorePosts: this.manager.hasMorePages(pageNumToLoad),
     }));
   }
 
@@ -79,7 +80,7 @@ class RecentBlogPosts extends Component {
             useWindow
             threshold={100}
           >
-            {renderedPosts}
+            { renderedPosts }
           </InfiniteScroll>
         </Grid>
       </Grid>

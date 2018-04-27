@@ -34,7 +34,6 @@ class BlogPostsManager {
       return allPosts.slice(pageNum * this.pageSize, (pageNum + 1) * this.pageSize);
     }
 
-    console.log('No such page');
     return [];
   }
 
