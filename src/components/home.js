@@ -7,7 +7,7 @@ import 'typeface-roboto';
 
 import Header from './header';
 import PersistentDrawer from './drawer/persistent_drawer';
-import RecentBlogPosts from './recent_blog_posts';
+import RecentBlogPosts from './blog_posts/recent_blog_posts';
 import AboutMe from './about_me/about_me';
 import CCLSProjectPage from './projects/ccls/ccls_project_page';
 import Halloween from './halloween/halloween';
