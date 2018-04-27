@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import Lightbox from '../../../widgets/lightbox/lightbox';
 
 import { AutoRotatingCarousel, Slide, SlideSubheadingCaption } from '../../../widgets/auto_rotating_carousel';
 // Disabling eslint for these imports because they don't like webpack loader syntax
@@ -51,6 +52,8 @@ const styles = theme => ({
 const CCLSGallery = (props) => {
   const { classes } = props;
 
+  const firstImage = `${process.env.PUBLIC_URL}/${imageListing.attributes.images[0].path}`;
+
   return (
     <div className={classes.root}>
       <div style={{ position: 'relative', width: '100%', height: 500 }}>
@@ -62,6 +65,10 @@ const CCLSGallery = (props) => {
           }
         </AutoRotatingCarousel>
       </div>
+      <Lightbox
+        open
+        image={firstImage}
+      />
     </div>
   );
 };
