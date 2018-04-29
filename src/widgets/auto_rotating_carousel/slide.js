@@ -26,6 +26,7 @@ const styles = theme => ({
     alignItems: 'center',
     '& > *': {
       maxHeight: '100%',
+      maxWidth: '100%',
     },
   },
   mediaBackground: {
