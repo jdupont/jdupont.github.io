@@ -14,7 +14,9 @@ const LightboxWrapper = (props) => {
     return (
       <Lightbox
         mainSrc={image.src}
+        imageCaption={image.caption}
         onCloseRequest={onRequestClose}
+        imageLoadErrorMessage={`Could not load image from ${image.src}`}
         {...other}
       />
     );
