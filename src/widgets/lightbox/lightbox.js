@@ -19,8 +19,8 @@ const LightboxWrapper = (props) => {
       <Lightbox
         mainSrc={images[slideIndex].src}
         imageCaption={images[slideIndex].caption}
-        nextSrc="notneeded"
-        prevSrc="notneeded"
+        nextSrc={images[slideIndex].src}
+        prevSrc={images[slideIndex].src}
         onMovePrevRequest={onDecreaseSlideIndex}
         onMoveNextRequest={onIncreaseSlideIndex}
         onCloseRequest={onRequestClose}
