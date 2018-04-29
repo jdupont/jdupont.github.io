@@ -82,13 +82,13 @@ class AutoRotatingCarousel extends React.Component {
   }
 
   increaseIndex() {
-    const slideIndex = this.state.slideIndex + 1;
-    this.setState({ slideIndex });
+    this.setState(({ slideIndex }, props) =>
+      ({ slideIndex: (slideIndex + 1) % props.images.length }));
   }
 
   decreaseIndex() {
-    const slideIndex = this.state.slideIndex - 1;
-    this.setState({ slideIndex });
+    this.setState(({ slideIndex }, props) =>
+      ({ slideIndex: ((slideIndex + props.images.length) - 1) % props.images.length }));
   }
 
   handleChange = (slideIndex) => {
@@ -146,7 +146,10 @@ class AutoRotatingCarousel extends React.Component {
           <Lightbox
             open={lightboxOpen}
             onRequestClose={() => this.setState({ lightboxOpen: false })}
-            image={images[slideIndex]}
+            images={images}
+            slideIndex={slideIndex}
+            onIncreaseSlideIndex={this.increaseIndex}
+            onDecreaseSlideIndex={this.decreaseIndex}
           />
         </div>
       </div>
