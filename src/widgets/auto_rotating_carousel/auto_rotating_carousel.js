@@ -69,6 +69,10 @@ class AutoRotatingCarousel extends React.Component {
     });
   }
 
+  static shouldAutoPlay(playing, lightboxOpen) {
+    return playing && !lightboxOpen;
+  }
+
   constructor(props) {
     super(props);
     this.state = { slideIndex: 0, lightboxOpen: false };
@@ -94,7 +98,7 @@ class AutoRotatingCarousel extends React.Component {
   render() {
     const { slideIndex, lightboxOpen } = this.state;
     const {
-      autoplay,
+      playing,
       interval,
       images,
       classes,
@@ -115,7 +119,7 @@ class AutoRotatingCarousel extends React.Component {
             onClick={() => this.setState({ lightboxOpen: true })}
           >
             <Carousel
-              autoplay={autoplay}
+              autoplay={AutoRotatingCarousel.shouldAutoPlay(playing, lightboxOpen)}
               interval={interval}
               index={slideIndex}
               onChangeIndex={this.handleChange}
@@ -151,7 +155,7 @@ class AutoRotatingCarousel extends React.Component {
 }
 
 AutoRotatingCarousel.defaultProps = {
-  autoplay: true,
+  playing: true,
   interval: 10000,
 };
 
@@ -161,7 +165,7 @@ AutoRotatingCarousel.propTypes = {
     caption: PropTypes.string,
   })).isRequired,
   /** If `false`, the auto play behavior is disabled. */
-  autoplay: PropTypes.bool,
+  playing: PropTypes.bool,
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
