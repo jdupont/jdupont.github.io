@@ -10,6 +10,7 @@ const LightboxWrapper = (props) => {
     onDecreaseSlideIndex,
     images,
     slideIndex,
+    overlayZIndex,
     ...other
   } = props;
 
@@ -24,6 +25,7 @@ const LightboxWrapper = (props) => {
         onMoveNextRequest={onIncreaseSlideIndex}
         onCloseRequest={onRequestClose}
         imageLoadErrorMessage={`Could not load image from ${images[slideIndex].src}`}
+        reactModalStyle={{ overlay: { zIndex: overlayZIndex } }}
         {...other}
       />
     );
@@ -38,6 +40,7 @@ LightboxWrapper.defaultProps = {
   slideIndex: undefined,
   onIncreaseSlideIndex: undefined,
   onDecreaseSlideIndex: undefined,
+  overlayZIndex: 1200,
 };
 
 LightboxWrapper.propTypes = {
@@ -50,6 +53,7 @@ LightboxWrapper.propTypes = {
   onDecreaseSlideIndex: PropTypes.func,
   open: PropTypes.bool,
   onRequestClose: PropTypes.func,
+  overlayZIndex: PropTypes.number,
 };
 
 export default LightboxWrapper;

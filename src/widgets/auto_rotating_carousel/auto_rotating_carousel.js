@@ -158,11 +158,12 @@ class AutoRotatingCarousel extends React.Component {
           </Hidden>
           <Lightbox
             open={lightboxOpen}
-            onRequestClose={() => this.setState({ lightboxOpen: false })}
+            onRequestClose={() => { this.setState({ lightboxOpen: false }); console.log('Requested close'); }}
             images={images}
             slideIndex={slideIndex}
             onIncreaseSlideIndex={this.increaseIndex}
             onDecreaseSlideIndex={this.decreaseIndex}
+            overlayZIndex={theme.zIndex.appBar + 1}
           />
         </div>
       </div>
