@@ -8,17 +8,26 @@ import CCLSGalleryPresentation from './ccls_gallery_presentation';
 import imageListing from '!json-loader!front-matter-loader!../../../docs/projects/ccls/ccls_gallery_listing.md';
 /* eslint-enable */
 
-const CCLSGalleryContainer = (props) => {
-  const { images } = imageListing.attributes;
+class CCLSGalleryContainer extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <CCLSGalleryPresentation
-      images={images}
-      {...props}
-    />
-  );
-};
+    this.state = {
+      images: imageListing.attributes.images,
+    };
+  }
 
+  render() {
+    const { images } = this.state;
+
+    return (
+      <CCLSGalleryPresentation
+        images={images}
+        {...this.props}
+      />
+    );
+  }
+}
 CCLSGalleryContainer.propTypes = {
 };
 

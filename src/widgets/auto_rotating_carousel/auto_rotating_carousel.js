@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import { withStyles } from 'material-ui/styles';
+
+import Lightbox from '../lightbox/lightbox';
 import Dots from '../dots/dots.js';
-import Carousel from './swipable_carousel_view';
+import Carousel from './carousel';
 import CarouselArrows from './carousel_arrows';
 import { modulo } from './util';
 
@@ -52,7 +54,7 @@ const styles = theme => ({
 class AutoRotatingCarousel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { slideIndex: 0 };
+    this.state = { slideIndex: 0, lightboxOpen: false };
 
     this.increaseIndex = this.increaseIndex.bind(this);
     this.decreaseIndex = this.decreaseIndex.bind(this);
@@ -73,7 +75,7 @@ class AutoRotatingCarousel extends React.Component {
   }
 
   render() {
-    const { slideIndex } = this.state;
+    const { slideIndex, lightboxOpen } = this.state;
     const {
       autoplay,
       interval,
@@ -81,6 +83,10 @@ class AutoRotatingCarousel extends React.Component {
       classes,
       ...other
     } = this.props;
+
+    if (!children) {
+      return null;
+    }
 
     return (
       <div className={classes.root} {...other}>
@@ -111,6 +117,10 @@ class AutoRotatingCarousel extends React.Component {
           <Hidden smDown>
             <CarouselArrows onLeftClick={this.decreaseIndex} onRightClick={this.increaseIndex} />
           </Hidden>
+          <Lightbox
+            open={lightboxOpen}
+            onCloseRequest={() => { this.setState({ lightboxOpen: false }); }}
+          />
         </div>
       </div>
     );
@@ -120,10 +130,11 @@ class AutoRotatingCarousel extends React.Component {
 AutoRotatingCarousel.defaultProps = {
   autoplay: true,
   interval: 10000,
+  children: undefined,
 };
 
 AutoRotatingCarousel.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /** If `false`, the auto play behavior is disabled. */
   autoplay: PropTypes.bool,
   /* eslint-disable react/forbid-prop-types */

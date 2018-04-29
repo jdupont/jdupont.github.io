@@ -1,26 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Lightbox from '../../../widgets/lightbox/lightbox';
 
-import { AutoRotatingCarousel, Slide, SlideSubheadingCaption } from '../../../widgets/auto_rotating_carousel';
-
-const Screenshot = (props) => {
-  const { caption, imagePath, ...other } = props;
-
-  return (
-    <Slide
-      media={<img src={imagePath} alt={caption} />}
-      caption={(<SlideSubheadingCaption caption={caption} />)}
-      {...other}
-    />
-  );
-};
-
-Screenshot.propTypes = {
-  caption: PropTypes.string.isRequired,
-  imagePath: PropTypes.string.isRequired,
-};
+import { AutoRotatingCarousel } from '../../../widgets/auto_rotating_carousel';
+import CaptionedImage from '../../../widgets/auto_rotating_carousel/captioned_image';
 
 const styles = theme => ({
   root: {
@@ -46,21 +29,17 @@ const styles = theme => ({
 const CCLSGallery = (props) => {
   const { classes, images, ...other } = props;
 
+  const formattedImages = images.map(image => (
+    <CaptionedImage key={image.name} caption={image.caption} imagePath={`${process.env.PUBLIC_URL}/${image.path}`} />
+  ));
+
   return (
     <div className={classes.root} {...other}>
       <div style={{ position: 'relative', width: '100%', height: 500 }}>
         <AutoRotatingCarousel>
-          {
-            images.map(image => (
-              <Screenshot key={image.name} caption={image.caption} imagePath={`${process.env.PUBLIC_URL}/${image.path}`} />
-            ))
-          }
+          { formattedImages }
         </AutoRotatingCarousel>
       </div>
-      <Lightbox
-        open={false}
-        image={`${process.env.PUBLIC_URL}/${images[0].path}`}
-      />
     </div>
   );
 };
