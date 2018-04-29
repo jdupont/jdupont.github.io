@@ -13,7 +13,7 @@ const LightboxWrapper = (props) => {
     ...other
   } = props;
 
-  if (open && images && images.length > 0) {
+  if (open && images && images.length > 0 && slideIndex < images.length) {
     return (
       <Lightbox
         mainSrc={images[slideIndex].src}

@@ -91,8 +91,20 @@ class AutoRotatingCarousel extends React.Component {
       ({ slideIndex: ((slideIndex + props.images.length) - 1) % props.images.length }));
   }
 
-  handleChange = (slideIndex) => {
-    this.setState({ slideIndex });
+  handleChange = (updatedSlideIndex) => {
+    this.setState((prevState, props) => {
+      if (updatedSlideIndex > 0 && updatedSlideIndex < props.images.length) {
+        return { slideIndex: updatedSlideIndex };
+      } else if (updatedSlideIndex < 0) {
+        return {
+          slideIndex: (updatedSlideIndex + props.images.length) % props.images.length,
+        };
+      } else if (updatedSlideIndex >= props.images.length) {
+        return { slideIndex: (updatedSlideIndex) % props.images.length };
+      }
+
+      return { slideIndex: updatedSlideIndex };
+    });
   }
 
   render() {
@@ -102,6 +114,7 @@ class AutoRotatingCarousel extends React.Component {
       interval,
       images,
       classes,
+      theme,
       ...other
     } = this.props;
 
@@ -171,9 +184,10 @@ AutoRotatingCarousel.propTypes = {
   playing: PropTypes.bool,
   /* eslint-disable react/forbid-prop-types */
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
   /** Delay between auto play transitions (in ms). */
   interval: PropTypes.number,
 };
 
-export default withStyles(styles)(AutoRotatingCarousel);
+export default withStyles(styles, { withTheme: true })(AutoRotatingCarousel);
