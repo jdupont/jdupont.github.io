@@ -12,7 +12,10 @@ const carouselSlideRenderer = children =>
   ({ index, key }) => React.cloneElement(children[modulo(index, children.length)], { key });
 
 const Carousel = ({ children, ...other }) => (
-  <VirtualizeAutoPlaySwipeViews slideRenderer={carouselSlideRenderer(children)} {...other} />
+  <VirtualizeAutoPlaySwipeViews
+    slideRenderer={carouselSlideRenderer(children)}
+    {...other}
+  />
 );
 
 Carousel.propTypes = {

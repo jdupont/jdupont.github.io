@@ -6,11 +6,11 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-import CCLSGallery from './ccls_gallery';
+import CCLSGallery from './ccls_gallery_container';
 import { fullRowWidth, contentRowWidths } from '../../../style/dimensions';
 
-const GalleryRow = () => (
-  <Grid item {...contentRowWidths}>
+const GalleryRow = props => (
+  <Grid item {...contentRowWidths} {...props}>
     <Paper>
       <Grid container>
         <Grid item {...fullRowWidth} >
@@ -40,10 +40,15 @@ const projectOverviewRowstyles = theme => ({
 });
 
 const ProjectOverviewRowUnstyled = (props) => {
-  const { classes, projectTitle, projectBlurbNode } = props;
+  const {
+    classes,
+    projectTitle,
+    projectBlurbNode,
+    ...other
+  } = props;
 
   return (
-    <Grid item {...contentRowWidths}>
+    <Grid item {...contentRowWidths} {...other}>
       <Paper>
         <Grid container>
           <Grid item {...fullRowWidth} component="div" className={classes.noTopPadding}>
