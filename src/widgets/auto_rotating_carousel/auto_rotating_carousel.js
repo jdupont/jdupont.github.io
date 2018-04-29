@@ -7,6 +7,7 @@ import { withStyles } from 'material-ui/styles';
 import Lightbox from '../lightbox/lightbox';
 import Dots from '../dots/dots.js';
 import Carousel from './carousel';
+import CaptionedImage from './captioned_image';
 import CarouselArrows from './carousel_arrows';
 import { modulo } from './util';
 
@@ -52,6 +53,22 @@ const styles = theme => ({
 });
 
 class AutoRotatingCarousel extends React.Component {
+  static wrapImagesInSlides(images) {
+    return images.map((image) => {
+      if (image.caption) {
+        return (
+          <CaptionedImage
+            key={image.src}
+            caption={image.caption}
+            src={image.src}
+          />
+        );
+      }
+
+      return 'Ooops not yet implemented. Need to add no-caption image slide here';
+    });
+  }
+
   constructor(props) {
     super(props);
     this.state = { slideIndex: 0, lightboxOpen: false };
@@ -79,19 +96,24 @@ class AutoRotatingCarousel extends React.Component {
     const {
       autoplay,
       interval,
-      children,
+      images,
       classes,
       ...other
     } = this.props;
 
-    if (!children) {
+    if (!images) {
       return null;
     }
+
+    const children = AutoRotatingCarousel.wrapImagesInSlides(images);
 
     return (
       <div className={classes.root} {...other}>
         <div className={classes.content}>
-          <Paper className={classes.carouselWrapper}>
+          <Paper
+            className={classes.carouselWrapper}
+            onClick={() => this.setState({ lightboxOpen: true })}
+          >
             <Carousel
               autoplay={autoplay}
               interval={interval}
@@ -119,7 +141,8 @@ class AutoRotatingCarousel extends React.Component {
           </Hidden>
           <Lightbox
             open={lightboxOpen}
-            onCloseRequest={() => { this.setState({ lightboxOpen: false }); }}
+            onRequestClose={() => this.setState({ lightboxOpen: false })}
+            image={images[slideIndex]}
           />
         </div>
       </div>
@@ -130,11 +153,13 @@ class AutoRotatingCarousel extends React.Component {
 AutoRotatingCarousel.defaultProps = {
   autoplay: true,
   interval: 10000,
-  children: undefined,
 };
 
 AutoRotatingCarousel.propTypes = {
-  children: PropTypes.node,
+  images: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    caption: PropTypes.string,
+  })).isRequired,
   /** If `false`, the auto play behavior is disabled. */
   autoplay: PropTypes.bool,
   /* eslint-disable react/forbid-prop-types */

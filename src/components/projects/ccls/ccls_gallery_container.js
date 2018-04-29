@@ -22,7 +22,7 @@ class CCLSGalleryContainer extends React.Component {
 
     return (
       <CCLSGalleryPresentation
-        images={images}
+        images={images.map(({ path, ...other }) => ({ src: `${process.env.PUBLIC_URL}/${path}`, ...other }))}
         {...this.props}
       />
     );

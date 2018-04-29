@@ -3,13 +3,19 @@ import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
 
 const LightboxWrapper = (props) => {
-  const { open, onRequestClose, image } = props;
+  const {
+    open,
+    onRequestClose,
+    image,
+    ...other
+  } = props;
 
-  if (open) {
+  if (open && image) {
     return (
       <Lightbox
-        mainSrc={image}
+        mainSrc={image.src}
         onCloseRequest={onRequestClose}
+        {...other}
       />
     );
   }
@@ -23,7 +29,10 @@ LightboxWrapper.defaultProps = {
 };
 
 LightboxWrapper.propTypes = {
-  image: PropTypes.string.isRequired,
+  image: PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    caption: PropTypes.string,
+  }).isRequired,
   open: PropTypes.bool,
   onRequestClose: PropTypes.func,
 };
